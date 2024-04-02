@@ -1,0 +1,97 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Apr 2, 2024, 1:23:41 AM
+    Author     : user
+*/
+
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Apr 1, 2024, 12:17:44 AM
+    Author     : user
+*/
+.top-form{
+    -fx-background-color: #fff;
+    -fx-border-color: #000;
+    -fx-border-width: .4px .4px .2px .4px;
+}
+
+.semi-top-form{
+    -fx-background-color: #efefef;
+    -fx-border-color: #000;
+    -fx-border-width: .2px .4px .4px .4px;
+}
+
+.close{
+    -fx-background-color:transparent;
+    -fx-cursor:hand;
+}
+.close:hover{
+    -fx-background-color: #4397cc
+}
+.minimize{
+    -fx-background-color:transparent;
+    -fx-cursor:hand;
+}
+.minimize:hover{
+    -fx-background-color: #ddd;
+}
+.nav-form{
+    -fx-background-color:linear-gradient(to bottom right,#4397cc,#17526b  );
+}
+.nav-btn{
+    -fx-background-color:transparent;
+    -fx-cursor:hand;
+    -fx-alignment: center-left;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+    -fx-font-family: Arial;
+}
+.logout{
+    -fx-background-color: #358dc7;
+    -fx-background-radius: 20px;
+    -fx-cursor:hand;
+}
+.logout:hover{
+    -fx-background-color: #3aa5cc;
+}
+.white-bg{
+    -fx-background-color: #fff;
+    -fx-background-radius: 8px;
+}
+.shadow{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.7), 5,0,0,0);
+}
+
+
+.add-btn{
+    -fx-background-color: #3b5f75;
+    -fx-background-radius: 6px;
+    -fx-font-size: 14px;
+    -fx-font-family: Arial;
+    -fx-text-fill: #fff;
+    -fx-cursor: hand;
+}
+.add-btn:hover{
+    -fx-background-color: #3679a1;
+}
+
+.search{
+    -fx-background-color: linear-gradient(to bottom, #efefef, #eee);
+    -fx-background-radius: 4px;
+    -fx-border-color: linear-gradient(to bottom right, #4397cc, #17526b);
+    -fx-border-radius: 4px;
+    -fx-font-size: 13px;
+    -fx-font-family: Tahoma;
+    -fx-padding: 0px 0px 0px 28px;
+    -fx-border-width: .8px;
+}
+.search:focused{
+    -fx-background-color: #fff;
+    -fx-border-width: 1.8px;
+}
