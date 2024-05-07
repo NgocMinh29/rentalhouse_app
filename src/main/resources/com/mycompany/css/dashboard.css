@@ -68,17 +68,29 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.7), 5,0,0,0);
 }
 
+.card{
+    -fx-background-color: linear-gradient(to right,#17526b,#4397cc);
+    -fx-background-radius: 4px;
+}
 
+.textfield{
+    -fx-background-color: linear-gradient(to bottom, #efefef, #eee);
+    -fx-border-color: linear-gradient(to bottom right, #17526b, #4397cc);
+    -fx-border-width: .4px;
+}
+.textfield:focused{
+    -fx-background-color: #fff;
+    -fx-border-width: 1px;
+}
 .add-btn{
-    -fx-background-color: #3b5f75;
-    -fx-background-radius: 6px;
-    -fx-font-size: 14px;
+    -fx-background-color:linear-gradient(to bottom right,#17526b,#4397cc  );
+    -fx-font-size: 13px;
     -fx-font-family: Arial;
     -fx-text-fill: #fff;
     -fx-cursor: hand;
 }
 .add-btn:hover{
-    -fx-background-color: #3679a1;
+    -fx-background-color: linear-gradient(to bottom,#3aa5cc,#236a94 );
 }
 
 .search{
@@ -94,4 +106,27 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 .search:focused{
     -fx-background-color: #fff;
     -fx-border-width: 1.8px;
+}
+
+.table-view{
+    -fx-border-color: linear-gradient(to bottom right, #4397cc, #17526b);
+    -fx-border-width: 2px;
+    -fx-padding: 0px;
+    -fx-border-radius: 8px;
+    -fx-background-color: transparent;
+}
+.table-view .table-column{
+    -fx-alignment: CENTER;
+}
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(to bottom right, #4397cc, #17526b);
+    -fx-background-radius: 8px 8px 0px 0px;
+    -fx-background-insets: 0 0 0 0;
+}
+.table-view .column-header, .filter{
+    -fx-background-color: transparent;
+    -fx-size: 40px;
+}
+.table-view .column-header .label{
+    -fx-text-fill: #fff;
 }
