@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<!--<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenprojecttest.ThongKeController">
+    
+</AnchorPane>-->
+<AnchorPane layoutX="193.0" layoutY="161.0" prefHeight="564.0" prefWidth="897.3333333333334" stylesheets="@../css/dashboard.css" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenprojecttest.ThongKeController">
+    <children>
+        <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="870.0" stylesheets="@../css/dashboard.css">
+            <styleClass>
+                <String fx:value="white-bg" />
+                <String fx:value="shadow" />
+            </styleClass>
+            <children>
+                <AnchorPane layoutX="14.0" layoutY="12.0" prefHeight="175.0" prefWidth="195.0" styleClass="card" stylesheets="@../css/dashboard.css">
+                    <children>
+                        <FontAwesomeIconView fill="WHITE" glyphName="HOME" layoutX="21.0" layoutY="92.0" size="5em" />
+                        <Label layoutX="67.0" layoutY="141.0" text="Phòng đang thuê" textFill="WHITE">
+                            <font>
+                                <Font name="Tahoma" size="15.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="thongke_phongthue" layoutX="172.0" layoutY="14.0" text="5" textFill="WHITE">
+                            <font>
+                                <Font name="Tahoma" size="15.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutX="229.0" layoutY="12.0" prefHeight="175.0" prefWidth="195.0" styleClass="card" stylesheets="@../css/dashboard.css">
+                    <children>
+                        <FontAwesomeIconView fill="WHITE" glyphName="MONEY" layoutX="20.0" layoutY="92.0" size="5em" />
+                        <Label layoutX="65.0" layoutY="141.0" text="Hóa đơn còn nợ" textFill="WHITE">
+                            <font>
+                                <Font name="Tahoma" size="15.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="thongke_hoadonno" layoutX="171.0" layoutY="14.0" text="3" textFill="WHITE">
+                            <font>
+                                <Font name="Tahoma" size="15.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutX="445.0" layoutY="12.0" prefHeight="175.0" prefWidth="195.0" styleClass="card" stylesheets="@../css/dashboard.css">
+                    <children>
+                        <FontAwesomeIconView fill="WHITE" glyphName="CLIPBOARD" layoutX="14.0" layoutY="92.0" size="5em" />
+                        <Label layoutX="33.0" layoutY="141.0" text="Hợp đồng sắp hết hạn" textFill="WHITE">
+                            <font>
+                                <Font name="Tahoma" size="15.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="thongke_hopdonghethan" layoutX="165.0" layoutY="14.0" text="1" textFill="WHITE">
+                            <font>
+                                <Font name="Tahoma" size="15.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutX="660.0" layoutY="12.0" prefHeight="175.0" prefWidth="195.0" styleClass="card" stylesheets="@../css/dashboard.css">
+                    <children>
+                        <FontAwesomeIconView fill="WHITE" glyphName="CHECK" layoutX="11.0" layoutY="92.0" size="5em" />
+                        <Label layoutX="27.0" layoutY="141.0" text="Phiếu dịch vụ chờ xử lý" textFill="WHITE">
+                            <font>
+                                <Font name="Tahoma" size="15.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="thongke_dichvucho" layoutX="162.0" layoutY="14.0" text="2" textFill="WHITE">
+                            <font>
+                                <Font name="Tahoma" size="15.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="14.0" layoutY="227.0" prefHeight="323.0" prefWidth="425.0" stylesheets="@../css/dashboard.css">
+            <styleClass>
+                <String fx:value="white-bg" />
+                <String fx:value="shadow" />
+            </styleClass>
+            <children>
+                <BarChart fx:id="thongke_hoadonchart" layoutX="15.0" layoutY="62.0" prefHeight="231.0" prefWidth="395.0" title="Biểu đồ giá trị hóa đơn theo phòng">
+                    <xAxis>
+                        <CategoryAxis label="Phòng" side="BOTTOM" fx:id="xthongke_hoadonchart" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis fx:id="ythongke_hoadonchart" label="Giá trị hóa đơn" side="LEFT" />
+                    </yAxis>
+                </BarChart>
+                <ComboBox fx:id="thongke_hdthang" layoutX="134.0" layoutY="23.0" prefHeight="25.0" prefWidth="61.0" />
+                <ComboBox fx:id="thongke_hdnam" layoutX="260.0" layoutY="23.0" prefHeight="25.0" prefWidth="82.0" />
+                <Label layoutX="91.0" layoutY="27.0" text="Tháng:" />
+                <Label layoutX="224.0" layoutY="27.0" text="Năm:" />
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="458.0" layoutY="227.0" prefHeight="323.0" prefWidth="425.0" stylesheets="@../css/dashboard.css">
+            <styleClass>
+                <String fx:value="white-bg" />
+                <String fx:value="shadow" />
+            </styleClass>
+            <children>
+                <BarChart fx:id="thongke_hopdongchart" layoutX="15.0" layoutY="31.0" prefHeight="262.0" prefWidth="395.0" title="Biểu đồ giá trị hợp đồng trong năm 2024">
+                    <xAxis>
+                        <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis side="LEFT" />
+                    </yAxis>
+                </BarChart>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

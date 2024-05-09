@@ -43,7 +43,7 @@
                         <FontAwesomeIconView glyphName="CLOSE" />
                      </graphic>
                   </Button>
-                  <PasswordField fx:id="password" layoutX="53.0" layoutY="220.0" prefHeight="30.0" prefWidth="220.0" promptText="Mật khẩu" stylesheets="@../css/LoginDesignmaven.css" />
+                  <PasswordField fx:id="password" layoutX="53.0" layoutY="219.0" prefHeight="30.0" prefWidth="220.0" promptText="Mật khẩu" stylesheets="@../css/LoginDesignmaven.css" />
                   <FontAwesomeIconView glyphName="USER" layoutX="142.0" layoutY="133.0" size="5em" />
                   <Hyperlink fx:id="login_forgotpassword" layoutX="185.0" layoutY="258.0" onAction="#forgotpassword" text="Quên mật khẩu?">
                      <font>
@@ -55,7 +55,7 @@
                         <Font size="11.0" />
                      </font>
                   </CheckBox>
-                  <TextField fx:id="showpassword" layoutX="53.0" layoutY="234.0" prefHeight="30.0" prefWidth="220.0" promptText="Mật khẩu" styleClass="search" stylesheets="@../css/LoginDesignmaven.css" visible="false" />
+                  <TextField fx:id="showpassword" layoutX="53.0" layoutY="219.0" prefHeight="30.0" prefWidth="220.0" visible="false" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="loginemailform" layoutX="325.0" layoutY="2.0" prefHeight="440.0" prefWidth="325.0" styleClass="right-form" stylesheets="@../css/LoginDesignmaven.css" visible="false">
