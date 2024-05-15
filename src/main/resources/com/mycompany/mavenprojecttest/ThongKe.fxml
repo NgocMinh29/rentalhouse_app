@@ -5,22 +5,15 @@
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <!--<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenprojecttest.ThongKeController">
     
 </AnchorPane>-->
+
 <AnchorPane layoutX="193.0" layoutY="161.0" prefHeight="564.0" prefWidth="897.3333333333334" stylesheets="@../css/dashboard.css" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenprojecttest.ThongKeController">
     <children>
         <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="870.0" stylesheets="@../css/dashboard.css">
@@ -37,7 +30,7 @@
                                 <Font name="Tahoma" size="15.0" />
                             </font>
                         </Label>
-                        <Label fx:id="thongke_phongthue" layoutX="172.0" layoutY="14.0" text="5" textFill="WHITE">
+                        <Label fx:id="thongke_phongthue" layoutX="153.0" layoutY="14.0" text="5" textFill="WHITE">
                             <font>
                                 <Font name="Tahoma" size="15.0" />
                             </font>
@@ -52,7 +45,7 @@
                                 <Font name="Tahoma" size="15.0" />
                             </font>
                         </Label>
-                        <Label fx:id="thongke_hoadonno" layoutX="171.0" layoutY="14.0" text="3" textFill="WHITE">
+                        <Label fx:id="thongke_hoadonno" layoutX="149.0" layoutY="14.0" text="3" textFill="WHITE">
                             <font>
                                 <Font name="Tahoma" size="15.0" />
                             </font>
@@ -61,13 +54,13 @@
                 </AnchorPane>
                 <AnchorPane layoutX="445.0" layoutY="12.0" prefHeight="175.0" prefWidth="195.0" styleClass="card" stylesheets="@../css/dashboard.css">
                     <children>
-                        <FontAwesomeIconView fill="WHITE" glyphName="CLIPBOARD" layoutX="14.0" layoutY="92.0" size="5em" />
-                        <Label layoutX="33.0" layoutY="141.0" text="Hợp đồng sắp hết hạn" textFill="WHITE">
+                        <FontAwesomeIconView fill="WHITE" glyphName="USERS" layoutX="14.0" layoutY="92.0" size="5em" />
+                        <Label layoutX="64.0" layoutY="141.0" text="Số người đang ở" textFill="WHITE">
                             <font>
                                 <Font name="Tahoma" size="15.0" />
                             </font>
                         </Label>
-                        <Label fx:id="thongke_hopdonghethan" layoutX="165.0" layoutY="14.0" text="1" textFill="WHITE">
+                        <Label fx:id="thongke_songuoidnago" layoutX="147.0" layoutY="14.0" text="1" textFill="WHITE">
                             <font>
                                 <Font name="Tahoma" size="15.0" />
                             </font>
@@ -82,7 +75,7 @@
                                 <Font name="Tahoma" size="15.0" />
                             </font>
                         </Label>
-                        <Label fx:id="thongke_dichvucho" layoutX="162.0" layoutY="14.0" text="2" textFill="WHITE">
+                        <Label fx:id="thongke_dichvucho" layoutX="141.0" layoutY="14.0" text="2" textFill="WHITE">
                             <font>
                                 <Font name="Tahoma" size="15.0" />
                             </font>

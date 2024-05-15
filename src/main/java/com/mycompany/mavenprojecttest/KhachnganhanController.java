@@ -41,8 +41,8 @@ import javafx.scene.layout.AnchorPane;
  */
 public class KhachnganhanController implements Initializable {
     
-    @FXML
-    private Button khachngan_capnhatbtn;
+//    @FXML
+//    private Button khachngan_capnhatbtn;
 
     @FXML
     private TextField khachngan_cccd;
@@ -85,6 +85,12 @@ public class KhachnganhanController implements Initializable {
 
     @FXML
     private TextField khachngan_search;
+    
+    @FXML
+    private DatePicker khachngan_searchngay;
+    
+    @FXML
+    private Button khachngan_tim;
 
     @FXML
     private TableView<KhachData> khachngan_tableview;
@@ -143,13 +149,13 @@ public class KhachnganhanController implements Initializable {
     private int currentYear = today.getYear();
     
     public void KhachNganGioiTinh() {
-        ObservableList listData = FXCollections.observableArrayList("Nam", "Nu");
+        ObservableList listData = FXCollections.observableArrayList("Nam", "Nữ");
         khachngan_gioitinh.setItems(listData);
         
     }
     
     public void KhachNganTrangthai() {
-        ObservableList listData = FXCollections.observableArrayList("Duyet", "Chua duyet");
+        ObservableList listData = FXCollections.observableArrayList("Đã duyệt", "Chờ duyệt");
         khachngan_trangthai.setItems(listData);
         khachngan_searchtt.setItems(listData);
     }
@@ -184,113 +190,130 @@ public class KhachnganhanController implements Initializable {
         
         khachngan_duyetbtn.setDisable(false); 
         khachngan_xoabtn.setDisable(false); 
-        khachngan_capnhatbtn.setDisable(false); 
-        
-        
-        
-//        String gt = String.valueOf(khangnganhan.getSoLuongProperty().getValue());
-//        String tt = String.valueOf(khangnganhan.getDonGiaProperty().getValue());
-//        
-//        khachngan_gioitinh.textProperty().addListener((observable, oldValue, newValue) -> {
-//            
-//            if (newValue.equals(gt) 
-//                    && cthd_dongia.getText().equals(cthddg)){
-//                cthd_xoabtn.setDisable(false); 
-//            } else{
-//                cthd_xoabtn.setDisable(true);
-//            }
-//        });
-//        khachngan_trangthai.textProperty().addListener((observable, oldValue, newValue) -> {
-//            
-//            if (newValue.equals(cthddg) 
-//               && cthd_sl.getText().equals(cthdsl)){
-//                cthd_xoabtn.setDisable(false);
-//            } else{
-//                cthd_xoabtn.setDisable(true);
-//            }
-//        });
-
-        
+        //khachngan_capnhatbtn.setDisable(false); 
+       
    }
    
-   public void KhachNganSearch() {
-               
-        FilteredList<KhachData> filter = new FilteredList<>(KhachNganHanList, e -> true);
-
-        khachngan_search.textProperty().addListener((Observable, oldValue, newValue) -> {
+//   public void KhachNganSearch() {
+//               
+//        FilteredList<KhachData> filter = new FilteredList<>(KhachNganHanList, e -> true);
+//
+//        khachngan_search.textProperty().addListener((Observable, oldValue, newValue) -> {
+//            
+//            filter.setPredicate((KhachData PrediateKhachNganData) -> {
+//                boolean tt = false;
+//                if (khachngan_searchtt.getSelectionModel().getSelectedItem()==null) tt = true;
+//
+//                if (newValue.isEmpty() && tt) {
+//                    return true;
+//                }
+//
+//                String searchKey = newValue.toLowerCase();
+//
+//                if (String.valueOf(PrediateKhachNganData.getKhachidProperty().getValue()).toLowerCase().contains(searchKey) 
+//                        && ( (String.valueOf(PrediateKhachNganData.getTrangthaiProperty().getValue()).equals(String.valueOf(khachngan_searchtt.getSelectionModel().getSelectedItem()))) || tt)) {
+//                    return true;
+//                } else if (String.valueOf(PrediateKhachNganData.getHotenProperty().getValue()).toLowerCase().contains(searchKey) 
+//                        && ( (String.valueOf(PrediateKhachNganData.getTrangthaiProperty().getValue()).equals(String.valueOf(khachngan_searchtt.getSelectionModel().getSelectedItem()))) || tt)) {
+//                    return true;
+//                } else if (String.valueOf(PrediateKhachNganData.getGioitinhProperty().getValue()).toLowerCase().contains(searchKey)
+//                        && ((String.valueOf(PrediateKhachNganData.getTrangthaiProperty().getValue()).equals(String.valueOf(khachngan_searchtt.getSelectionModel().getSelectedItem()))) || tt)) {
+//                    return true;
+//                } else if (String.valueOf(PrediateKhachNganData.getNgaysinhProperty().getValue()).toLowerCase().contains(searchKey)
+//                        && ((String.valueOf(PrediateKhachNganData.getTrangthaiProperty().getValue()).equals(String.valueOf(khachngan_searchtt.getSelectionModel().getSelectedItem())))|| tt)) {
+//                    return true;
+//                } else if (String.valueOf(PrediateKhachNganData.getSdtProperty().getValue()).toLowerCase().contains(searchKey)
+//                        && ((String.valueOf(PrediateKhachNganData.getTrangthaiProperty().getValue()).equals(String.valueOf(khachngan_searchtt.getSelectionModel().getSelectedItem())))|| tt)) {
+//                    return true;
+//                } else if (String.valueOf(PrediateKhachNganData.getCccdProperty().getValue()).toLowerCase().contains(searchKey)
+//                        && ((String.valueOf(PrediateKhachNganData.getTrangthaiProperty().getValue()).equals(String.valueOf(khachngan_searchtt.getSelectionModel().getSelectedItem())))|| tt)) {
+//                    return true;
+//                }else if (String.valueOf(PrediateKhachNganData.getEmailProperty().getValue()).toLowerCase().contains(searchKey)
+//                        && ((String.valueOf(PrediateKhachNganData.getTrangthaiProperty().getValue()).equals(String.valueOf(khachngan_searchtt.getSelectionModel().getSelectedItem())))|| tt)) {
+//                    return true;
+//                }else if (String.valueOf(PrediateKhachNganData.getNgaybatdauProperty().getValue()).toLowerCase().contains(searchKey)
+//                        && ((String.valueOf(PrediateKhachNganData.getTrangthaiProperty().getValue()).equals(String.valueOf(khachngan_searchtt.getSelectionModel().getSelectedItem())))|| tt)) {
+//                    return true;
+//                }else if (String.valueOf(PrediateKhachNganData.getNgayketthucProperty().getValue()).toLowerCase().contains(searchKey)
+//                        && ((String.valueOf(PrediateKhachNganData.getTrangthaiProperty().getValue()).equals(String.valueOf(khachngan_searchtt.getSelectionModel().getSelectedItem())))|| tt)) {
+//                    return true;
+//                }else if (String.valueOf(PrediateKhachNganData.getDaidienidProperty().getValue()).toLowerCase().contains(searchKey)
+//                        && ((String.valueOf(PrediateKhachNganData.getTrangthaiProperty().getValue()).equals(String.valueOf(khachngan_searchtt.getSelectionModel().getSelectedItem())))|| tt)) {
+//                    return true;
+//                }else {
+//                    return false;
+//                }
+//            });
+//
+//        SortedList<KhachData> sortList = new SortedList<>(filter);
+//
+//        sortList.comparatorProperty().bind(khachngan_tableview.comparatorProperty());
+//
+//        khachngan_tableview.setItems(sortList);
+//        });
+//        
+//    }
+   
+   public void TimKhachNgan(ActionEvent event){
+       FilteredList<KhachData> filter = new FilteredList<>(KhachNganHanList, e -> true);
+       filter.setPredicate(PrediateKhachNganData -> {
+           boolean tt = false, ng = false, search = false;
+           String searchKey = khachngan_search.getText().toLowerCase();
+           
+            if  ((String.valueOf(PrediateKhachNganData.getTrangthaiProperty().getValue()).equals(String.valueOf(khachngan_searchtt.getSelectionModel().getSelectedItem())))
+                        ||khachngan_searchtt.getSelectionModel().getSelectedItem()==null) tt = true;
             
-            filter.setPredicate((KhachData PrediateKhachNganData) -> {
-                boolean tt = false;
-                if (khachngan_searchtt.getSelectionModel().getSelectedItem()==null) tt = true;
-
-                if (newValue.isEmpty() && tt) {
-                    return true;
+           LocalDate ngaytim = khachngan_searchngay.getValue();
+           LocalDate ngbd = LocalDate.parse(String.valueOf(PrediateKhachNganData.getNgaybatdauProperty().getValue()), formatter);
+           LocalDate ngkt = LocalDate.parse(String.valueOf(PrediateKhachNganData.getNgayketthucProperty().getValue()), formatter);
+           if ( ngaytim.isAfter(ngbd) && ngaytim.isBefore(ngkt) || ngaytim.equals(ngbd) || ngaytim == null) 
+                    ng = true;
+           if (khachngan_search.getText().isEmpty()) {
+                    search = true;
                 }
-
-                String searchKey = newValue.toLowerCase();
-
-                if (String.valueOf(PrediateKhachNganData.getKhachidProperty().getValue()).toLowerCase().contains(searchKey) 
-                        && ( (String.valueOf(PrediateKhachNganData.getTrangthaiProperty().getValue()).equals(String.valueOf(khachngan_searchtt.getSelectionModel().getSelectedItem()))) || tt)) {
-                    return true;
-                } else if (String.valueOf(PrediateKhachNganData.getHotenProperty().getValue()).toLowerCase().contains(searchKey) 
-                        && ( (String.valueOf(PrediateKhachNganData.getTrangthaiProperty().getValue()).equals(String.valueOf(khachngan_searchtt.getSelectionModel().getSelectedItem()))) || tt)) {
-                    return true;
-                } else if (String.valueOf(PrediateKhachNganData.getGioitinhProperty().getValue()).toLowerCase().contains(searchKey)
-                        && ((String.valueOf(PrediateKhachNganData.getTrangthaiProperty().getValue()).equals(String.valueOf(khachngan_searchtt.getSelectionModel().getSelectedItem()))) || tt)) {
-                    return true;
-                } else if (String.valueOf(PrediateKhachNganData.getNgaysinhProperty().getValue()).toLowerCase().contains(searchKey)
-                        && ((String.valueOf(PrediateKhachNganData.getTrangthaiProperty().getValue()).equals(String.valueOf(khachngan_searchtt.getSelectionModel().getSelectedItem())))|| tt)) {
-                    return true;
-                } else if (String.valueOf(PrediateKhachNganData.getSdtProperty().getValue()).toLowerCase().contains(searchKey)
-                        && ((String.valueOf(PrediateKhachNganData.getTrangthaiProperty().getValue()).equals(String.valueOf(khachngan_searchtt.getSelectionModel().getSelectedItem())))|| tt)) {
-                    return true;
-                } else if (String.valueOf(PrediateKhachNganData.getCccdProperty().getValue()).toLowerCase().contains(searchKey)
-                        && ((String.valueOf(PrediateKhachNganData.getTrangthaiProperty().getValue()).equals(String.valueOf(khachngan_searchtt.getSelectionModel().getSelectedItem())))|| tt)) {
-                    return true;
-                }else if (String.valueOf(PrediateKhachNganData.getEmailProperty().getValue()).toLowerCase().contains(searchKey)
-                        && ((String.valueOf(PrediateKhachNganData.getTrangthaiProperty().getValue()).equals(String.valueOf(khachngan_searchtt.getSelectionModel().getSelectedItem())))|| tt)) {
-                    return true;
-                }else if (String.valueOf(PrediateKhachNganData.getNgaybatdauProperty().getValue()).toLowerCase().contains(searchKey)
-                        && ((String.valueOf(PrediateKhachNganData.getTrangthaiProperty().getValue()).equals(String.valueOf(khachngan_searchtt.getSelectionModel().getSelectedItem())))|| tt)) {
-                    return true;
-                }else if (String.valueOf(PrediateKhachNganData.getNgayketthucProperty().getValue()).toLowerCase().contains(searchKey)
-                        && ((String.valueOf(PrediateKhachNganData.getTrangthaiProperty().getValue()).equals(String.valueOf(khachngan_searchtt.getSelectionModel().getSelectedItem())))|| tt)) {
-                    return true;
-                }else if (String.valueOf(PrediateKhachNganData.getDaidienidProperty().getValue()).toLowerCase().contains(searchKey)
-                        && ((String.valueOf(PrediateKhachNganData.getTrangthaiProperty().getValue()).equals(String.valueOf(khachngan_searchtt.getSelectionModel().getSelectedItem())))|| tt)) {
-                    return true;
-                }else {
-                    return false;
-                }
-            });
-
-        SortedList<KhachData> sortList = new SortedList<>(filter);
+           
+           if ( (String.valueOf(PrediateKhachNganData.getKhachidProperty().getValue()).toLowerCase().contains(searchKey) || search )
+                    &&  tt && ng) {
+                return true;
+            } else if ((String.valueOf(PrediateKhachNganData.getHotenProperty().getValue()).toLowerCase().contains(searchKey) || search )
+                    &&  tt && ng) {
+                return true;
+            } else if ((String.valueOf(PrediateKhachNganData.getGioitinhProperty().getValue()).toLowerCase().contains(searchKey) || search )
+                    &&  tt && ng) {
+                return true;
+            } else if ((String.valueOf(PrediateKhachNganData.getNgaysinhProperty().getValue()).toLowerCase().contains(searchKey) || search )
+                    &&  tt && ng) {
+                return true;
+            } else if ((String.valueOf(PrediateKhachNganData.getSdtProperty().getValue()).toLowerCase().contains(searchKey) || search )
+                    &&  tt && ng) {
+                return true;
+            } else if ( (String.valueOf(PrediateKhachNganData.getCccdProperty().getValue()).toLowerCase().contains(searchKey) || search )
+                    &&  tt && ng) {
+                return true;
+            }else if ( (String.valueOf(PrediateKhachNganData.getEmailProperty().getValue()).toLowerCase().contains(searchKey) || search )
+                    &&  tt && ng) {
+                return true;
+            }else if ((String.valueOf(PrediateKhachNganData.getNgaybatdauProperty().getValue()).toLowerCase().contains(searchKey) || search )
+                    &&  tt && ng) {
+                return true;
+            }else if ((String.valueOf(PrediateKhachNganData.getNgayketthucProperty().getValue()).toLowerCase().contains(searchKey) || search )
+                    &&  tt && ng) {
+                return true;
+            }else if ( (String.valueOf(PrediateKhachNganData.getDaidienidProperty().getValue()).toLowerCase().contains(searchKey) || search )
+                    &&  tt && ng) {
+                return true;
+            }else {
+                return false;
+            }
+           
+       });
+       SortedList<KhachData> sortList = new SortedList<>(filter);
 
         sortList.comparatorProperty().bind(khachngan_tableview.comparatorProperty());
 
         khachngan_tableview.setItems(sortList);
-        });
-        //làm thêm thay đổi duyệt
-        
-//        khachngan_searchtt.valueProperty().addListener((observable, oldValue, newValue) -> {
-//            filter.setPredicate((KhachData PrediateKhachNganData) -> {
-//                boolean s = false;
-//                if (khachngan_search.getText().isEmpty()) s = true;
-//                
-//                if (newValue.isEmpty() && s) {
-//                    return true;
-//                }
-//                
-//            });
-//            
-//            SortedList<KhachData> sortList = new SortedList<>(filter);
-//
-//            sortList.comparatorProperty().bind(khachngan_tableview.comparatorProperty());
-//
-//            khachngan_tableview.setItems(sortList);
-//        });
-        
-    }
+       
+   }
    
    
    
@@ -318,7 +341,7 @@ public class KhachnganhanController implements Initializable {
     
     public void KhachNganDuyet(ActionEvent event) {//update khach ngắn hạn đã duyệt
         
-        String sql = "UPDATE KHACHNGANHAN SET TRANGTHAI = 'Duyet'";
+        String sql = "UPDATE KHACHNGANHAN SET TRANGTHAI = 'Đã duyệt'";
 
         connect = database.getConn();
 
@@ -429,13 +452,15 @@ public class KhachnganhanController implements Initializable {
         khachngan_mangdaidien.setText("");
         khachngan_tenngdaidien.setText("");
         khachngan_search.setText("");
+        khachngan_searchtt.getSelectionModel().clearSelection();
+        khachngan_searchngay.setValue(null);
         
         KhachNganHanShowListData();
         DoiMaDD();
         //moi bam vao thi khong the xoa hay sua, phai chon moi xoa sua duoc
         khachngan_duyetbtn.setDisable(true); 
         khachngan_xoabtn.setDisable(true); 
-        khachngan_capnhatbtn.setDisable(true); 
+        //khachngan_capnhatbtn.setDisable(true); 
         khachngan_id.setDisable(true);
         khachngan_tenngdaidien.setDisable(true);
     }
@@ -540,7 +565,7 @@ public class KhachnganhanController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         KhachNganHanShowListData();
-            KhachNganSearch();
+            //KhachNganSearch();
             
             KhachNganGioiTinh();
             KhachNganTrangthai();
@@ -549,7 +574,7 @@ public class KhachnganhanController implements Initializable {
             
             khachngan_duyetbtn.setDisable(false); 
             khachngan_xoabtn.setDisable(true); 
-            khachngan_capnhatbtn.setDisable(true); 
+            //khachngan_capnhatbtn.setDisable(true); 
             khachngan_id.setDisable(false);
             khachngan_trangthai.setDisable(false);
             khachngan_tenngdaidien.setDisable(true);

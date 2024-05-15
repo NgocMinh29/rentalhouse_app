@@ -43,8 +43,8 @@ public class KhachthueController implements Initializable {
     @FXML
     private TableColumn<KhachData, String> khach_col_cccd;
 
-    @FXML
-    private TableColumn<KhachData, String> khach_col_ngdaidien;
+//    @FXML
+//    private TableColumn<KhachData, String> khach_col_ngdaidien;
     
     @FXML
     private TableColumn<KhachData, String> khach_col_ngbd;
@@ -130,7 +130,7 @@ public class KhachthueController implements Initializable {
     private int currentYear = today.getYear();
     
     public void KhachGioiTinh() {
-        ObservableList listData = FXCollections.observableArrayList("Nam", "Nu");
+        ObservableList listData = FXCollections.observableArrayList("Nam", "Nữ");
         khach_gioitinh.setItems(listData);
         
     }
@@ -213,9 +213,10 @@ public class KhachthueController implements Initializable {
     
     public void KhachThueThem(ActionEvent event) {
         
-         String sql = "INSERT INTO KHACHTHUE (MAKT,HOTEN,GIOITINH,NGAYSINH,SDT,CCCD,EMAIL,MADD,NGAYBATDAU,NGAYKETTHUC) "
-                + "VALUES(?,?,?,?,?,?,?,?,?,?)";
-        
+//         String sql = "INSERT INTO KHACHTHUE (MAKT,HOTEN,GIOITINH,NGAYSINH,SDT,CCCD,EMAIL,NGAYBATDAU,NGAYKETTHUC) "
+//                + "VALUES(?,?,?,?,?,?,?,?,?)";
+         String sql = "INSERT INTO KHACHTHUE (MAKT,HOTEN,GIOITINH,NGAYSINH,SDT,CCCD,EMAIL) "
+                + "VALUES(?,?,?,?,?,?,?)";
         connect = database.getConn();
 
         try {
@@ -225,8 +226,8 @@ public class KhachthueController implements Initializable {
                     || khach_ten.getText().isEmpty()
                     || khach_gioitinh.getSelectionModel().getSelectedItem() == null
                     || khach_ngs.getValue()==null
-                    || khach_ngbd.getValue()==null
-                    || khach_ngkt.getValue()==null
+                    //|| khach_ngbd.getValue()==null
+                    //|| khach_ngkt.getValue()==null
                     
                     ) {
 
@@ -290,15 +291,15 @@ public class KhachthueController implements Initializable {
                         prepare.setString(5, khach_sdt.getText());
                         prepare.setString(6, khach_cccd.getText());
                         prepare.setString(7, khach_mail.getText());  
-                        prepare.setString(8, khach_mangdaidien.getText());
+                        //prepare.setString(8, khach_mangdaidien.getText());
 
-                        LocalDate ngayBatdau=khach_ngbd.getValue();
-                        java.sql.Date sqlNgayBatdau = java.sql.Date.valueOf(ngayBatdau);
-                        prepare.setDate(9, sqlNgayBatdau);
-
-                        LocalDate ngayKetthuc=khach_ngkt.getValue();
-                        java.sql.Date sqlNgayKetthuc = java.sql.Date.valueOf(ngayKetthuc);
-                        prepare.setDate(10, sqlNgayKetthuc);
+//                        LocalDate ngayBatdau=khach_ngbd.getValue();
+//                        java.sql.Date sqlNgayBatdau = java.sql.Date.valueOf(ngayBatdau);
+//                        prepare.setDate(8, sqlNgayBatdau);
+//
+//                        LocalDate ngayKetthuc=khach_ngkt.getValue();
+//                        java.sql.Date sqlNgayKetthuc = java.sql.Date.valueOf(ngayKetthuc);
+//                        prepare.setDate(9, sqlNgayKetthuc);
                         //prepare.setString(11, "Chờ duyệt");
 
                         prepare.executeUpdate();
@@ -343,21 +344,32 @@ public class KhachthueController implements Initializable {
             // Định dạng cho ngày/tháng/năm
 
             while (result.next()) {
+                String formattedNgayBatDau;
+                String formattedNgayKetThuc;
                 LocalDate ngaySinh = result.getDate("NGAYSINH").toLocalDate();
-                LocalDate ngayBatDau = result.getDate("NGAYBATDAU").toLocalDate();
-                LocalDate ngayKetThuc = result.getDate("NGAYKETTHUC").toLocalDate();
-
-                // Format ngày/tháng/năm
                 String formattedNgaySinh = ngaySinh.format(formatter);
-                String formattedNgayBatDau = ngayBatDau.format(formatter);
-                String formattedNgayKetThuc = ngayKetThuc.format(formatter);
+                if(result.getDate("NGAYBATDAU")!=null){
+                    LocalDate ngayBatDau = result.getDate("NGAYBATDAU").toLocalDate();
+                    formattedNgayBatDau = ngayBatDau.format(formatter);
+                } else{
+                    formattedNgayBatDau = "";
+                }
+                if( result.getDate("NGAYKETTHUC")!=null){
+                    
+                    LocalDate ngayKetThuc = result.getDate("NGAYKETTHUC").toLocalDate();
+                    formattedNgayKetThuc = ngayKetThuc.format(formatter);
+                }else {
+                    formattedNgayKetThuc = "";
+
+                }
+                 
+                
 
                 khachthue = new KhachData(result.getString("MAKT"),
                         result.getString("HOTEN"), result.getString("GIOITINH"),
                         formattedNgaySinh, result.getString("SDT"),
                         result.getString("CCCD"), result.getString("EMAIL"),
-                        result.getString("MADD"), formattedNgayBatDau, 
-                        formattedNgayKetThuc);
+                         formattedNgayBatDau,formattedNgayKetThuc);
                 listData.add(khachthue);
             }
 
@@ -381,7 +393,7 @@ public class KhachthueController implements Initializable {
         khach_col_mail.setCellValueFactory(cellData -> cellData.getValue().getEmailProperty());
         khach_col_ngbd.setCellValueFactory(cellData -> cellData.getValue().getNgaybatdauProperty());
         khach_col_ngkt.setCellValueFactory(cellData -> cellData.getValue().getNgayketthucProperty());
-        khach_col_ngdaidien.setCellValueFactory(cellData -> cellData.getValue().getDaidienidProperty());
+        //khach_col_ngdaidien.setCellValueFactory(cellData -> cellData.getValue().getDaidienidProperty());
         
         khach_tableview.setItems(KhachThueList);
     }
@@ -391,6 +403,7 @@ public class KhachthueController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        KhachThueShowListData();
         // TODO
         KhachThueClear();
     }    

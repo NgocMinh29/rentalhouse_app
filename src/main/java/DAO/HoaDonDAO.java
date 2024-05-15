@@ -17,13 +17,13 @@ import java.sql.Statement;
  */
 public class HoaDonDAO {
     
-    private Connection connect;
-    private PreparedStatement prepare;
-    private Statement statement;
-    private ResultSet result;
+    private static Connection connect;
+    private static PreparedStatement prepare;
+    private static Statement statement;
+    private static ResultSet result;
     
-    public void ThemHoaDon(String hdi, String pi, String t, String n, String tt, String trt, String cn){
-        String sql = "INSERT INTO HOADON (MAHD,MAPHONG,THANG,NAM,TONGTIEN,TRANGTHAI,CONNO) "
+    public static void ThemHoaDon(String hdi, String pi, String t, String n, String tt, String trt, String cn){
+        String sql = "INSERT INTO HOADON (MAHD,MAP,THANG,NAM,TONGTIEN,TRANGTHAI,CONNO) "
                 + "VALUES(?,?,?,?,?,?,?)";
         
         connect = database.getConn();
@@ -41,5 +41,29 @@ public class HoaDonDAO {
         prepare.executeUpdate();
         } catch (SQLException e){}
     }
+    
+    public static void SuaHoaDon(String hdi, String pi, int t, int n, int tt, String trt, int cn){
+        String sql = "UPDATE HOADON SET TONGTIEN = "
+                + tt + ", MAP = '"
+                //+ hoadon_maphong.getText() + "', THANG = "
+                + pi+ "', THANG = "
+                + t + ", NAM = "
+                + n + ", TRANGTHAI = '"
+                + trt + "', CONNO = "
+                + cn + " WHERE MAHD = '" 
+                + hdi + "'";
+        
+//        String sql = "UPDATE HOADON "
+//                + "SET TONGTIEN = ?, MAPHONG = ?, THANG = ?, NAM = ?, TRANGTHAI = ?, CONNO = ?" +
+//                    " WHERE MAHD = ?;";
+
+        connect = database.getConn();
+        try {
+        statement = connect.createStatement();
+        statement.executeUpdate(sql);
+        } catch (SQLException e){}
+    }
+    
+    
     
 }

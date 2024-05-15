@@ -53,6 +53,8 @@ import javafx.print.PrinterJob;
 import javafx.scene.control.DatePicker;
 
 public class SecondaryController implements Initializable{
+    
+    public ThongKeController tk;
 
     @FXML
     private AnchorPane main_form;
@@ -2619,6 +2621,9 @@ public class SecondaryController implements Initializable{
             phieu_btn.setStyle("-fx-background-color: transparent");
             khachngan_form.setStyle("-fx-background-color: transparent");
             dichvu_form.setStyle("-fx-background-color: transparent");
+            
+            
+            //tk.initialize(null, null);
             
             //taikhoan_btn.setStyle("-fx-background-color: transparent");
 

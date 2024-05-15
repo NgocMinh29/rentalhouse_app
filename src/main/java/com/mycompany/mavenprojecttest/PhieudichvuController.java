@@ -104,6 +104,9 @@ public class PhieudichvuController implements Initializable {
     @FXML
     private Button ctpdv_xoabtn;
     
+    @FXML
+    private Button ctpdv_capnhatbtn;
+    
     private Connection connect;
     private PreparedStatement prepare;
     private Statement statement;

@@ -108,10 +108,10 @@ public class PhongController implements Initializable {
 
     public void PhongThem(ActionEvent event) {
 
-        /*String sql = "INSERT INTO PHONG (MAPHONG,TENPG,LOAI,SONGUOI,DIENTICH,GIA,TRANGTHAI) "
-                + "VALUES(?,?,?,?,?,?,?)";*/
-        String sql = "INSERT INTO PHONG (MAPHONG,TENPG,SONGUOI,DIENTICH,GIA) "
-                + "VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO PHONG (MAP,TENPG,LOAI,SONGUOI,DIENTICH,GIA,TRANGTHAI) "
+                + "VALUES(?,?,?,?,?,?,?)";
+//        String sql = "INSERT INTO PHONG (MAP,TENPG,SONGUOI,DIENTICH,GIA) "
+//                + "VALUES(?,?,?,?,?)";
         
         connect = database.getConn();
 
@@ -123,7 +123,7 @@ public class PhongController implements Initializable {
                     || phong_loaiphong.getSelectionModel().getSelectedItem() == null
                     || phong_trt.getSelectionModel().getSelectedItem() == null
                     || phong_giathue.getText().isEmpty()
-                    || phong_songuoi.getText().isEmpty()
+                    //|| phong_songuoi.getText().isEmpty()
                     || phong_dientich.getText().isEmpty()) {
 
                 alert = new Alert(Alert.AlertType.ERROR);
@@ -134,7 +134,7 @@ public class PhongController implements Initializable {
 
             } else {
                 // CHECK IF THE FLOWER ID IS ALREADY EXIST
-                String checkData = "SELECT MAPHONG FROM PHONG WHERE MAPHONG = '"
+                String checkData = "SELECT MAP FROM PHONG WHERE MAP = '"
                         + phong_id.getText() + "'";
 
                 statement = connect.createStatement();
@@ -151,10 +151,12 @@ public class PhongController implements Initializable {
                     prepare.setString(1, phong_id.getText());
                     prepare.setString(2, phong_ten.getText());
                     prepare.setString(3, (String) phong_loaiphong.getSelectionModel().getSelectedItem());
-                    prepare.setString(3, phong_songuoi.getText());
+                    //prepare.setString(3, phong_songuoi.getText());
+                    prepare.setString(3, "0");
                     prepare.setString(4, phong_dientich.getText());
                     prepare.setString(5, phong_giathue.getText());
-                    prepare.setString(7, (String) phong_trt.getSelectionModel().getSelectedItem());
+                    //prepare.setString(7, (String) phong_trt.getSelectionModel().getSelectedItem());
+                    prepare.setString(7, "Còn trống");
                   
                     prepare.executeUpdate();
 
@@ -181,7 +183,7 @@ public class PhongController implements Initializable {
     
      public void PhongXoa(ActionEvent event) {
 
-        String sql = "DELETE FROM PHONG WHERE MAPHONG = '"
+        String sql = "DELETE PHONG WHERE MAP = '"
                 + phong_id.getText() + "'";
 
         connect = database.getConn();
@@ -237,18 +239,19 @@ public class PhongController implements Initializable {
         phong_trt.getSelectionModel().clearSelection();
         phong_songuoi.setText("");
         phong_dientich.setText("");
+        PhongShowListData();
         
 
     }
     
     public void PhongStatus() {
-        ObservableList listData = FXCollections.observableArrayList("Con trong", "Da cho thue");
+        ObservableList listData = FXCollections.observableArrayList("Còn trống", "Đã cho thuê");
         phong_trt.setItems(listData);
         
     }
     
     public void PhongLoai() {
-        ObservableList listData = FXCollections.observableArrayList("Sinh vien", "Gia dinh");
+        ObservableList listData = FXCollections.observableArrayList("Sinh viên", "Gia đình");
         phong_loaiphong.setItems(listData);
         
     }
@@ -268,7 +271,7 @@ public class PhongController implements Initializable {
             PhongData phong;
 
             while (result.next()) { 
-                phong = new PhongData(result.getString("MAPHONG"),
+                phong = new PhongData(result.getString("MAP"),
                          result.getString("TENPG"), result.getString("LOAI"),
                          result.getInt("SONGUOI"), result.getInt("DIENTICH"),
                           result.getInt("GIA"),result.getString("TRANGTHAI"));

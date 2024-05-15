@@ -16,8 +16,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 
 public class KhachData {
-    @FXML
-    private TableView<KhachData> khachngan_tableview;
+//    @FXML
+//    private TableView<KhachData> khachngan_tableview;
     private StringProperty khachid;
     private StringProperty hoten;
     private StringProperty gioitinh;
@@ -47,7 +47,7 @@ public class KhachData {
         //this.hotendd = new SimpleStringProperty(htdd);
         this.trangthai = new SimpleStringProperty(tt);
     }
-    public KhachData(String ki, String ht, String gt, String ns, String sdt, String cccd, String e, String ddi,String nbd,String nkt) {
+    public KhachData(String ki, String ht, String gt, String ns, String sdt, String cccd, String e,String nbd,String nkt) {
         this.khachid = new SimpleStringProperty(ki);
         this.hoten = new SimpleStringProperty(ht);
         this.gioitinh = new SimpleStringProperty(gt);
@@ -57,8 +57,17 @@ public class KhachData {
         this.email = new SimpleStringProperty(e);
         this.ngaybatdau = new SimpleStringProperty(nbd);
         this.ngayketthuc = new SimpleStringProperty(nkt);
-        this.daidienid = new SimpleStringProperty(ddi);
+        //this.daidienid = new SimpleStringProperty(ddi);
         //this.trangthai = null;
+    }
+    public KhachData(String ki, String ht,String sdt, String cccd){
+        this.khachid = new SimpleStringProperty(ki);
+        this.hoten = new SimpleStringProperty(ht);
+        this.sdt = new SimpleStringProperty(sdt);
+        this.cccd = new SimpleStringProperty(cccd);
+    }
+    public KhachData(String ki){
+        this.khachid = new SimpleStringProperty(ki);
     }
 
     public StringProperty getKhachidProperty() {

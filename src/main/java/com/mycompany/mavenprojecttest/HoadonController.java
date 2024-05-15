@@ -4,9 +4,10 @@
  */
 package com.mycompany.mavenprojecttest;
 
-//import DAO.HoaDonDAO;
+import DAO.HoaDonDAO;
 import connection.database;
 import java.net.URL;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,6 +42,12 @@ import javafx.scene.layout.AnchorPane;
  * @author user
  */
 public class HoadonController implements Initializable {
+    
+    @FXML
+    private TextField conno_conno;
+
+    @FXML
+    private AnchorPane conno_form;
 
     @FXML
     private Button hoadon_capnhatbtn;                                           //hoadon
@@ -83,6 +90,12 @@ public class HoadonController implements Initializable {
 
 //    @FXML
 //    private TextField hoadon_maphong;
+    
+    @FXML
+    private Button hoadon_thanhtoan1phan;
+    
+    @FXML
+    private Button hoadon_dathanhtoan;
     
     @FXML
     private ComboBox<?> hoadon_maphong;
@@ -181,6 +194,7 @@ public class HoadonController implements Initializable {
     private PreparedStatement prepare;
     private Statement statement;
     private ResultSet result;
+    private CallableStatement caSt;
     
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     
@@ -188,27 +202,7 @@ public class HoadonController implements Initializable {
     private int currentMonth = today.getMonthValue();
     private int currentYear = today.getYear();
     
-    //private HoaDonDAO hd;
-    
-    public void ThemHoaDon(String hdi, String pi, String t, String n, String tt, String trt, String cn){
-        String sql = "INSERT INTO HOADON (MAHD,MAPHONG,THANG,NAM,TONGTIEN,TRANGTHAI,CONNO) "
-                + "VALUES(?,?,?,?,?,?,?)";
-        
-        connect = database.getConn();
-        try{
-        prepare = connect.prepareStatement(sql);
-        prepare.setString(1, hdi);
-        //prepare.setString(2, hoadon_maphong.getText());
-        prepare.setString(2, pi);
-        prepare.setString(3, t);
-        prepare.setString(4, n);
-        prepare.setString(5, tt);
-        prepare.setString(6, trt);
-        prepare.setString(7, cn);
-
-        prepare.executeUpdate();
-        } catch (SQLException e){}
-    }
+    private HoaDonDAO hd;
     
     public void HoaDonThem(ActionEvent event) { //SỬA THÀNH NHẬP TRẠNG THÁI VÀ CONNO RỖNG VẪN ĐƯỢC
 
@@ -220,13 +214,13 @@ public class HoadonController implements Initializable {
         try {
             Alert alert;
 
-            if (hoadon_id.getText().isEmpty()
+            if (//hoadon_id.getText().isEmpty()
                     //|| hoadon_maphong.getText().isEmpty()
-                    || hoadon_maphong.getSelectionModel().getSelectedItem() == null
+                     hoadon_maphong.getSelectionModel().getSelectedItem() == null
                     //|| hoadon_trangthai.getSelectionModel().getSelectedItem() == null
                     || hoadon_thang.getSelectionModel().getSelectedItem() == null
                     || hoadon_nam.getSelectionModel().getSelectedItem() == null
-                    || hoadon_tongtien.getText().isEmpty()
+                    //|| hoadon_tongtien.getText().isEmpty()
                     //|| hoadon_conno.getText().isEmpty()
                     ) {
 
@@ -237,28 +231,30 @@ public class HoadonController implements Initializable {
                 alert.showAndWait();
 
             } else {
-                int flag = 0;
-                try {
-                    Integer.parseInt(hoadon_conno.getText());
-                   flag++;     
-                    
-                } catch (NumberFormatException e) {
-                    
-                }
-                if (flag==0 && !hoadon_conno.getText().isEmpty()){
-                    alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error Message");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Tiền nợ phải là số nguyên.");
-                    alert.showAndWait();
-                    
-                } else if (Integer.parseInt(hoadon_conno.getText()) > 0 && !hoadon_conno.getText().isEmpty()){
-                alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Tiền nợ phải bé hơn hoặc bằng tổng tiền.");
-                alert.showAndWait();
-                }else {
+//                int flag = 0;
+//                try {
+//                    Integer.parseInt(hoadon_conno.getText());
+//                   flag++;     
+//                    
+//                } catch (NumberFormatException e) {
+//                    
+//                }
+//                if (flag==0 && !hoadon_conno.getText().isEmpty()){
+//                    alert = new Alert(Alert.AlertType.ERROR);
+//                    alert.setTitle("Error Message");
+//                    alert.setHeaderText(null);
+//                    alert.setContentText("Tiền nợ phải là số nguyên.");
+//                    alert.showAndWait();
+//                    
+//                } else
+//                    if (Integer.parseInt(hoadon_conno.getText()) > 0 && !hoadon_conno.getText().isEmpty()){
+//                alert = new Alert(Alert.AlertType.ERROR);
+//                alert.setTitle("Error Message");
+//                alert.setHeaderText(null);
+//                alert.setContentText("Tiền nợ phải bé hơn hoặc bằng tổng tiền.");
+//                alert.showAndWait();
+//                }
+                    //else {
                     // CHECK IF THE FLOWER ID IS ALREADY EXIST
                     String checkData = "SELECT MAHD FROM HOADON WHERE MAHD = '"
                             + hoadon_id.getText() + "'";
@@ -284,25 +280,65 @@ public class HoadonController implements Initializable {
 //                        prepare.setString(7, hoadon_conno.getText());
 //
 //                        prepare.executeUpdate();
-                        ThemHoaDon(hoadon_id.getText(),(String) hoadon_maphong.getSelectionModel().getSelectedItem()
-                                , String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem()),
-                                String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem()),
-                                hoadon_tongtien.getText(),
-                                (String) hoadon_trangthai.getSelectionModel().getSelectedItem(),
-                                hoadon_conno.getText());
+//                        hd.ThemHoaDon(hoadon_id.getText(),(String) hoadon_maphong.getSelectionModel().getSelectedItem()
+//                                , String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem()),
+//                                String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem()),
+//                                hoadon_tongtien.getText(),
+//                                (String) hoadon_trangthai.getSelectionModel().getSelectedItem(),
+//                                hoadon_conno.getText());
+                        
+                        String strCall = "{call them_HoaDon(?,?,?)}";
+                        caSt = connect.prepareCall(strCall);
+                 
+                        caSt.setString(1, String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem()));
+  
+                        caSt.setString(2, String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem()));
+    //                    
+                        caSt.setString(3, (String) hoadon_maphong.getSelectionModel().getSelectedItem());
+                        
+                        caSt.execute();
 
                         alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setTitle("Information Message");
                         alert.setHeaderText(null);
                         alert.setContentText("Successfully Added!");
                         alert.showAndWait();
+                        
+                        String sql = "SELECT MAHD FROM HOADON WHERE MAP = ? AND THANG = ? AND NAM = ?";
+                        prepare = connect.prepareStatement(sql);
+                        prepare.setString(1, (String) hoadon_maphong.getSelectionModel().getSelectedItem());
+                        prepare.setString(2, String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem()));
+                        prepare.setString(3, String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem()));
+                        result = prepare.executeQuery();
 
-                        // SHOW UPDATED TABLEVIEW
-                        //HoaDonShowListData();
+                        if (result.next()) cthd_hdid.setText(result.getString(1));
+                        cthd_kydong.setText(String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem()) + "/" +String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem()));
+                        cthd_maphong.setText((String) hoadon_maphong.getSelectionModel().getSelectedItem());
+                        cthd_tenphong.setText(hoadon_tenphong.getText());
+                        
+                        sql = "SELECT TONGTIEN FROM HOADON WHERE MAHD = ?";
+                        prepare = connect.prepareStatement(sql);
+                        prepare.setString(1, cthd_hdid.getText());
+                        result = prepare.executeQuery();
+                        
+                        if (result.next())cthd_tongtien.setText(result.getString(1));
+                        CTHDShowListData();
 
-                        // CLEAR ALL FIELDS
+                        cthd_thanhtien.setDisable(true);
+                        cthd_loaihd.setDisable(false);
+
+                        cthd_xoabtn.setDisable(true); 
+                        cthd_capnhatbtn.setDisable(true);
+
+                        CTHDLoaiHD();
+
+                        hoadon_form.setVisible(false);
+                        conno_form.setVisible(false);
+                        cthd_form.setVisible(true);
+            
                         HoaDonClear();
-                    }
+                        
+                   // }
 
                 }
             }
@@ -315,21 +351,21 @@ public class HoadonController implements Initializable {
     
     public void HoaDonUpdate(ActionEvent event) {
 
-        String sql = "UPDATE HOADON SET TONGTIEN = "
-                + Integer.valueOf(hoadon_tongtien.getText()) + ", MAPHONG = '"
-                //+ hoadon_maphong.getText() + "', THANG = "
-                + hoadon_maphong.getSelectionModel().getSelectedItem() + "', THANG = "
-                + Integer.valueOf(String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem())) + ", NAM = "
-                + Integer.valueOf(String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem())) + ", TRANGTHAI = '"
-                + hoadon_trangthai.getSelectionModel().getSelectedItem() + "', CONNO = "
-                + Integer.valueOf(hoadon_conno.getText()) + " WHERE MAHD = '" 
-                + hoadon_id.getText() + "'";
-        
-//        String sql = "UPDATE HOADON "
-//                + "SET TONGTIEN = ?, MAPHONG = ?, THANG = ?, NAM = ?, TRANGTHAI = ?, CONNO = ?" +
-//                    " WHERE MAHD = ?;";
-
-        connect = database.getConn();
+//        String sql = "UPDATE HOADON SET TONGTIEN = "
+//                + Integer.valueOf(hoadon_tongtien.getText()) + ", MAPHONG = '"
+//                //+ hoadon_maphong.getText() + "', THANG = "
+//                + hoadon_maphong.getSelectionModel().getSelectedItem() + "', THANG = "
+//                + Integer.valueOf(String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem())) + ", NAM = "
+//                + Integer.valueOf(String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem())) + ", TRANGTHAI = '"
+//                + hoadon_trangthai.getSelectionModel().getSelectedItem() + "', CONNO = "
+//                + Integer.valueOf(hoadon_conno.getText()) + " WHERE MAHD = '" 
+//                + hoadon_id.getText() + "'";
+//        
+////        String sql = "UPDATE HOADON "
+////                + "SET TONGTIEN = ?, MAPHONG = ?, THANG = ?, NAM = ?, TRANGTHAI = ?, CONNO = ?" +
+////                    " WHERE MAHD = ?;";
+//
+//        connect = database.getConn();
 
         try {
             Alert alert;
@@ -368,13 +404,123 @@ public class HoadonController implements Initializable {
 //                    
 //                    prepare.executeUpdate();
                     
-                    statement = connect.createStatement();
-                    statement.executeUpdate(sql);
-
+//                    statement = connect.createStatement();
+//                    statement.executeUpdate(sql);
+                    hd.SuaHoaDon(hoadon_id.getText(),(String) hoadon_maphong.getSelectionModel().getSelectedItem(),
+                            Integer.valueOf(String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem())) ,
+                            Integer.valueOf(String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem())),
+                             Integer.valueOf(hoadon_tongtien.getText()),
+                             (String)hoadon_trangthai.getSelectionModel().getSelectedItem() ,
+                              Integer.valueOf(hoadon_conno.getText()));
+                    
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);
                     alert.setContentText("Successfully Updated!");
+                    alert.showAndWait();
+
+                    // SHOW UPDATED TABLEVIEW
+                    //HoaDonShowListData();
+
+                    // CLEAR ALL FIELDS
+                    HoaDonClear();
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    
+    public void HoaDonConNo(ActionEvent event) {
+
+        try {
+            Alert alert;
+
+            if (hoadon_id.getText().isEmpty()
+                    //|| hoadon_maphong.getText().isEmpty()
+                    ) {
+
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Vui lòng chọn hóa đơn!");
+                alert.showAndWait();
+
+            }else if ("Đã thanh toán".equals((String)hoadon_trangthai.getSelectionModel().getSelectedItem())) {
+
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Hóa đơn này đã thanh toán!");
+                alert.showAndWait();
+
+            } else { hoadon_form.setVisible(false);
+            cthd_form.setVisible(false);
+            conno_form.setVisible(true);
+            conno_conno.setText("");
+                
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void HoaDonDaThanhToan(ActionEvent event) {
+
+        try {
+            Alert alert;
+
+            if (hoadon_id.getText().isEmpty()
+                    //|| hoadon_maphong.getText().isEmpty()
+                    ) {
+
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Vui lòng chọn hóa đơn!");
+                alert.showAndWait();
+
+            }else if ("Đã thanh toán".equals((String)hoadon_trangthai.getSelectionModel().getSelectedItem())) {
+
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Hóa đơn này đã thanh toán!");
+                alert.showAndWait();
+
+            } else {
+                alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Bạn có chắc hóa đơn này đã thanh toán?");
+                Optional<ButtonType> option = alert.showAndWait();
+
+                if (option.get().equals(ButtonType.OK)) {
+//                    prepare = connect.prepareStatement(sql);
+//                    prepare.setString(1, hoadon_tongtien.getText());
+//                    prepare.setString(2, hoadon_maphong.getText());
+//                    prepare.setString(3, String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem()));
+//                    prepare.setString(4, String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem()));
+//                    prepare.setString(5, (String) hoadon_trangthai.getSelectionModel().getSelectedItem());
+//                    prepare.setString(6, hoadon_conno.getText());
+//                    prepare.setString(7, hoadon_id.getText());
+//                    
+//                    prepare.executeUpdate();
+                    
+//                    statement = connect.createStatement();
+//                    statement.executeUpdate(sql);
+                    hd.SuaHoaDon(hoadon_id.getText(),(String) hoadon_maphong.getSelectionModel().getSelectedItem(),
+                            Integer.valueOf(String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem())) ,
+                            Integer.valueOf(String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem())),
+                             Integer.valueOf(hoadon_tongtien.getText()),
+                             "Đã thanh toán" ,0);
+                    
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Thông báo");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Đã cập nhật thành công!");
                     alert.showAndWait();
 
                     // SHOW UPDATED TABLEVIEW
@@ -424,7 +570,10 @@ public class HoadonController implements Initializable {
         hoadon_xemchitietbtn.setDisable(false); 
         hoadon_capnhatbtn.setDisable(false); 
         hoadon_xoabtn.setDisable(false); 
+//        hoadon_thanhtoan1phan.setDisable(false); 
+//        hoadon_dathanhtoan.setDisable(false); 
         hoadon_id.setDisable(true);
+        
         //hoadon_thang.setText(String.valueOf(hoadon.getThangProperty()));
         String hdn = String.valueOf(hoadon.getNamProperty().getValue());
         String hdmap = String.valueOf(hoadon.getPhongIdProperty().getValue());
@@ -432,38 +581,62 @@ public class HoadonController implements Initializable {
         String hdcn = String.valueOf(hoadon.getConNoProperty().getValue());
         String hdtt = String.valueOf(hoadon.getTrangThaiProperty().getValue());
         
-        hoadon_conno.textProperty().addListener((observable, oldValue, newValue) -> {
-            
-            if (newValue.equals(hdcn) 
-                    && ((String) hoadon_trangthai.getSelectionModel().getSelectedItem()).equals(hdtt)
-                    && ((String)hoadon_maphong.getSelectionModel().getSelectedItem()).equals(hdmap)
-                    //&& hoadon_maphong.getText().equals(hdmap)
-                    && String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem()).equals(hdt)
-                    && String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem()).equals(hdn)){
-                hoadon_xemchitietbtn.setDisable(false);
-                hoadon_xoabtn.setDisable(false);
-            } else{
-                hoadon_xemchitietbtn.setDisable(true);
-                hoadon_xoabtn.setDisable(true); 
-            }
-        });
-        hoadon_trangthai.valueProperty().addListener((observable, oldValue, newValue) -> {
-            hoadon_xemchitietbtn.setDisable(true);
-            hoadon_xoabtn.setDisable(true); 
-            if (newValue.equals(hdtt) 
-                    && hoadon_conno.getText().equals(hdcn)
-                    && ((String)hoadon_maphong.getSelectionModel().getSelectedItem()).equals(hdmap)
-                    //&& hoadon_maphong.getText().equals(hdmap)
-                    && String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem()).equals(hdt)
-                    && String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem()).equals(hdn)){
-                hoadon_xemchitietbtn.setDisable(false);
-                hoadon_xoabtn.setDisable(false);
-            }
-        });       
+        if ("Đã thanh toán".equals(hdtt)) {
+            hoadon_maphong.setDisable(true);
+            hoadon_thang.setDisable(true);
+            hoadon_nam.setDisable(true); 
+            hoadon_dathanhtoan.setDisable(true); 
+            hoadon_thanhtoan1phan.setDisable(true); 
+        }
+        else {
+            hoadon_maphong.setDisable(false);
+            hoadon_thang.setDisable(false);
+            hoadon_nam.setDisable(false);
+            hoadon_dathanhtoan.setDisable(true); 
+            hoadon_thanhtoan1phan.setDisable(true); 
+        }
+        
+//        hoadon_conno.textProperty().addListener((observable, oldValue, newValue) -> {
+//            
+//            if (newValue.equals(hdcn) 
+//                    && ((String) hoadon_trangthai.getSelectionModel().getSelectedItem()).equals(hdtt)
+//                    && ((String)hoadon_maphong.getSelectionModel().getSelectedItem()).equals(hdmap)
+//                    //&& hoadon_maphong.getText().equals(hdmap)
+//                    && String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem()).equals(hdt)
+//                    && String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem()).equals(hdn)){
+//                hoadon_xemchitietbtn.setDisable(false);
+//                hoadon_xoabtn.setDisable(false);
+//                hoadon_thanhtoan1phan.setDisable(false); 
+//                hoadon_dathanhtoan.setDisable(false); 
+//            } else{
+//                hoadon_xemchitietbtn.setDisable(true);
+//                hoadon_xoabtn.setDisable(true); 
+//            }
+//        });
+//        hoadon_trangthai.valueProperty().addListener((observable, oldValue, newValue) -> {
+//            hoadon_xemchitietbtn.setDisable(true);
+//            hoadon_xoabtn.setDisable(true); 
+//            if (newValue.equals(hdtt) 
+//                    && hoadon_conno.getText().equals(hdcn)
+//                    && ((String)hoadon_maphong.getSelectionModel().getSelectedItem()).equals(hdmap)
+//                    //&& hoadon_maphong.getText().equals(hdmap)
+//                    && String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem()).equals(hdt)
+//                    && String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem()).equals(hdn)){
+//                hoadon_xemchitietbtn.setDisable(false);
+//                hoadon_xoabtn.setDisable(false);
+//                hoadon_thanhtoan1phan.setDisable(false); 
+//                hoadon_dathanhtoan.setDisable(false); 
+//            } else{
+//                hoadon_xemchitietbtn.setDisable(true);
+//                hoadon_xoabtn.setDisable(true); 
+//            }
+//        });       
         //hoadon_maphong.textProperty().addListener((observable, oldValue, newValue) -> {
         hoadon_maphong.valueProperty().addListener((observable, oldValue, newValue) -> {
             hoadon_xemchitietbtn.setDisable(true);
             hoadon_xoabtn.setDisable(true); 
+//            hoadon_thanhtoan1phan.setDisable(true); 
+//            hoadon_dathanhtoan.setDisable(true);
             if (newValue.equals(hdmap) 
                     && ((String) hoadon_trangthai.getSelectionModel().getSelectedItem()).equals(hdtt)
                     && hoadon_conno.getText().equals(hdcn)
@@ -471,6 +644,8 @@ public class HoadonController implements Initializable {
                     && String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem()).equals(hdn)){
                 hoadon_xemchitietbtn.setDisable(false);
                 hoadon_xoabtn.setDisable(false);
+//                hoadon_thanhtoan1phan.setDisable(false); 
+//                hoadon_dathanhtoan.setDisable(false); 
             }
         });
         hoadon_thang.valueProperty().addListener((observable, oldValue, newValue) -> {
@@ -484,6 +659,8 @@ public class HoadonController implements Initializable {
                     && String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem()).equals(hdn)){
                 hoadon_xemchitietbtn.setDisable(false);
                 hoadon_xoabtn.setDisable(false);
+                hoadon_thanhtoan1phan.setDisable(false); 
+                hoadon_dathanhtoan.setDisable(false); 
             }
         }); 
         hoadon_nam.valueProperty().addListener((observable, oldValue, newValue) -> {
@@ -497,6 +674,8 @@ public class HoadonController implements Initializable {
                     && ((String) hoadon_trangthai.getSelectionModel().getSelectedItem()).equals(hdtt)) {
                 hoadon_xemchitietbtn.setDisable(false);
                 hoadon_xoabtn.setDisable(false);
+                hoadon_thanhtoan1phan.setDisable(false); 
+                hoadon_dathanhtoan.setDisable(false); 
             }
         });  
         
@@ -510,8 +689,10 @@ public class HoadonController implements Initializable {
     public void DoiMaPhong(){
         //hoadon_maphong.textProperty().addListener((Observable, oldValue, newValue) -> {
         hoadon_maphong.valueProperty().addListener((Observable, oldValue, newValue) -> {
-        String sql = "SELECT TENPG FROM PHONG WHERE MAPHONG = ?";
-
+        String sql = "SELECT TENPG FROM PHONG WHERE MAP = ?";
+        if (newValue == null){
+            hoadon_tenphong.setText("");
+        }
         connect = database.getConn();
 
         try {
@@ -521,7 +702,8 @@ public class HoadonController implements Initializable {
             
             if(result.next()){
                 hoadon_tenphong.setText(result.getString(1));
-                //chart.getData().add(new XYChart.Data<>("PG02",50));
+            } else {
+                hoadon_tenphong.setText("");
             }
             
         } catch (Exception e) {
@@ -538,7 +720,7 @@ public class HoadonController implements Initializable {
     
      public void HoaDonXoa(ActionEvent event) {
 
-        String sql = "DELETE FROM HOADON WHERE MAHD = '"
+        String sql = "DELETE HOADON WHERE MAHD = '"
                 + hoadon_id.getText() + "'";
 
         connect = database.getConn();
@@ -658,7 +840,7 @@ public class HoadonController implements Initializable {
     }
     
     public void HoaDonPhong() {
-        String sql = "SELECT MAPHONG FROM PHONG WHERE TRANGTHAI = 'Da cho thue'";
+        String sql = "SELECT MAP FROM PHONG WHERE TRANGTHAI = 'Đã cho thuê'";
         List<String> listS = new ArrayList<>();
 
         connect = database.getConn();
@@ -669,7 +851,7 @@ public class HoadonController implements Initializable {
 
             HoaDonData hoadon;
             while (result.next()) { 
-                listS.add(result.getString("MAPHONG"));
+                listS.add(result.getString("MAP"));
                 
             }
         
@@ -684,7 +866,7 @@ public class HoadonController implements Initializable {
     
     //String HoaDonStatus[] = {"Chua thanh toan", "Da thanh toan"};
     public void HoaDonStatus() {
-        ObservableList listData = FXCollections.observableArrayList("Chua thanh toan", "Da thanh toan");
+        ObservableList listData = FXCollections.observableArrayList("Chưa thanh toán", "Đã thanh toán");
         hoadon_trangthai.setItems(listData);
         
     }    
@@ -719,7 +901,7 @@ public class HoadonController implements Initializable {
 
             while (result.next()) { 
                 hoadon = new HoaDonData(result.getString("MAHD"),
-                         result.getString("MAPHONG"), result.getInt("THANG"),
+                         result.getString("MAP"), result.getInt("THANG"),
                          result.getInt("NAM"), result.getInt("TONGTIEN"),
                          result.getString("TRANGTHAI"), result.getInt("CONNO"));
 
@@ -753,26 +935,34 @@ public class HoadonController implements Initializable {
 
     
     public void backofCTHD(ActionEvent ev){
-//            thongke_form.setVisible(false);
-//            phong_form.setVisible(false);
+
             hoadon_form.setVisible(true);
-//            hopdong_form.setVisible(false);
-//            khach_form.setVisible(false);
-//            phieu_form.setVisible(false);
             cthd_form.setVisible(false);
-            
-//            thongke_btn.setStyle("-fx-background-color: transparent");
-//            phong_btn.setStyle("-fx-background-color: transparent");
-//            hoadon_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #4d95d0,#2f6996)");
-//            hopdong_btn.setStyle("-fx-background-color: transparent");
-//            khach_btn.setStyle("-fx-background-color: transparent");
-//            phieu_btn.setStyle("-fx-background-color: transparent");
+            conno_form.setVisible(false);
+            HoaDonClear();
     }
+    
+    public void DoiLoaiCTHD(){
+        //hoadon_maphong.textProperty().addListener((Observable, oldValue, newValue) -> {
+        cthd_loaihd.valueProperty().addListener((Observable, oldValue, newValue) -> {
+            if (newValue == "Phòng"){
+                cthd_sl.setDisable(true);
+                cthd_dongia.setDisable(true);
+
+            }
+            else{
+                cthd_sl.setDisable(false);
+                cthd_dongia.setDisable(false);
+
+            }
+        });
+    }
+    
     
     public void CTHDThem(ActionEvent event) { //khi them cthd mà loại phòng trọ thì tự cập nhật số lượng và đơn giá
 
-        String sql = "INSERT INTO CTHD (MAHD,LOAIHD,SL,DONGIA,THANHTIEN) "
-                + "VALUES(?,?,?,?,?)";
+//        String sql = "INSERT INTO CTHD (MAHD,LOAIHD,SL,DONGIA,THANHTIEN) "
+//                + "VALUES(?,?,?,?,?)";
 
         connect = database.getConn();
 
@@ -797,7 +987,7 @@ public class HoadonController implements Initializable {
                 cthd_thanhtien.setText(String.valueOf(thanhtien));
                 // CHECK IF THE FLOWER ID IS ALREADY EXIST
                 String checkData = "SELECT LOAIHD FROM CTHD WHERE MAHD = '"
-                        + cthd_hdid.getText() + "'";
+                        + cthd_hdid.getText() + "' AND LOAIHD = '" + (String) cthd_loaihd.getSelectionModel().getSelectedItem() + "'";
 
                 statement = connect.createStatement();
                 result = statement.executeQuery(checkData);
@@ -809,14 +999,18 @@ public class HoadonController implements Initializable {
                     alert.setContentText("Loai hoa don: " + (String) cthd_loaihd.getSelectionModel().getSelectedItem() + " da ton tai!");
                     alert.showAndWait();
                 } else {
-                    prepare = connect.prepareStatement(sql);
-                    prepare.setString(1, cthd_hdid.getText());
-                    prepare.setString(2, (String) cthd_loaihd.getSelectionModel().getSelectedItem());
-                    prepare.setString(3, cthd_sl.getText());
-                    prepare.setString(4, cthd_dongia.getText());
-                    prepare.setString(5, cthd_thanhtien.getText());
-                    
-                    prepare.executeUpdate();
+                    String strCall = "{call THEM_CTHD(?,?,?,?)}";
+                        caSt = connect.prepareCall(strCall);
+                 
+                        caSt.setString(1, cthd_hdid.getText());
+  
+                        caSt.setString(2,(String) cthd_loaihd.getSelectionModel().getSelectedItem());
+    //                    
+                        caSt.setString(3, cthd_sl.getText());
+                        
+                        caSt.setString(4, cthd_dongia.getText());
+                        
+                        caSt.execute();
 
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
@@ -841,8 +1035,8 @@ public class HoadonController implements Initializable {
     
      public void CTHDXoa(ActionEvent event) {
 
-        String sql = "DELETE FROM CTHD WHERE MAHD = '"
-                + cthd_hdid.getText() + "' and LOAIHD = '" + (String) cthd_loaihd.getSelectionModel().getSelectedItem() + "'";
+//        String sql = "DELETE FROM CTHD WHERE MAHD = '"
+//                + cthd_hdid.getText() + "' and LOAIHD = '" + (String) cthd_loaihd.getSelectionModel().getSelectedItem() + "'";
 
         connect = database.getConn();
 
@@ -868,8 +1062,20 @@ public class HoadonController implements Initializable {
                 Optional<ButtonType> option = alert.showAndWait();
 
                 if (option.get().equals(ButtonType.OK)) {
-                    statement = connect.createStatement();
-                    statement.executeUpdate(sql);
+//                    statement = connect.createStatement();
+//                    statement.executeUpdate(sql);
+                    String strCall = "{call XOA_CTHD(?,?,?,?)}";
+                        caSt = connect.prepareCall(strCall);
+                 
+                        caSt.setString(1, cthd_hdid.getText());
+  
+                        caSt.setString(2,(String) cthd_loaihd.getSelectionModel().getSelectedItem());
+    //                    
+                        caSt.setString(3, cthd_sl.getText());
+                        
+                        caSt.setString(4, cthd_dongia.getText());
+                        
+                        caSt.execute();
 
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
@@ -945,6 +1151,8 @@ public class HoadonController implements Initializable {
 
     }
     
+    
+     
     public void CTHDClear() { //sua luon setdisable cua may texfield
 
         cthd_loaihd.getSelectionModel().clearSelection();
@@ -953,11 +1161,20 @@ public class HoadonController implements Initializable {
         cthd_dongia.setText("");
         
         CTHDShowListData();
-        cthd_hdid.setText(HoaDonId);
-        cthd_kydong.setText(KyDong);
-        cthd_maphong.setText(MaPhong);
-        cthd_tenphong.setText(TenPhong);
-        cthd_tongtien.setText(TongTien);
+//        cthd_hdid.setText(HoaDonId);
+//        cthd_kydong.setText(KyDong);
+//        cthd_maphong.setText(MaPhong);
+//        cthd_tenphong.setText(TenPhong);
+//        cthd_tongtien.setText(TongTien);
+        String sql = "SELECT TONGTIEN FROM HOADON WHERE MAHD = ?";
+        connect = database.getConn();
+        try {
+            prepare = connect.prepareStatement(sql);
+            prepare.setString(1, cthd_hdid.getText());
+            result = prepare.executeQuery();
+
+            if (result.next())cthd_tongtien.setText(result.getString(1));
+        } catch (SQLException e){}
         
         cthd_thanhtien.setDisable(true);
         cthd_loaihd.setDisable(false);
@@ -1015,7 +1232,7 @@ public class HoadonController implements Initializable {
     public ObservableList<CTHDData> CTHDListData() {
 
         ObservableList<CTHDData> listData = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM CTHD WHERE MAHD = '" + HoaDonId + "'";
+        String sql = "SELECT * FROM CTHD WHERE MAHD = '" + cthd_hdid.getText() + "'";
 
         connect = database.getConn();
 
@@ -1053,49 +1270,134 @@ public class HoadonController implements Initializable {
     }
     
     public void CTHDLoaiHD() {
-        ObservableList listData = FXCollections.observableArrayList("Phong tro", "Dien nuoc");
+        ObservableList listData = FXCollections.observableArrayList("Phòng", "Điện", "Nước");
         cthd_loaihd.setItems(listData);        
     }
     
     public void XemCTHD(ActionEvent ev){
         
-//            thongke_form.setVisible(false);
-//            phong_form.setVisible(false);
+
             hoadon_form.setVisible(false);
-//            hopdong_form.setVisible(false);
-//            khach_form.setVisible(false);
-//            phieu_form.setVisible(false);
+            conno_form.setVisible(false);
             cthd_form.setVisible(true);
+
+            if (hoadon_trangthai.getSelectionModel().getSelectedItem() == "Đã thanh toán") {
+                cthd_loaihd.setDisable(true);
+                cthd_sl.setDisable(true);
+                cthd_dongia.setDisable(true);
+                cthd_thanhtien.setDisable(true);
+            } else {
+                cthd_sl.setDisable(false);
+                cthd_dongia.setDisable(false);
+                cthd_loaihd.setDisable(false);
+            }
+                
             
-//            thongke_btn.setStyle("-fx-background-color: transparent");
-//            phong_btn.setStyle("-fx-background-color: transparent");
-//            hoadon_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #4d95d0,#2f6996)");
-//            hopdong_btn.setStyle("-fx-background-color: transparent");
-//            khach_btn.setStyle("-fx-background-color: transparent");
-//            phieu_btn.setStyle("-fx-background-color: transparent");
-            
+            cthd_kydong.setText(String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem()) + "/" +String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem()));
+            cthd_maphong.setText((String) hoadon_maphong.getSelectionModel().getSelectedItem());
+            cthd_tenphong.setText(hoadon_tenphong.getText());
+            cthd_hdid.setText(hoadon_id.getText());
+//            cthd_kydong.setText(KyDong);
+//            cthd_maphong.setText(MaPhong);
+//            cthd_tenphong.setText(TenPhong);
+//            cthd_tongtien.setText(TongTien);
+
+            cthd_tongtien.setText(hoadon_tongtien.getText());
             CTHDShowListData();
-            
-            cthd_hdid.setText(HoaDonId);
-            cthd_kydong.setText(KyDong);
-            cthd_maphong.setText(MaPhong);
-            cthd_tenphong.setText(TenPhong);
-            cthd_tongtien.setText(TongTien);
-            
+            DoiLoaiCTHD();
+
             cthd_thanhtien.setDisable(true);
             cthd_loaihd.setDisable(false);
-            
+
             cthd_xoabtn.setDisable(true); 
             cthd_capnhatbtn.setDisable(true);
-            
+
             CTHDLoaiHD();
+            
         
     }
+    public void XongConNo(ActionEvent ev){
+        try {
+            Alert alert;
+
+            if (conno_conno.getText().isEmpty() ) {
+
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Điền vào ô trống!");
+                alert.showAndWait();
+
+            } else {
+
+                int flag = 0;
+                try {
+                    Integer.parseInt(conno_conno.getText());
+                   flag++;     
+                    
+                } catch (NumberFormatException e) {
+                    
+                }
+                if (flag==0){
+                    alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Tiền nợ phải là số nguyên.");
+                    alert.showAndWait();
+                    
+                } else if (Integer.parseInt(hoadon_conno.getText()) < Integer.parseInt(conno_conno.getText())){
+                    alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Tiền nợ mới phải bé hơn hoặc bằng tiền nợ cũ.");
+                    alert.showAndWait();
+                    } else {
+                    alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Confirmation Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Bạn có chắc muốn cập nhật hóa đơn này?");
+                    Optional<ButtonType> option = alert.showAndWait();
+
+                    if (option.get().equals(ButtonType.OK)) {
+                        hd.SuaHoaDon(hoadon_id.getText(),(String) hoadon_maphong.getSelectionModel().getSelectedItem(),
+                            Integer.valueOf(String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem())) ,
+                            Integer.valueOf(String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem())),
+                             Integer.valueOf(hoadon_tongtien.getText()),
+                             "Chưa thanh toán" , Integer.valueOf(conno_conno.getText()));
+
+                        alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Information Message");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Successfully Updated!");
+                        alert.showAndWait();
+
+                        // SHOW UPDATED TABLEVIEW
+
+                        // CLEAR ALL FIELDS
+                        HoaDonClear();
+                        conno_form.setVisible(false);
+                        hoadon_form.setVisible(true);
+                        cthd_form.setVisible(false);
+                    }
+
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+            
+            
+    }
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        hoadon_form.setVisible(true);           
+        cthd_form.setVisible(false);
+        conno_form.setVisible(false);
         // TODO
         HoaDonShowListData();
             
@@ -1112,6 +1414,9 @@ public class HoadonController implements Initializable {
             hoadon_thembtn.setDisable(false); 
             hoadon_xoabtn.setDisable(true); 
             hoadon_capnhatbtn.setDisable(true); 
+//            hoadon_dathanhtoan.setDisable(true); 
+//            hoadon_thanhtoan1phan.setDisable(true); 
+            
             hoadon_id.setDisable(false);
             hoadon_tongtien.setDisable(true); 
             hoadon_tenphong.setDisable(true);

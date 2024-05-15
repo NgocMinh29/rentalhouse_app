@@ -64,7 +64,7 @@ public class CTHDController implements Initializable {
                     cthd_quaylaibtn.getScene().getWindow().hide();
                     
                     // LINK YOUR DASHBOARD FORM
-                    Parent root = FXMLLoader.load(getClass().getResource("secondary.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("hopdong.fxml"));
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);
                     

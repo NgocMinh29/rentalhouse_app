@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>-->
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenprojecttest.HopdongController">
+   <children>
+      <AnchorPane fx:id="giahan_form" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <AnchorPane prefHeight="25.0" prefWidth="500.0">
+               <children>
+                  <AnchorPane layoutY="-1.0" prefHeight="30.0" prefWidth="500.0" styleClass="top-form" stylesheets="@../css/cthd.css">
+                     <children>
+                        <Label layoutX="14.0" layoutY="7.0" prefHeight="17.0" prefWidth="121.0" text="GIA HẠN HỢP ĐỒNG" />
+                        <Button fx:id="giahan_close" layoutX="460.0" layoutY="4.0" mnemonicParsing="false" onAction="#QuayLai" styleClass="close" stylesheets="@../css/cthd.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="CLOSE" />
+                           </graphic>
+                        </Button>
+                        <Button fx:id="giahan_minimize" layoutX="445.0" layoutY="4.0" mnemonicParsing="false" styleClass="minimize" stylesheets="@../css/cthd.css" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="2.0">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="MINUS" />
+                           </graphic>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="14.0" layoutY="38.0" prefHeight="350.0" prefWidth="471.0" stylesheets="@../css/cthd.css">
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="white-bg" />
+               </styleClass>
+               <children>
+                  <ComboBox fx:id="giahan_maphong" layoutX="274.0" layoutY="63.0" prefHeight="25.0" prefWidth="113.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                  <Label layoutX="63.0" layoutY="46.0" text="Ngày bắt đầu:" />
+                  <TextField fx:id="giahan_ngbd" disable="true" layoutX="67.0" layoutY="63.0" prefHeight="25.0" prefWidth="113.0" styleClass="textfield" stylesheets="@../css/cthd.css" />
+                  <Label layoutX="67.0" layoutY="104.0" text="Ngày trả phòng:" />
+                  <Label layoutX="63.0" layoutY="167.0" text="Mã khách thuê:" />
+                  <TextField fx:id="giahan_makt" layoutX="67.0" layoutY="184.0" prefHeight="25.0" prefWidth="113.0" styleClass="textfield" stylesheets="@../css/cthd.css" />
+                  <Label layoutX="65.0" layoutY="236.0" text="Họ tên:" />
+                  <TextField fx:id="giahan_tenkt" disable="true" layoutX="69.0" layoutY="253.0" prefHeight="25.0" prefWidth="113.0" styleClass="textfield" stylesheets="@../css/cthd.css" />
+                  <Button fx:id="giahan_giahanbtn" layoutX="375.0" layoutY="301.0" mnemonicParsing="false" onAction="#giahanhopdong" prefHeight="30.0" prefWidth="81.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Gia hạn" />
+                  <Label layoutX="274.0" layoutY="46.0" text="Mã phòng:" />
+                  <Label layoutX="273.0" layoutY="104.0" text="Tên phòng:" />
+                  <TextField fx:id="giahan_tenphong" disable="true" layoutX="272.0" layoutY="120.0" prefHeight="25.0" prefWidth="113.0" styleClass="textfield" stylesheets="@../css/cthd.css" />
+                  <Label layoutX="272.0" layoutY="167.0" text="Giá thuê:" />
+                  <TextField fx:id="giahan_giathue" disable="true" layoutX="272.0" layoutY="184.0" prefHeight="25.0" prefWidth="113.0" styleClass="textfield" stylesheets="@../css/cthd.css" />
+                  <Label layoutX="272.0" layoutY="236.0" text="Tiền cọc:" />
+                  <TextField fx:id="giahan_tiencoc" layoutX="272.0" layoutY="253.0" prefHeight="25.0" prefWidth="113.0" styleClass="textfield" stylesheets="@../css/cthd.css" />
+                  <DatePicker fx:id="giahan_ngkt" layoutX="66.0" layoutY="121.0" prefHeight="25.0" prefWidth="113.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
+
+<!--<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenprojecttest.CTHDController">
+   <children>
+      <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <AnchorPane prefHeight="25.0" prefWidth="500.0">
+               <children>
+                  <AnchorPane layoutY="-1.0" prefHeight="30.0" prefWidth="500.0" styleClass="top-form" stylesheets="@../css/cthd.css">
+                     <children>
+                        <Label layoutX="14.0" layoutY="7.0" text="CHI TIẾT HOÁ ĐƠN" />
+                        <Button fx:id="close" layoutX="460.0" layoutY="4.0" mnemonicParsing="false" onAction="#close" styleClass="close" stylesheets="@../css/cthd.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="CLOSE" />
+                           </graphic>
+                        </Button>
+                        <Button fx:id="minimize" layoutX="445.0" layoutY="4.0" mnemonicParsing="false" onAction="#minimize" styleClass="minimize" stylesheets="@../css/cthd.css" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="2.0">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="MINUS" />
+                           </graphic>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="14.0" layoutY="38.0" prefHeight="350.0" prefWidth="135.0" stylesheets="@../css/cthd.css">
+               <styleClass>
+                  <String fx:value="white-bg" />
+                  <String fx:value="shadow" />
+               </styleClass>
+               <children>
+                  <Label layoutX="7.0" layoutY="14.0" text="Mã hóa đơn:" />
+                  <TextField layoutX="11.0" layoutY="31.0" prefHeight="25.0" prefWidth="113.0" styleClass="textfield" stylesheets="@../css/cthd.css" />
+                  <Label layoutX="7.0" layoutY="64.0" text="Loại hóa đơn:" />
+                  <TextField layoutX="11.0" layoutY="81.0" prefHeight="25.0" prefWidth="113.0" styleClass="textfield" stylesheets="@../css/cthd.css" />
+                  <Label layoutX="7.0" layoutY="113.0" text="Số lượng:" />
+                  <TextField layoutX="11.0" layoutY="130.0" prefHeight="25.0" prefWidth="113.0" styleClass="textfield" stylesheets="@../css/cthd.css" />
+                  <Label layoutX="7.0" layoutY="163.0" text="Đơn giá:" />
+                  <TextField layoutX="11.0" layoutY="180.0" prefHeight="25.0" prefWidth="113.0" styleClass="textfield" stylesheets="@../css/cthd.css" />
+                  <Label layoutX="7.0" layoutY="212.0" text="Thành tiền:" />
+                  <TextField layoutX="11.0" layoutY="229.0" prefHeight="25.0" prefWidth="113.0" styleClass="textfield" stylesheets="@../css/cthd.css" />
+                  <Button fx:id="cthd_thembtn" layoutX="11.0" layoutY="272.0" mnemonicParsing="false" styleClass="add-btn" stylesheets="@../css/cthd.css" text="Thêm" />
+                  <Button fx:id="cthd_capnhatbtn" layoutX="62.0" layoutY="272.0" mnemonicParsing="false" styleClass="add-btn" stylesheets="@../css/cthd.css" text="Cập nhật" />
+                  <Button fx:id="cthd_xoabtn" layoutX="10.0" layoutY="310.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="46.0" styleClass="add-btn" stylesheets="@../css/cthd.css" text="Xóa" />
+                  <Button fx:id="cthd_lammoibtn" layoutX="62.0" layoutY="310.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="64.0" styleClass="add-btn" stylesheets="@../css/cthd.css" text="Làm mới" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="164.0" layoutY="38.0" prefHeight="350.0" prefWidth="321.0" stylesheets="@../css/cthd.css">
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="white-bg" />
+               </styleClass>
+               <children>
+                  <TableView layoutX="21.0" layoutY="51.0" prefHeight="281.0" prefWidth="281.0" stylesheets="@../css/cthd.css">
+                    <columns>
+                      <TableColumn prefWidth="50.00006103515625" text="Mã HD" />
+                      <TableColumn prefWidth="58.66668701171875" text="Loại HD" />
+                        <TableColumn prefWidth="36.0" text="SL" />
+                        <TableColumn prefWidth="58.0" text="Đơn giá" />
+                        <TableColumn prefWidth="76.66668701171875" text="Thành tiền" />
+                    </columns>
+                  </TableView>
+                  <Button fx:id="cthd_quaylaibtn" layoutX="242.0" layoutY="14.0" mnemonicParsing="false" onAction="#QuayLai" styleClass="add-btn" stylesheets="@../css/cthd.css" text="Quay lại" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>-->

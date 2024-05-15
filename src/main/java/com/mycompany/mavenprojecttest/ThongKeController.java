@@ -59,7 +59,7 @@ public class ThongKeController implements Initializable {
     private BarChart<?, ?> thongke_hopdongchart;
 
     @FXML
-    private Label thongke_hopdonghethan;
+    private Label thongke_songuoidango;
 
     @FXML
     private Label thongke_phongthue;
@@ -96,7 +96,7 @@ public class ThongKeController implements Initializable {
         try{
         thongke_hdthang.valueProperty().addListener((observable, oldValue, newValue) -> {
             thongke_hoadonchart.getData().clear();
-            String sql = "SELECT MAPHONG, TONGTIEN FROM HOADON WHERE THANG = ? AND NAM = ?";
+            String sql = "SELECT MAP, TONGTIEN FROM HOADON WHERE THANG = ? AND NAM = ?";
         
             connect = database.getConn();
 
@@ -128,7 +128,7 @@ public class ThongKeController implements Initializable {
         
         thongke_hdnam.valueProperty().addListener((observable, oldValue, newValue) -> {
             thongke_hoadonchart.getData().clear();
-            String sql = "SELECT MAPHONG, TONGTIEN FROM HOADON WHERE THANG = ? AND NAM = ?";
+            String sql = "SELECT MAP, TONGTIEN FROM HOADON WHERE THANG = ? AND NAM = ?";
         
             connect = database.getConn();
 
@@ -158,6 +158,27 @@ public class ThongKeController implements Initializable {
           }
                 
     }
+    
+    public void ThongKePhongDangChoThue(){
+        
+        String sql = "SELECT COUNT(*) FROM PHONG WHERE TRANGTHAI = 'Đã cho thuê'";
+        
+        connect = database.getConn();
+        
+        try{
+            double countTI = 0;
+            statement = connect.createStatement();
+            result = statement.executeQuery(sql);
+            
+            if(result.next()){
+                countTI = result.getInt("COUNT(*)");
+            }
+            
+            thongke_phongthue.setText(String.valueOf(countTI));
+            
+        }catch(Exception e){e.printStackTrace();}
+        
+    }
 
     /**
      * Initializes the controller class.
@@ -175,6 +196,7 @@ public class ThongKeController implements Initializable {
                 thongke_hdnam.getSelectionModel().select(index2);
             }
             homeChart();
+            ThongKePhongDangChoThue();
         // TODO
     }    
     
