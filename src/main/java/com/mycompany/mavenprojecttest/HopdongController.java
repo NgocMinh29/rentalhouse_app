@@ -20,6 +20,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -447,6 +449,65 @@ public class HopdongController implements Initializable {
         });
     }
     
+    public void HopDongSearch() {
+               
+        FilteredList<HopDongData> filter = new FilteredList<>(HopDongList, e -> true);
+
+        hopdong_search.textProperty().addListener((Observable, oldValue, newValue) -> {
+            
+            filter.setPredicate((HopDongData PrediateHopDongData) -> {
+                
+                if (newValue.isEmpty() ) {
+                    return true;
+                }
+
+                String searchKey = newValue.toLowerCase();
+
+                if (String.valueOf(PrediateHopDongData.getHopDongIdProperty().getValue()).toLowerCase().contains(searchKey) ) {
+                    return true;
+                } else if (String.valueOf(PrediateHopDongData.getNgayBatDauProperty().getValue()).toLowerCase().contains(searchKey) ) {
+                    return true;
+                } else if (String.valueOf(PrediateHopDongData.getNgayTraPhongProperty().getValue()).toLowerCase().contains(searchKey)) {
+                    return true;
+                } else if (String.valueOf(PrediateHopDongData.getMaKhachThueProperty().getValue()).toLowerCase().contains(searchKey)) {
+                    return true;
+                } else if (String.valueOf(PrediateHopDongData.getMaPhongProperty().getValue()).toLowerCase().contains(searchKey)) {
+                    return true;
+                } else if (String.valueOf(PrediateHopDongData.getGiaThueProperty().getValue()).toLowerCase().contains(searchKey)) {
+                    return true;
+                }else if (String.valueOf(PrediateHopDongData.getTienCocProperty().getValue()).toLowerCase().contains(searchKey)) {
+                    return true;
+                }else if (String.valueOf(PrediateHopDongData.getTrangThaiProperty().getValue()).toLowerCase().contains(searchKey)) {
+                    return true;
+                }else //return false;
+                {
+                    boolean flag = false;
+                    String sql = "SELECT * FROM KHACHTHUE KT, CTHOPDONG CT, HOPDONG HD"
+                            + " WHERE KT.MAKT = '" + newValue.toUpperCase() + "' AND HD.MHD = '" 
+                            + String.valueOf(PrediateHopDongData.getHopDongIdProperty().getValue()) + "'"
+                            + " AND KT.MAKT = CT.MAKT AND CT.MHD = HD.MHD";
+                    connect = database.getConn();
+                    try{
+                        prepare = connect.prepareStatement(sql);
+                        result = prepare.executeQuery();
+                        if (result.next()){flag = true;}
+                        else {flag = false;}
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    return flag;
+                }
+            });
+
+        SortedList<HopDongData> sortList = new SortedList<>(filter);
+
+        sortList.comparatorProperty().bind(hopdong_tableview.comparatorProperty());
+
+        hopdong_tableview.setItems(sortList);
+        });
+        
+    }
+    
     public void taohopdong(ActionEvent ev){
         String strCall = "{call proc_them_hop_dong(?,?,?,?,?)}";
         try{
@@ -836,6 +897,52 @@ public class HopdongController implements Initializable {
         });
     }
     
+    public void ThemNguoiThem(ActionEvent ev) {
+        String strCall = "{call proc_them_chi_tiet_hop_dong(?,?)}";
+        try{
+            caSt = connect.prepareCall(strCall);
+            caSt.setString(1, themnguoi_hdgid.getText());
+            caSt.setString(2, themnguoi_makt.getText());
+            caSt.execute();
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Thêm người thành công!");
+            alert.showAndWait();
+            
+            
+            CTHDongShowListData();
+                        
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }
+    
+    public void ThemNguoiXoa(ActionEvent ev) {
+        String strCall = "{call proc_them_chi_tiet_hop_dong(?,?)}";
+        try{
+            caSt = connect.prepareCall(strCall);
+            caSt.setString(1, themnguoi_hdgid.getText());
+            caSt.setString(2, themnguoi_makt.getText());
+            caSt.execute();
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Thêm người thành công!");
+            alert.showAndWait();
+            
+            
+            CTHDongShowListData();
+                        
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }
+    
     public void ThemNguoiHoanTat(ActionEvent ev) {
         String strCall = "{call proc_hoan_tat_hop_dong(?)}";
         try{
@@ -1038,30 +1145,18 @@ public class HopdongController implements Initializable {
         });
     }
     
-//    public void QuayLai(ActionEvent ev){
-//        try {
-//            Alert alert = new Alert(Alert.AlertType.ERROR);
-//            alert.setTitle("Error Message");
-//            alert.setHeaderText(null);
-//            alert.setContentText("Bạn có chắc muốn quay lại");
-//            alert.showAndWait();
-//            Optional<ButtonType> option = alert.showAndWait();
-//            if (option.get().equals(ButtonType.OK)){
-//                hopdong_form.setVisible(true);
-//                cthdg_form.setVisible(false);
-//                themnguoi_form.setVisible(false);
-//                giahan_form.setVisible(false);
-//                HopDongDoiMaDaiDien();
-//                HopDongDoiMaPhong();
-//                HopDongPhong();
-//            } 
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//       
-//        
-//        
-//    } 
+    public void QuayLaiofCTHDong(ActionEvent ev){
+        
+        hopdong_form.setVisible(true);
+        cthdg_form.setVisible(false);
+        themnguoi_form.setVisible(false);
+        giahan_form.setVisible(false);
+
+        HopDongDoiMaDaiDien();
+        HopDongDoiMaPhong();
+        HopDongPhong();
+        HopDongShowListData();
+    } 
     
     public void giahanhopdong(ActionEvent ev){
         String strCall = "{call proc_gia_han_hop_dong(?,?,?,?,?)}";
@@ -1161,6 +1256,8 @@ public class HopdongController implements Initializable {
         hopdong_giathue.setDisable(true); 
         hopdong_trangthai.setDisable(true);
         hopdong_trangthai.setText("Chưa hoàn tất");
+        
+        HopDongSearch();
         // TODO
     }    
 

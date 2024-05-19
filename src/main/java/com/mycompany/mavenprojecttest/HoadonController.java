@@ -573,6 +573,7 @@ public class HoadonController implements Initializable {
 //        hoadon_thanhtoan1phan.setDisable(false); 
 //        hoadon_dathanhtoan.setDisable(false); 
         hoadon_id.setDisable(true);
+        //hoadon_maphong.setDisable(true);
         
         //hoadon_thang.setText(String.valueOf(hoadon.getThangProperty()));
         String hdn = String.valueOf(hoadon.getNamProperty().getValue());
@@ -589,7 +590,7 @@ public class HoadonController implements Initializable {
             hoadon_thanhtoan1phan.setDisable(true); 
         }
         else {
-            hoadon_maphong.setDisable(false);
+            hoadon_maphong.setDisable(true);
             hoadon_thang.setDisable(false);
             hoadon_nam.setDisable(false);
             hoadon_dathanhtoan.setDisable(true); 
@@ -794,6 +795,7 @@ public class HoadonController implements Initializable {
         hoadon_capnhatbtn.setDisable(true); 
         hoadon_id.setDisable(false);
         hoadon_tongtien.setDisable(true); 
+        hoadon_maphong.setDisable(false);
         
         hoadon_tongtien.setText(String.valueOf(0));
         
@@ -1055,6 +1057,7 @@ public class HoadonController implements Initializable {
                 alert.showAndWait();
 
             } else {
+                
                 alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Confirmation Message");
                 alert.setHeaderText(null);
@@ -1098,14 +1101,14 @@ public class HoadonController implements Initializable {
      
      public void CTHDUpdate(ActionEvent event) {
 
-        String sql = "UPDATE CTHD SET SL = '"
-                + cthd_sl.getText() + "' AND DONGIA = '"
-                + cthd_dongia.getText()+ "'AND THANHTIEN = '"
-                + cthd_thanhtien.getText()+  "' WHERE MAHD = '" 
-                + cthd_hdid.getText() + "' AND  LOAIHD = '" 
-                + String.valueOf(cthd_loaihd.getSelectionModel().getSelectedItem()) + "'";
-
-        connect = database.getConn();
+//        String sql = "UPDATE CTHD SET SL = '"
+//                + cthd_sl.getText() + "' AND DONGIA = '"
+//                + cthd_dongia.getText()+ "'AND THANHTIEN = '"
+//                + cthd_thanhtien.getText()+  "' WHERE MAHD = '" 
+//                + cthd_hdid.getText() + "' AND  LOAIHD = '" 
+//                + String.valueOf(cthd_loaihd.getSelectionModel().getSelectedItem()) + "'";
+//
+//        connect = database.getConn();
 
         try {
             Alert alert;
@@ -1122,6 +1125,11 @@ public class HoadonController implements Initializable {
                 alert.showAndWait();
 
             } else {
+                int dongia = Integer.parseInt(cthd_dongia.getText());
+                int sl = Integer.parseInt(cthd_sl.getText());
+                int thanhtien = dongia * sl;
+                cthd_thanhtien.setText(String.valueOf(thanhtien));
+                
                 alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Confirmation Message");
                 alert.setHeaderText(null);
@@ -1129,8 +1137,21 @@ public class HoadonController implements Initializable {
                 Optional<ButtonType> option = alert.showAndWait();
 
                 if (option.get().equals(ButtonType.OK)) {
-                    statement = connect.createStatement();
-                    statement.executeUpdate(sql);
+//                    statement = connect.createStatement();
+//                    statement.executeUpdate(sql);
+                    String strCall = "{call SUA_CTHD(?,?,?,?,?)}";
+                        caSt = connect.prepareCall(strCall);
+                 
+                        caSt.setString(1, cthd_hdid.getText());
+  
+                        caSt.setString(2,(String) cthd_loaihd.getSelectionModel().getSelectedItem());
+    //                    
+                        caSt.setString(3, cthd_sl.getText());
+                        
+                        caSt.setString(4, cthd_dongia.getText());
+                        caSt.setString(5, cthd_thanhtien.getText());
+                        
+                        caSt.execute();
 
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
@@ -1286,10 +1307,16 @@ public class HoadonController implements Initializable {
                 cthd_sl.setDisable(true);
                 cthd_dongia.setDisable(true);
                 cthd_thanhtien.setDisable(true);
+                cthd_thembtn.setDisable(true);
+                cthd_xoabtn.setDisable(true);
+                cthd_capnhatbtn.setDisable(true);
             } else {
                 cthd_sl.setDisable(false);
                 cthd_dongia.setDisable(false);
                 cthd_loaihd.setDisable(false);
+                cthd_thembtn.setDisable(false);
+                cthd_xoabtn.setDisable(false);
+                cthd_capnhatbtn.setDisable(false);
             }
                 
             

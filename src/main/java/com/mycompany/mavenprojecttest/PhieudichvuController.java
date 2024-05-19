@@ -16,7 +16,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -75,13 +77,16 @@ public class PhieudichvuController implements Initializable {
     private Button phieu_xemctpbtn;
     
     @FXML
-    private TableColumn<?, ?> ctpdv_col_madv;                                   //ctpdv
+    private Button ctpdv_capnhatbtn;
 
     @FXML
-    private TableColumn<?, ?> ctpdv_col_map;
+    private TableColumn<?, ?> ctpdv_col_madv;
 
     @FXML
     private TableColumn<?, ?> ctpdv_col_tendv;
+
+    @FXML
+    private TableColumn<?, ?> ctpdv_col_tinhtrang;
 
     @FXML
     private AnchorPane ctpdv_form;
@@ -93,6 +98,21 @@ public class PhieudichvuController implements Initializable {
     private TextField ctpdv_madv;
 
     @FXML
+    private Label ctpdv_map;
+
+    @FXML
+    private Label ctpdv_mapg;
+
+    @FXML
+    private Label ctpdv_ngdien;
+
+    @FXML
+    private Button ctpdv_quaylaibtn;
+
+    @FXML
+    private Label ctpdv_sl;
+
+    @FXML
     private TableView<?> ctpdv_tableview;
 
     @FXML
@@ -102,10 +122,10 @@ public class PhieudichvuController implements Initializable {
     private Button ctpdv_thembtn;
 
     @FXML
-    private Button ctpdv_xoabtn;
-    
+    private ComboBox<?> ctpdv_tinhtrang;
+
     @FXML
-    private Button ctpdv_capnhatbtn;
+    private Button ctpdv_xoabtn;
     
     private Connection connect;
     private PreparedStatement prepare;
@@ -123,6 +143,31 @@ public class PhieudichvuController implements Initializable {
             phieu_form.setVisible(false);
 
             ctpdv_form.setVisible(true);
+            
+            
+//            CTHDShowListData();
+//            
+//            cthd_hdid.setText(HoaDonId);
+//            cthd_kydong.setText(KyDong);
+//            cthd_maphong.setText(MaPhong);
+//            cthd_tenphong.setText(TenPhong);
+//            cthd_tongtien.setText(TongTien);
+//            
+//            cthd_thanhtien.setDisable(true);
+//            cthd_loaihd.setDisable(false);
+//            
+//            cthd_xoabtn.setDisable(true); 
+//            cthd_capnhatbtn.setDisable(true);
+//            
+//            CTHDLoaiHD();
+        
+    }
+    
+    public void QuayLai(ActionEvent ev){
+        
+            phieu_form.setVisible(true);
+
+            ctpdv_form.setVisible(false);
             
             
 //            CTHDShowListData();

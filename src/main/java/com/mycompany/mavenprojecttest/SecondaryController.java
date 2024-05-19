@@ -51,10 +51,30 @@ import javafx.fxml.Initializable;
 import javafx.print.PageLayout;
 import javafx.print.PrinterJob;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.PasswordField;
 
 public class SecondaryController implements Initializable{
     
-    public ThongKeController tk;
+    @FXML
+    private Button caidat_btn;
+
+    @FXML
+    private Button caidat_doimkbtn;
+
+    @FXML
+    private AnchorPane caidat_form;
+
+    @FXML
+    private PasswordField caidat_mkcu;
+
+    @FXML
+    private PasswordField caidat_mkmoi;
+
+    @FXML
+    private PasswordField caidat_xacnhan;
+
+    
+    //public ThongKeController tk;
 
     @FXML
     private AnchorPane main_form;
@@ -2610,6 +2630,7 @@ public class SecondaryController implements Initializable{
             //cthd_form.setVisible(false);
             khachngan_form.setVisible(false);
             dichvu_form.setVisible(false);
+            caidat_form.setVisible(false);
             //cthdg_form.setVisible(false);
             //ctpdv_form.setVisible(false);
 
@@ -2619,8 +2640,8 @@ public class SecondaryController implements Initializable{
             hopdong_btn.setStyle("-fx-background-color: transparent");
             khach_btn.setStyle("-fx-background-color: transparent");
             phieu_btn.setStyle("-fx-background-color: transparent");
-            khachngan_form.setStyle("-fx-background-color: transparent");
-            dichvu_form.setStyle("-fx-background-color: transparent");
+            khachngan_btn.setStyle("-fx-background-color: transparent");
+            dichvu_btn.setStyle("-fx-background-color: transparent");
             
             
             //tk.initialize(null, null);
@@ -2652,6 +2673,7 @@ public class SecondaryController implements Initializable{
             //cthd_form.setVisible(false);
             khachngan_form.setVisible(false);
             dichvu_form.setVisible(false);
+            caidat_form.setVisible(false);
             //cthdg_form.setVisible(false);
             //ctpdv_form.setVisible(false);
             
@@ -2661,8 +2683,8 @@ public class SecondaryController implements Initializable{
             hopdong_btn.setStyle("-fx-background-color: transparent");
             khach_btn.setStyle("-fx-background-color: transparent");
             phieu_btn.setStyle("-fx-background-color: transparent");
-            khachngan_form.setStyle("-fx-background-color: transparent");
-            dichvu_form.setStyle("-fx-background-color: transparent");
+            khachngan_btn.setStyle("-fx-background-color: transparent");
+            dichvu_btn.setStyle("-fx-background-color: transparent");
             
 //            taikhoan_btn.setStyle("-fx-background-color: transparent");
 
@@ -2683,6 +2705,7 @@ public class SecondaryController implements Initializable{
             //cthd_form.setVisible(false);
             khachngan_form.setVisible(false);
             dichvu_form.setVisible(false);
+            caidat_form.setVisible(false);
             //cthdg_form.setVisible(false);
             //ctpdv_form.setVisible(false);
 
@@ -2692,8 +2715,8 @@ public class SecondaryController implements Initializable{
             hopdong_btn.setStyle("-fx-background-color: transparent");
             khach_btn.setStyle("-fx-background-color: transparent");
             phieu_btn.setStyle("-fx-background-color: transparent");
-            khachngan_form.setStyle("-fx-background-color: transparent");
-            dichvu_form.setStyle("-fx-background-color: transparent");
+            khachngan_btn.setStyle("-fx-background-color: transparent");
+            dichvu_btn.setStyle("-fx-background-color: transparent");
             
             //taikhoan_btn.setStyle("-fx-background-color: transparent");
 //            HoaDonShowListData();
@@ -2728,6 +2751,7 @@ public class SecondaryController implements Initializable{
             //cthd_form.setVisible(false);
             khachngan_form.setVisible(false);
             dichvu_form.setVisible(false);
+            caidat_form.setVisible(false);
             //cthdg_form.setVisible(false);
             //ctpdv_form.setVisible(false);
             
@@ -2737,8 +2761,8 @@ public class SecondaryController implements Initializable{
             hopdong_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #4d95d0,#2f6996)");
             khach_btn.setStyle("-fx-background-color: transparent");
             phieu_btn.setStyle("-fx-background-color: transparent");
-            khachngan_form.setStyle("-fx-background-color: transparent");
-            dichvu_form.setStyle("-fx-background-color: transparent");
+            khachngan_btn.setStyle("-fx-background-color: transparent");
+            dichvu_btn.setStyle("-fx-background-color: transparent");
             //taikhoan_btn.setStyle("-fx-background-color: transparent");
             
 //            HopDongStatus();
@@ -2753,6 +2777,7 @@ public class SecondaryController implements Initializable{
             //cthd_form.setVisible(false);
             khachngan_form.setVisible(false);
             dichvu_form.setVisible(false);
+            caidat_form.setVisible(false);
             //cthdg_form.setVisible(false);
             //ctpdv_form.setVisible(false);
             
@@ -2762,8 +2787,8 @@ public class SecondaryController implements Initializable{
             hopdong_btn.setStyle("-fx-background-color: transparent");
             khach_btn.setStyle("-fx-background-color:linear-gradient(to bottom right,#4d95d0,#2f6996)");
             phieu_btn.setStyle("-fx-background-color: transparent");
-            khachngan_form.setStyle("-fx-background-color: transparent");
-            dichvu_form.setStyle("-fx-background-color: transparent");
+            khachngan_btn.setStyle("-fx-background-color: transparent");
+            dichvu_btn.setStyle("-fx-background-color: transparent");
             //taikhoan_btn.setStyle("-fx-background-color: transparent");
             
 //            khach_xoabtn.setDisable(true); 
@@ -2783,6 +2808,7 @@ public class SecondaryController implements Initializable{
             //cthd_form.setVisible(false);
             khachngan_form.setVisible(false);
             dichvu_form.setVisible(false);
+            caidat_form.setVisible(false);
             //cthdg_form.setVisible(false);
             //ctpdv_form.setVisible(false);
             
@@ -2792,8 +2818,8 @@ public class SecondaryController implements Initializable{
             hopdong_btn.setStyle("-fx-background-color: transparent");
             khach_btn.setStyle("-fx-background-color: transparent");
             phieu_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #4d95d0,#2f6996)");
-            khachngan_form.setStyle("-fx-background-color: transparent");
-            dichvu_form.setStyle("-fx-background-color: transparent");
+            khachngan_btn.setStyle("-fx-background-color: transparent");
+            dichvu_btn.setStyle("-fx-background-color: transparent");
             //taikhoan_btn.setStyle("-fx-background-color: transparent");
             
         } else if (event.getSource() == khachngan_btn){
@@ -2806,6 +2832,7 @@ public class SecondaryController implements Initializable{
             //cthd_form.setVisible(false);
             khachngan_form.setVisible(true);
             dichvu_form.setVisible(false);
+            caidat_form.setVisible(false);
             //cthdg_form.setVisible(false);
             //ctpdv_form.setVisible(false);
             
@@ -2815,8 +2842,8 @@ public class SecondaryController implements Initializable{
             hopdong_btn.setStyle("-fx-background-color: transparent");
             khach_btn.setStyle("-fx-background-color: transparent");
             phieu_btn.setStyle("-fx-background-color: transparent");
-            khachngan_form.setStyle("-fx-background-color:linear-gradient(to bottom right, #4d95d0,#2f6996)");
-            dichvu_form.setStyle("-fx-background-color: transparent");
+            khachngan_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #4d95d0,#2f6996)");
+            dichvu_btn.setStyle("-fx-background-color: transparent");
             
 //            KhachNganHanShowListData();
 //            KhachNganSearch();
@@ -2848,6 +2875,7 @@ public class SecondaryController implements Initializable{
             //cthd_form.setVisible(false);
             khachngan_form.setVisible(false);
             dichvu_form.setVisible(true);
+            caidat_form.setVisible(false);
             //cthdg_form.setVisible(false);
             //ctpdv_form.setVisible(false);
             
@@ -2857,8 +2885,30 @@ public class SecondaryController implements Initializable{
             hopdong_btn.setStyle("-fx-background-color: transparent");
             khach_btn.setStyle("-fx-background-color: transparent");
             phieu_btn.setStyle("-fx-background-color: transparent");
-            khachngan_form.setStyle("-fx-background-color: transparent");
-            dichvu_form.setStyle("-fx-background-color:linear-gradient(to bottom right, #4d95d0,#2f6996)");            
+            khachngan_btn.setStyle("-fx-background-color: transparent");
+            dichvu_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #4d95d0,#2f6996)");            
+        } else if (event.getSource() == caidat_btn){
+            thongke_form.setVisible(false);
+            phong_form.setVisible(false);
+            hoadon_form.setVisible(false);
+            hopdong_form.setVisible(false);
+            khach_form.setVisible(false);
+            phieu_form.setVisible(false);
+            //cthd_form.setVisible(false);
+            khachngan_form.setVisible(false);
+            dichvu_form.setVisible(false);
+            caidat_form.setVisible(true);
+            //cthdg_form.setVisible(false);
+            //ctpdv_form.setVisible(false);
+            
+            thongke_btn.setStyle("-fx-background-color: transparent");
+            phong_btn.setStyle("-fx-background-color: transparent");
+            hoadon_btn.setStyle("-fx-background-color: transparent");
+            hopdong_btn.setStyle("-fx-background-color: transparent");
+            khach_btn.setStyle("-fx-background-color: transparent");
+            phieu_btn.setStyle("-fx-background-color: transparent");
+            khachngan_btn.setStyle("-fx-background-color: transparent");
+            dichvu_btn.setStyle("-fx-background-color: transparent");            
         }
         
         
@@ -2939,6 +2989,7 @@ public class SecondaryController implements Initializable{
 //        homeChart();
         //HoaDonShowListData();
 //        PhongShowListData();
+        thongke_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #4d95d0, #2f6996)");
         
     }
 }

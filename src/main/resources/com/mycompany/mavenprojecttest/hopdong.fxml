@@ -65,7 +65,7 @@
                                 <TableColumn fx:id="hopdong_col_tinhtrang" prefWidth="111.3333740234375" text="Tình trạng" />
                             </columns>
                         </TableView>
-                        <Button fx:id="hopdong_xemcthdbtn" layoutX="490.0" layoutY="17.0" mnemonicParsing="false" onAction="#xemCThopdong" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Xem chi tiết hợp đồng" />
+                        <Button fx:id="hopdong_xemcthdbtn" layoutX="539.0" layoutY="15.0" mnemonicParsing="false" onAction="#xemCThopdong" prefHeight="27.0" prefWidth="85.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Xem chi tiết" />
                         <Button fx:id="hopdong_thembtn" layoutX="125.0" layoutY="488.0" mnemonicParsing="false" onAction="#taohopdong" prefHeight="31.0" prefWidth="112.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Tạo hợp đồng" textFill="WHITE" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="125.0">
                             <font>
                                 <Font size="13.0" />
@@ -129,7 +129,7 @@
                         <Label fx:id="cthdg_giathue" layoutX="398.0" layoutY="80.0" prefHeight="17.0" prefWidth="112.0" />
                         <Label fx:id="cthdg_tiencoc" layoutX="398.0" layoutY="110.0" prefHeight="17.0" prefWidth="112.0" />
                         <Label fx:id="cthdg_trangthai" layoutX="398.0" layoutY="140.0" prefHeight="17.0" prefWidth="112.0" />
-                        <Button fx:id="cthdg_back" layoutX="785.0" layoutY="17.0" mnemonicParsing="false" onAction="#back" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Quay lại" />
+                        <Button fx:id="cthdg_back" layoutX="785.0" layoutY="17.0" mnemonicParsing="false" onAction="#QuayLaiofCTHDong" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Quay lại" />
                     </children>
                 </AnchorPane>
             </children>

@@ -24,28 +24,24 @@
                 <String fx:value="shadow" />
             </styleClass>
             <children>
-                <Label layoutX="15.0" layoutY="7.0" text="Mã khách thuê (*):" />
-                <TextField fx:id="khach_id" layoutX="17.0" layoutY="24.0" prefHeight="25.0" prefWidth="168.0" styleClass="textfield" stylesheets="@../css/dashboard.css" AnchorPane.leftAnchor="17.0" />
-                <Label layoutX="16.0" layoutY="51.0" text="Họ tên (*):" />
-                <TextField fx:id="khach_ten" layoutX="17.0" layoutY="68.0" prefHeight="25.0" prefWidth="168.0" styleClass="textfield" stylesheets="@../css/dashboard.css" AnchorPane.leftAnchor="17.0" />
-                <Label layoutX="19.0" layoutY="95.0" text="Giới tính (*):" />
-                <Label layoutX="18.0" layoutY="139.0" text="Ngày sinh (*):" />
-                <Label layoutX="18.0" layoutY="315.0" text="Mã người đại diện:" />
-                <TextField fx:id="khach_mangdaidien" disable="true" layoutX="17.0" layoutY="332.0" prefHeight="25.0" prefWidth="168.0" styleClass="textfield" stylesheets="@../css/dashboard.css" AnchorPane.leftAnchor="17.0" />
-                <ComboBox fx:id="khach_gioitinh" layoutX="17.0" layoutY="112.0" prefHeight="25.0" prefWidth="165.0" promptText="Chọn ..." styleClass="textfield" stylesheets="@../css/dashboard.css" AnchorPane.leftAnchor="17.0" />
-                <Label layoutX="21.0" layoutY="183.0" text="Số điện thoại:" />
-                <TextField fx:id="khach_sdt" layoutX="17.0" layoutY="200.0" prefHeight="25.0" prefWidth="168.0" promptText="+84xxxxxxx" styleClass="textfield" stylesheets="@../css/dashboard.css" AnchorPane.leftAnchor="17.0" />
-                <Label layoutX="19.0" layoutY="227.0" text="CCCD:" />
-                <TextField fx:id="khach_cccd" layoutX="17.0" layoutY="244.0" prefHeight="25.0" prefWidth="168.0" styleClass="textfield" stylesheets="@../css/dashboard.css" AnchorPane.leftAnchor="17.0" />
-                <Label layoutX="22.0" layoutY="271.0" text="Email:" />
-                <TextField fx:id="khach_mail" layoutX="17.0" layoutY="288.0" prefHeight="25.0" prefWidth="168.0" promptText="abc@gmail.com" styleClass="textfield" stylesheets="@../css/dashboard.css" AnchorPane.leftAnchor="17.0" />
-                <DatePicker fx:id="khach_ngs" layoutX="14.0" layoutY="156.0" />
-                <Label layoutX="18.0" layoutY="402.0" text="Ngày bắt đầu:" />
-                <DatePicker fx:id="khach_ngbd" disable="true" layoutX="14.0" layoutY="419.0" />
-                <Label layoutX="18.0" layoutY="445.0" text="Ngày kết thúc:" />
-                <DatePicker fx:id="khach_ngkt" layoutX="14.0" layoutY="462.0" />
-                <Label layoutX="17.0" layoutY="359.0" text="Tên người đại diện:" />
-                <TextField fx:id="khach_tenngdaidien" disable="true" layoutX="16.0" layoutY="376.0" prefHeight="25.0" prefWidth="168.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                <Label layoutX="14.0" layoutY="469.0" text="Mã khách thuê (*):" visible="false" />
+                <TextField fx:id="khach_id" layoutX="16.0" layoutY="486.0" prefHeight="25.0" prefWidth="168.0" styleClass="textfield" stylesheets="@../css/dashboard.css" visible="false" AnchorPane.leftAnchor="16.0" />
+                <Label layoutX="17.0" layoutY="14.0" text="Họ tên (*):" />
+                <TextField fx:id="khach_ten" layoutX="18.0" layoutY="31.0" prefHeight="25.0" prefWidth="168.0" styleClass="textfield" stylesheets="@../css/dashboard.css" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" />
+                <Label layoutX="18.0" layoutY="68.0" text="Giới tính (*):" />
+                <Label layoutX="17.0" layoutY="119.0" text="Ngày sinh (*):" />
+                <ComboBox fx:id="khach_gioitinh" layoutX="16.0" layoutY="85.0" prefHeight="25.0" prefWidth="165.0" promptText="Chọn ..." styleClass="textfield" stylesheets="@../css/dashboard.css" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" />
+                <Label layoutX="19.0" layoutY="170.0" text="Số điện thoại:" />
+                <TextField fx:id="khach_sdt" layoutX="16.0" layoutY="187.0" prefHeight="25.0" prefWidth="168.0" promptText="+84xxxxxxx" styleClass="textfield" stylesheets="@../css/dashboard.css" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" />
+                <Label layoutX="18.0" layoutY="220.0" text="CCCD:" />
+                <TextField fx:id="khach_cccd" layoutX="16.0" layoutY="237.0" prefHeight="25.0" prefWidth="168.0" styleClass="textfield" stylesheets="@../css/dashboard.css" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" />
+                <Label layoutX="20.0" layoutY="274.0" text="Email:" />
+                <TextField fx:id="khach_mail" layoutX="16.0" layoutY="291.0" prefHeight="25.0" prefWidth="168.0" promptText="abc@gmail.com" styleClass="textfield" stylesheets="@../css/dashboard.css" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" />
+                <DatePicker fx:id="khach_ngs" layoutX="18.0" layoutY="136.0" prefHeight="27.0" prefWidth="168.0" styleClass="textfield" stylesheets="@../css/dashboard.css" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" />
+                <Label layoutX="17.0" layoutY="373.0" text="Ngày bắt đầu:" visible="false" />
+                <DatePicker fx:id="khach_ngbd" disable="true" layoutX="13.0" layoutY="390.0" visible="false" />
+                <Label layoutX="17.0" layoutY="416.0" text="Ngày kết thúc:" visible="false" />
+                <DatePicker fx:id="khach_ngkt" layoutX="13.0" layoutY="433.0" visible="false" />
             </children>
         </AnchorPane>
         <AnchorPane layoutX="231.0" layoutY="14.0" prefHeight="535.0" prefWidth="651.0" stylesheets="@../css/dashboard.css">
@@ -58,8 +54,8 @@
                 <FontAwesomeIconView glyphName="SEARCH" layoutX="21.0" layoutY="35.0" size="1.5em" />
                 <TableView fx:id="khach_tableview" layoutX="14.0" layoutY="58.0" prefHeight="423.0" prefWidth="621.0" stylesheets="@../css/dashboard.css" AnchorPane.leftAnchor="14.0">
                     <columns>
-                        <TableColumn fx:id="khach_col_id" prefWidth="45.333343505859375" text="Mã KT" />
-                        <TableColumn fx:id="khach_col_ten" prefWidth="104.66671752929688" text="Họ tên" />
+                        <TableColumn fx:id="khach_col_id" prefWidth="50.0" text="Mã KT" />
+                        <TableColumn fx:id="khach_col_ten" prefWidth="101.33331298828125" text="Họ tên" />
                         <TableColumn fx:id="khach_col_gioitinh" prefWidth="53.3333740234375" text="Giới tính" />
                         <TableColumn fx:id="khach_col_ngs" prefWidth="65.3333740234375" text="Ngày sinh" />
                         <TableColumn fx:id="khach_col_sdt" prefWidth="58.0" text="SĐT" />
@@ -69,22 +65,22 @@
                         <TableColumn fx:id="khach_col_ngkt" prefWidth="80.6666259765625" text="Ngày KT" />
                     </columns>
                 </TableView>
-                <Button fx:id="khach_xoabtn" layoutX="427.0" layoutY="492.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Xóa" textFill="WHITE" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="427.0">
+                <Button fx:id="khach_xoabtn" layoutX="228.0" layoutY="492.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Xóa" textFill="WHITE" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="228.0">
                     <font>
                         <Font name="Tahoma" size="13.0" />
                     </font>
                 </Button>
-                <Button fx:id="khach_capnhatbtn" layoutX="332.0" layoutY="492.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Cập nhật" textFill="WHITE" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="332.0">
+                <Button fx:id="khach_capnhatbtn" layoutX="469.0" layoutY="492.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Cập nhật" textFill="WHITE" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="469.0">
                     <font>
                         <Font name="Tahoma" size="13.0" />
                     </font>
                 </Button>
-                <Button fx:id="khach_thembtn" layoutX="240.0" layoutY="492.0" mnemonicParsing="false" onAction="#KhachThueThem" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Thêm" textFill="WHITE" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="240.0">
+                <Button fx:id="khach_thembtn" layoutX="348.0" layoutY="492.0" mnemonicParsing="false" onAction="#KhachThueThem" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Thêm" textFill="WHITE" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="348.0">
                     <font>
                         <Font size="13.0" />
                     </font>
                 </Button>
-                <Button fx:id="khach_lammoibtn" layoutX="151.0" layoutY="492.0" mnemonicParsing="false" onAction="#KhachThueClear" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Làm mới" textFill="#fffdfd" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="151.0">
+                <Button fx:id="khach_lammoibtn" layoutX="105.0" layoutY="492.0" mnemonicParsing="false" onAction="#KhachThueClear" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Làm mới" textFill="#fffdfd" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="105.0">
                     <font>
                         <Font name="Tahoma" size="13.0" />
                     </font>

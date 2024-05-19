@@ -256,17 +256,18 @@ public class KhachnganhanController implements Initializable {
    
    public void TimKhachNgan(ActionEvent event){
        FilteredList<KhachData> filter = new FilteredList<>(KhachNganHanList, e -> true);
-       filter.setPredicate(PrediateKhachNganData -> {
+       filter.setPredicate((KhachData PrediateKhachNganData) -> {
            boolean tt = false, ng = false, search = false;
            String searchKey = khachngan_search.getText().toLowerCase();
            
-            if  ((String.valueOf(PrediateKhachNganData.getTrangthaiProperty().getValue()).equals(String.valueOf(khachngan_searchtt.getSelectionModel().getSelectedItem())))
-                        ||khachngan_searchtt.getSelectionModel().getSelectedItem()==null) tt = true;
+            if  (khachngan_searchtt.getSelectionModel().getSelectedItem()==null || 
+                    (String.valueOf(PrediateKhachNganData.getTrangthaiProperty().getValue()).equals(String.valueOf(khachngan_searchtt.getSelectionModel().getSelectedItem())))
+                        ) tt = true;
             
            LocalDate ngaytim = khachngan_searchngay.getValue();
            LocalDate ngbd = LocalDate.parse(String.valueOf(PrediateKhachNganData.getNgaybatdauProperty().getValue()), formatter);
            LocalDate ngkt = LocalDate.parse(String.valueOf(PrediateKhachNganData.getNgayketthucProperty().getValue()), formatter);
-           if ( ngaytim.isAfter(ngbd) && ngaytim.isBefore(ngkt) || ngaytim.equals(ngbd) || ngaytim == null) 
+           if ( khachngan_searchngay.getValue() == null || (ngaytim.isAfter(ngbd) && ngaytim.isBefore(ngkt)) || ngaytim.equals(ngbd) ) 
                     ng = true;
            if (khachngan_search.getText().isEmpty()) {
                     search = true;
@@ -575,8 +576,8 @@ public class KhachnganhanController implements Initializable {
             khachngan_duyetbtn.setDisable(false); 
             khachngan_xoabtn.setDisable(true); 
             //khachngan_capnhatbtn.setDisable(true); 
-            khachngan_id.setDisable(false);
-            khachngan_trangthai.setDisable(false);
+            //khachngan_id.setDisable(false);
+            //khachngan_trangthai.setDisable(false);
             khachngan_tenngdaidien.setDisable(true);
         // TODO
     }    

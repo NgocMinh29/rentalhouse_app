@@ -71,10 +71,10 @@ public class KhachthueController implements Initializable {
     @FXML
     private TableColumn<KhachData, String> khach_col_ten;
 
-    @FXML
-    private TextField khach_mangdaidien;
-    @FXML
-    private TextField khach_tenngdaidien;
+//    @FXML
+//    private TextField khach_mangdaidien;
+//    @FXML
+//    private TextField khach_tenngdaidien;
 
     @FXML
     private AnchorPane khach_form;
@@ -196,8 +196,8 @@ public class KhachthueController implements Initializable {
         khach_sdt.setText("+84");
         khach_cccd.setText("");
         khach_mail.setText("");
-        khach_mangdaidien.setText("");
-        khach_tenngdaidien.setText("");
+//        khach_mangdaidien.setText("");
+//        khach_tenngdaidien.setText("");
         khach_search.setText("");
         
         KhachThueShowListData();

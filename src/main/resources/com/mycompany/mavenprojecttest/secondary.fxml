@@ -2,16 +2,9 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.lang.String?>
-<?import javafx.scene.chart.BarChart?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
@@ -94,15 +87,11 @@
                               <FontAwesomeIconView fill="WHITE" glyphName="CLIPBOARD" size="1.5em" text="" />
                            </graphic>
                         </Button>
-                        <Button fx:id="logout" layoutX="12.0" layoutY="516.0" mnemonicParsing="false" onAction="#logout" styleClass="logout" stylesheets="@../css/dashboard.css">
+                        <Button fx:id="logout" layoutX="46.0" layoutY="516.0" mnemonicParsing="false" onAction="#logout" styleClass="logout" stylesheets="@../css/dashboard.css">
                            <graphic>
                               <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" size="2em" />
                            </graphic>
                         </Button>
-                        <Label layoutX="62.0" layoutY="523.0" text="Đăng xuất" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font></Label>
                         <Button fx:id="dichvu_btn" layoutX="12.0" layoutY="418.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="45.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Dịch vụ">
                            <graphic>
                               <FontAwesomeIconView fill="WHITE" glyphName="CHECK" size="1.5em" />
@@ -110,7 +99,12 @@
                         </Button>
                         <Button fx:id="khachngan_btn" layoutX="12.0" layoutY="463.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="45.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Khách ngắn hạn">
                            <graphic>
-                              <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="1.5em" />
+                              <FontAwesomeIconView fill="WHITE" glyphName="USER_PLUS" size="1.5em" />
+                           </graphic>
+                        </Button>
+                        <Button fx:id="caidat_btn" layoutX="119.0" layoutY="516.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="32.0" prefWidth="39.0" styleClass="logout" stylesheets="@../css/dashboard.css">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="COG" size="2em" />
                            </graphic>
                         </Button>
                      </children>
@@ -119,7 +113,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>  
-                        <AnchorPane fx:id="thongke_form" layoutX="193.0" layoutY="161.0" prefHeight="564.0" prefWidth="897.3333333333334" stylesheets="@../css/dashboard.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="thongke_form" layoutX="193.0" layoutY="161.0" prefHeight="564.0" prefWidth="897.3333333333334" stylesheets="@../css/dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>  
                                <fx:include source="ThongKe.fxml" />  
 <!--                              <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="870.0" stylesheets="@../css/dashboard.css">
@@ -786,6 +780,30 @@
                                     </TableView>
                                  </children>
                               </AnchorPane>-->
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="caidat_form" layoutX="35.0" layoutY="111.0" prefHeight="564.0" prefWidth="897.3333333333334" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="540.0" prefWidth="872.0" stylesheets="@../css/dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="white-bg" />
+                                 </styleClass>
+                                 <children>
+                                    <PasswordField fx:id="caidat_mkcu" layoutX="409.0" layoutY="158.0" stylesheets="@../css/LoginDesignmaven.css" />
+                                    <Label layoutX="314.0" layoutY="162.0" text="Mật khẩu cũ:" />
+                                    <Label layoutX="14.0" layoutY="14.0" styleClass="header-2" stylesheets="@../css/dashboard.css" text="Đổi mật khẩu">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="314.0" layoutY="215.0" text="Mật khẩu mới:" />
+                                    <PasswordField fx:id="caidat_mkmoi" layoutX="409.0" layoutY="211.0" stylesheets="@../css/LoginDesignmaven.css" />
+                                    <PasswordField fx:id="caidat_xacnhan" layoutX="409.0" layoutY="267.0" stylesheets="@../css/LoginDesignmaven.css" />
+                                    <Label layoutX="314.0" layoutY="271.0" text="Xác nhận:" />
+                                    <Button fx:id="caidat_doimkbtn" layoutX="376.0" layoutY="325.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="101.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Đổi mật khẩu" AnchorPane.leftAnchor="385.0" AnchorPane.rightAnchor="386.0" />
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </AnchorPane>
                         
