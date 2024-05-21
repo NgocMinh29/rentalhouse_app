@@ -342,7 +342,7 @@ public class KhachnganhanController implements Initializable {
     
     public void KhachNganDuyet(ActionEvent event) {//update khach ngắn hạn đã duyệt
         
-        String sql = "UPDATE KHACHNGANHAN SET TRANGTHAI = 'Đã duyệt'";
+        String sql = "UPDATE KHACHNGANHAN SET TRANGTHAI = 'Đã duyệt' where MAKT = '" + khachngan_id.getText() + "'";
 
         connect = database.getConn();
 
@@ -353,6 +353,45 @@ public class KhachnganhanController implements Initializable {
                 alert.setTitle("Confirmation Message");
                 alert.setHeaderText(null);
                 alert.setContentText("Bạn có chắc muốn duyệt khách này?");
+                Optional<ButtonType> option = alert.showAndWait();
+
+                if (option.get().equals(ButtonType.OK)) {
+                    statement = connect.createStatement();
+                    statement.executeUpdate(sql);
+
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Successfully Updated!");
+                    alert.showAndWait();
+
+                    // SHOW UPDATED TABLEVIEW
+                    
+
+                    // CLEAR ALL FIELDS
+                    KhachNganClear();
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    
+    public void KhachNganXoa(ActionEvent event) {//update khach ngắn hạn đã duyệt
+        
+        String sql = "DELETE KHACHNGANHAN where MAKT = '" + khachngan_id.getText() + "'";
+
+        connect = database.getConn();
+
+        try {
+            Alert alert;
+            {
+                alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Bạn có chắc muốn xóa khách này?");
                 Optional<ButtonType> option = alert.showAndWait();
 
                 if (option.get().equals(ButtonType.OK)) {
@@ -573,7 +612,7 @@ public class KhachnganhanController implements Initializable {
             
             DoiMaDD();
             
-            khachngan_duyetbtn.setDisable(false); 
+            khachngan_duyetbtn.setDisable(true); 
             khachngan_xoabtn.setDisable(true); 
             //khachngan_capnhatbtn.setDisable(true); 
             //khachngan_id.setDisable(false);

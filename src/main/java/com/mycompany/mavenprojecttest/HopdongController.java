@@ -222,6 +222,9 @@ public class HopdongController implements Initializable {
 
     @FXML
     private Button themnguoi_lammoibtn;
+    
+    @FXML
+    private Button themnguoi_back;
 
     @FXML
     private TextField themnguoi_makt;
@@ -414,6 +417,7 @@ public class HopdongController implements Initializable {
                 hopdong_thembtn.setDisable(true); 
                 hopdong_xoabtn.setDisable(true);
                 hopdong_huybtn.setDisable(false); 
+                //if (today == hopdong_ngtraphong.getValue())
                 hopdong_giahanbtn.setDisable(false); 
                 hopdong_xemcthdbtn.setDisable(false); 
                 
@@ -582,6 +586,10 @@ public class HopdongController implements Initializable {
 
                             ThemNguoiDoiMaKhach();
                             ThemNguoiShowListData();
+                            
+                            themnguoi_xoabtn.setDisable(true);
+                            
+                            themnguoi_back.setVisible(true);
 
                             hopdong_form.setVisible(false);
                             giahan_form.setVisible(false);
@@ -628,7 +636,11 @@ public class HopdongController implements Initializable {
                             alert.setTitle("Information Message");
                             alert.setHeaderText(null);
                             alert.setContentText("Successfully Added!");
-                            alert.showAndWait();                                      
+                            alert.showAndWait(); 
+                            
+                            themnguoi_xoabtn.setDisable(true);
+                            
+                            themnguoi_back.setVisible(true);
 
                             hopdong_form.setVisible(false);
                             giahan_form.setVisible(false);
@@ -770,6 +782,36 @@ public class HopdongController implements Initializable {
         }    
     }
     
+    public void HopDongXoa(ActionEvent ev) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Message");
+        alert.setHeaderText(null);
+        alert.setContentText("Bạn có chắc muốn xóa hợp đồng này?");
+        Optional<ButtonType> option = alert.showAndWait();
+        if (option.get().equals(ButtonType.OK)) {
+            String strCall = "{call  XOA_HOPDONG (?)}";
+            
+            try{
+                caSt = connect.prepareCall(strCall);
+                caSt.setString(1, hopdong_id.getText());
+                //caSt.setString(2, themnguoi_makt.getText());
+                caSt.execute();
+
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Xóa hợp đồng thành công!");
+                alert.showAndWait();
+
+                LamMoihopdong();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
+    }
+    
     public void LamMoihopdong(){
         hopdong_id.setText("");
         hopdong_makt.setText("");
@@ -898,6 +940,23 @@ public class HopdongController implements Initializable {
     }
     
     public void ThemNguoiThem(ActionEvent ev) {
+        String sql = "SELECT * FROM CTHOPDONG WHERE MAKT = '" + themnguoi_makt.getText() + "' AND MHD = '" + themnguoi_hdgid.getText() + "'";
+        connect = database.getConn();
+        try{
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+            if (result.next()){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Người này đã được thêm vào hợp đồng!");
+                alert.showAndWait();
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
         String strCall = "{call proc_them_chi_tiet_hop_dong(?,?)}";
         try{
             caSt = connect.prepareCall(strCall);
@@ -912,7 +971,7 @@ public class HopdongController implements Initializable {
             alert.showAndWait();
             
             
-            CTHDongShowListData();
+            ThemNguoiClear();
                         
         } catch (Exception e) {
             e.printStackTrace();
@@ -920,28 +979,75 @@ public class HopdongController implements Initializable {
         
     }
     
+    public void ThemNguoiSelect() {  //sau khi sửa bên textfiled thì không đc xóa
+        KhachData khang = themnguoi_tableview.getSelectionModel().getSelectedItem();
+        int num = themnguoi_tableview.getSelectionModel().getSelectedIndex();
+
+        if ((num - 1) < -1) {
+            return;
+        }
+        themnguoi_makt.setText(String.valueOf(khang.getKhachidProperty().getValue()));
+//        khach_ten.setText(String.valueOf(khang.getHotenProperty().getValue()));
+//        khach_sdt.setText(String.valueOf(khang.getSdtProperty().getValue()));
+//        khach_cccd.setText(String.valueOf(khang.getCccdProperty().getValue()));
+//        khach_mail.setText(String.valueOf(khang.getEmailProperty().getValue()));
+//        int index2 = khach_gioitinh.getItems().indexOf(String.valueOf(khang.getGioitinhProperty().getValue()));
+//        if (index2 != -1) {
+//            khach_gioitinh.getSelectionModel().select(index2);
+//        }
+//        LocalDate selectedDate = LocalDate.parse(String.valueOf(khang.getNgaysinhProperty().getValue()), formatter);
+//        khach_ngs.setValue(selectedDate);
+//        LocalDate selectedDate2 = LocalDate.parse(String.valueOf(khang.getNgaybatdauProperty().getValue()), formatter);
+//        khach_ngbd.setValue(selectedDate2);
+//        LocalDate selectedDate3 = LocalDate.parse(String.valueOf(khang.getNgayketthucProperty().getValue()), formatter);
+//        khach_ngkt.setValue(selectedDate3);
+        
+        
+        themnguoi_xoabtn.setDisable(false); 
+       
+   }
+    
     public void ThemNguoiXoa(ActionEvent ev) {
-        String strCall = "{call proc_them_chi_tiet_hop_dong(?,?)}";
-        try{
-            caSt = connect.prepareCall(strCall);
-            caSt.setString(1, themnguoi_hdgid.getText());
-            caSt.setString(2, themnguoi_makt.getText());
-            caSt.execute();
-            
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Message");
+        
+        try {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Thông báo xác nhận");
             alert.setHeaderText(null);
-            alert.setContentText("Thêm người thành công!");
-            alert.showAndWait();
-            
-            
-            CTHDongShowListData();
-                        
+            alert.setContentText("Bạn có chắc muốn xóa người này?");
+            Optional<ButtonType> option = alert.showAndWait();
+            if (option.get().equals(ButtonType.OK)){
+                String sql = "DELETE CTHOPDONG"
+                        + "WHERE MHD = ? AND MAKT = ?";
+                connect = database.getConn();
+
+                prepare = connect.prepareStatement(sql);
+                prepare.setString(1, themnguoi_hdgid.getText());
+                prepare.setString(2, themnguoi_makt.getText());
+                prepare.executeUpdate();
+
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Xóa người thành công!");
+                alert.showAndWait();
+
+
+                ThemNguoiClear();
+            }                
         } catch (Exception e) {
             e.printStackTrace();
         }
         
     }
+    
+    public void ThemNguoiClear(){
+        themnguoi_makt.setText("");
+        themnguoi_xoabtn.setDisable(true);
+        ThemNguoiShowListData();
+       
+    }
+    
+    
     
     public void ThemNguoiHoanTat(ActionEvent ev) {
         String strCall = "{call proc_hoan_tat_hop_dong(?)}";
@@ -1217,7 +1323,7 @@ public class HopdongController implements Initializable {
 //                    themnguoi_sdtkt.setDisable(true);
 
                     ThemNguoiShowListData();
-
+                    themnguoi_back.setVisible(false);
                     hopdong_form.setVisible(false);
                     cthdg_form.setVisible(false);
                     themnguoi_form.setVisible(true);

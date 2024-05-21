@@ -6,6 +6,7 @@ package com.mycompany.mavenprojecttest;
 
 import connection.database;
 import java.net.URL;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,6 +17,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -99,6 +102,7 @@ public class PhongController implements Initializable {
     private PreparedStatement prepare;
     private Statement statement;
     private ResultSet result;
+    private CallableStatement caSt;
     
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     
@@ -108,12 +112,12 @@ public class PhongController implements Initializable {
 
     public void PhongThem(ActionEvent event) {
 
-        String sql = "INSERT INTO PHONG (MAP,TENPG,LOAI,SONGUOI,DIENTICH,GIA,TRANGTHAI) "
-                + "VALUES(?,?,?,?,?,?,?)";
-//        String sql = "INSERT INTO PHONG (MAP,TENPG,SONGUOI,DIENTICH,GIA) "
-//                + "VALUES(?,?,?,?,?)";
-        
-        connect = database.getConn();
+//        String sql = "INSERT INTO PHONG (MAP,TENPG,LOAI,SONGUOI,DIENTICH,GIA,TRANGTHAI) "
+//                + "VALUES(?,?,?,?,?,?,?)";
+////        String sql = "INSERT INTO PHONG (MAP,TENPG,SONGUOI,DIENTICH,GIA) "
+////                + "VALUES(?,?,?,?,?)";
+//        
+//        connect = database.getConn();
 
         try {
             Alert alert;
@@ -147,18 +151,30 @@ public class PhongController implements Initializable {
                     alert.setContentText("Ma phong: " + phong_id.getText() + " was already exist!");
                     alert.showAndWait();
                 } else {
-                    prepare = connect.prepareStatement(sql);
-                    prepare.setString(1, phong_id.getText());
-                    prepare.setString(2, phong_ten.getText());
-                    prepare.setString(3, (String) phong_loaiphong.getSelectionModel().getSelectedItem());
-                    //prepare.setString(3, phong_songuoi.getText());
-                    prepare.setString(3, "0");
-                    prepare.setString(4, phong_dientich.getText());
-                    prepare.setString(5, phong_giathue.getText());
-                    //prepare.setString(7, (String) phong_trt.getSelectionModel().getSelectedItem());
-                    prepare.setString(7, "Còn trống");
-                  
-                    prepare.executeUpdate();
+//                    prepare = connect.prepareStatement(sql);
+//                    prepare.setString(1, phong_id.getText());
+//                    prepare.setString(2, phong_ten.getText());
+//                    prepare.setString(3, (String) phong_loaiphong.getSelectionModel().getSelectedItem());
+//                    //prepare.setString(3, phong_songuoi.getText());
+//                    prepare.setString(3, "0");
+//                    prepare.setString(4, phong_dientich.getText());
+//                    prepare.setString(5, phong_giathue.getText());
+//                    //prepare.setString(7, (String) phong_trt.getSelectionModel().getSelectedItem());
+//                    prepare.setString(7, "Còn trống");
+//                  
+//                    prepare.executeUpdate();
+                    String strCall = "{call ThemPhong(?,?,?,?)}";
+                        caSt = connect.prepareCall(strCall);
+                 
+                        caSt.setString(1, phong_ten.getText());
+  
+                        caSt.setString(2, (String) phong_loaiphong.getSelectionModel().getSelectedItem());
+    //                    
+                        caSt.setString(3, phong_dientich.getText());
+                        
+                        caSt.setString(4, phong_giathue.getText());
+                        
+                        caSt.execute();
 
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
@@ -181,12 +197,78 @@ public class PhongController implements Initializable {
 
     }
     
+    public void PhongSelect() {  //sau khi sửa bên textfiled thì không đc xóa
+        PhongData khang = phong_tableview.getSelectionModel().getSelectedItem();
+        int num = phong_tableview.getSelectionModel().getSelectedIndex();
+
+        if ((num - 1) < -1) {
+            return;
+        }
+        phong_id.setText(String.valueOf(khang.getPhongidProperty().getValue()));
+        phong_ten.setText(String.valueOf(khang.getTenphongProperty().getValue()));
+        phong_dientich.setText(String.valueOf(khang.getDientichProperty().getValue()));
+        phong_giathue.setText(String.valueOf(khang.getGiaProperty().getValue()));
+        phong_songuoi.setText(String.valueOf(khang.getSongdgoProperty().getValue()));
+        int index2 = phong_loaiphong.getItems().indexOf(String.valueOf(khang.getLoaiProperty().getValue()));
+        if (index2 != -1) {
+            phong_loaiphong.getSelectionModel().select(index2);
+        }
+        int index = phong_trt.getItems().indexOf(String.valueOf(khang.getTrangthaiProperty().getValue()));
+        if (index != -1) {
+            phong_trt.getSelectionModel().select(index);
+        }
+        
+        phong_capnhatbtn.setDisable(false); 
+        phong_xoabtn.setDisable(false); 
+       
+   }
+    
+    public void PhongSearch() {
+        
+        FilteredList<PhongData> filter = new FilteredList<>(PhongList, e -> true);
+
+        phong_search.textProperty().addListener((Observable, oldValue, newValue) -> {
+
+            filter.setPredicate((PhongData PrediatePhongData) -> {
+
+                if (newValue.isEmpty() /*|| newValue == null*/) {
+                    return true;
+                }
+
+                String searchKey = newValue.toLowerCase();
+
+                if (String.valueOf(PrediatePhongData.getPhongidProperty().getValue()).toLowerCase().contains(searchKey)) {
+                    return true;
+                } else if (String.valueOf(PrediatePhongData.getTenphongProperty().getValue()).toLowerCase().contains(searchKey)) {
+                    return true;
+                } else if (String.valueOf(PrediatePhongData.getLoaiProperty().getValue()).toLowerCase().contains(searchKey)) {
+                    return true;
+                } else if (String.valueOf(PrediatePhongData.getSongdgoProperty().getValue()).toLowerCase().contains(searchKey)) {
+                    return true;
+                } else if (String.valueOf(PrediatePhongData.getDientichProperty().getValue()).toLowerCase().contains(searchKey)) {
+                    return true;
+                } else if (String.valueOf(PrediatePhongData.getGiaProperty().getValue()).toLowerCase().contains(searchKey)) {
+                    return true;
+                } else if (String.valueOf(PrediatePhongData.getTrangthaiProperty().getValue()).toLowerCase().contains(searchKey)) {
+                    return true;
+                }else {
+                    return false;
+                }
+            });
+
+        SortedList<PhongData> sortList = new SortedList<>(filter);
+
+        sortList.comparatorProperty().bind(phong_tableview.comparatorProperty());
+
+        phong_tableview.setItems(sortList);
+        });
+    }
      public void PhongXoa(ActionEvent event) {
 
-        String sql = "DELETE PHONG WHERE MAP = '"
-                + phong_id.getText() + "'";
-
-        connect = database.getConn();
+//        String sql = "DELETE PHONG WHERE MAP = '"
+//                + phong_id.getText() + "'";
+//
+//        connect = database.getConn();
 
         try {
             Alert alert;
@@ -207,8 +289,16 @@ public class PhongController implements Initializable {
                 Optional<ButtonType> option = alert.showAndWait();
 
                 if (option.get().equals(ButtonType.OK)) {
-                    statement = connect.createStatement();
-                    statement.executeUpdate(sql);
+//                    statement = connect.createStatement();
+//                    statement.executeUpdate(sql);
+                    String strCall = "{call Xoa_Phong(?)}";
+                        caSt = connect.prepareCall(strCall);
+                 
+                        caSt.setString(1, phong_id.getText());
+  
+                        
+                        
+                        caSt.execute();
 
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
@@ -311,9 +401,13 @@ public class PhongController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        phong_capnhatbtn.setDisable(true); 
+        phong_xoabtn.setDisable(true); 
         PhongShowListData();
             PhongStatus();
             PhongLoai();
+            PhongSearch();
         // TODO
     }    
     

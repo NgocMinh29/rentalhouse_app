@@ -65,29 +65,29 @@
                                 <TableColumn fx:id="hopdong_col_tinhtrang" prefWidth="111.3333740234375" text="Tình trạng" />
                             </columns>
                         </TableView>
-                        <Button fx:id="hopdong_xemcthdbtn" layoutX="537.0" layoutY="15.0" mnemonicParsing="false" onAction="#xemCThopdong" prefHeight="27.0" prefWidth="88.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Xem chi tiết" />
-                        <Button fx:id="hopdong_thembtn" layoutX="125.0" layoutY="488.0" mnemonicParsing="false" onAction="#taohopdong" prefHeight="31.0" prefWidth="112.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Tạo hợp đồng" textFill="WHITE" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="125.0">
+                        <Button fx:id="hopdong_xemcthdbtn" layoutX="537.0" layoutY="15.0" mnemonicParsing="false" onAction="#xemCThopdong" prefHeight="27.0" prefWidth="88.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Xem chi tiết" textFill="WHITE" />
+                        <Button fx:id="hopdong_thembtn" layoutX="161.0" layoutY="488.0" mnemonicParsing="false" onAction="#taohopdong" prefHeight="31.0" prefWidth="112.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Tạo hợp đồng" textFill="WHITE" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="161.0">
                             <font>
                                 <Font size="13.0" />
                             </font>
                         </Button>
-                        <Button fx:id="hopdong_capnhatbtn" layoutX="256.0" layoutY="488.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Cập nhật" textFill="WHITE" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="256.0">
+                        <Button fx:id="hopdong_capnhatbtn" layoutX="256.0" layoutY="488.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Cập nhật" textFill="WHITE" visible="false" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="256.0">
                             <font>
                                 <Font name="Tahoma" size="13.0" />
                             </font>
                         </Button>
-                        <Button fx:id="hopdong_xoabtn" layoutX="354.0" layoutY="488.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Xóa" textFill="WHITE" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="354.0">
+                        <Button fx:id="hopdong_xoabtn" layoutX="306.0" layoutY="488.0" mnemonicParsing="false" onAction="#HopDongXoa" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Xóa" textFill="WHITE" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="306.0">
                             <font>
                                 <Font name="Tahoma" size="13.0" />
                             </font>
                         </Button>
-                        <Button fx:id="hopdong_lammoibtn" layoutX="29.0" layoutY="488.0" mnemonicParsing="false" onAction="#LamMoihopdong" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Làm mới" textFill="#fffdfd" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="29.0">
+                        <Button fx:id="hopdong_lammoibtn" layoutX="53.0" layoutY="488.0" mnemonicParsing="false" onAction="#LamMoihopdong" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Làm mới" textFill="#fffdfd" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="53.0">
                             <font>
                                 <Font name="Tahoma" size="13.0" />
                             </font>
                         </Button>
-                  <Button fx:id="hopdong_huybtn" layoutX="448.0" layoutY="488.0" mnemonicParsing="false" onAction="#Huyhopdong" prefHeight="31.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Hủy họp đồng" />
-                  <Button fx:id="hopdong_giahanbtn" layoutX="562.0" layoutY="488.0" mnemonicParsing="false" onAction="#ChuyenFormGiaHan" prefHeight="31.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Gia hạn" />
+                  <Button fx:id="hopdong_huybtn" layoutX="412.0" layoutY="488.0" mnemonicParsing="false" onAction="#Huyhopdong" prefHeight="31.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Hủy hợp đồng" />
+                  <Button fx:id="hopdong_giahanbtn" layoutX="545.0" layoutY="488.0" mnemonicParsing="false" onAction="#ChuyenFormGiaHan" prefHeight="31.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Gia hạn" />
                     </children>
                 </AnchorPane>                             
             </children>
@@ -147,7 +147,7 @@
                         <TextField fx:id="themnguoi_makt" layoutX="17.0" layoutY="31.0" prefHeight="25.0" prefWidth="168.0" styleClass="textfield" stylesheets="@../css/dashboard.css" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="15.0" />
                         <Label layoutX="18.0" layoutY="64.0" text="Họ tên khách thuê:" />
                         <TextField fx:id="themnguoi_tenkt" disable="true" layoutX="17.0" layoutY="81.0" prefHeight="25.0" prefWidth="168.0" styleClass="textfield" stylesheets="@../css/dashboard.css" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="15.0" />
-                        <Button fx:id="themnguoi_thembtn" layoutX="16.0" layoutY="432.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Thêm" textFill="WHITE" AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="16.0">
+                        <Button fx:id="themnguoi_thembtn" layoutX="16.0" layoutY="432.0" mnemonicParsing="false" onAction="#ThemNguoiThem" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Thêm" textFill="WHITE" AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="16.0">
                             <font>
                                 <Font size="13.0" />
                             </font>
@@ -157,12 +157,12 @@
                                 <Font name="Tahoma" size="13.0" />
                             </font>
                         </Button>
-                        <Button fx:id="themnguoi_xoabtn" layoutX="110.0" layoutY="440.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Xóa" textFill="WHITE" AnchorPane.bottomAnchor="64.00000000000006" AnchorPane.leftAnchor="110.0">
+                        <Button fx:id="themnguoi_xoabtn" layoutX="110.0" layoutY="440.0" mnemonicParsing="false" onAction="#ThemNguoiXoa" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Xóa" textFill="WHITE" AnchorPane.bottomAnchor="64.00000000000006" AnchorPane.leftAnchor="110.0">
                             <font>
                                 <Font name="Tahoma" size="13.0" />
                             </font>
                         </Button>
-                        <Button fx:id="themnguoi_lammoibtn" layoutX="16.0" layoutY="482.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Làm mới" textFill="#fffdfd" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="16.0">
+                        <Button fx:id="themnguoi_lammoibtn" layoutX="16.0" layoutY="482.0" mnemonicParsing="false" onAction="#ThemNguoiClear" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Làm mới" textFill="#fffdfd" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="16.0">
                             <font>
                                 <Font name="Tahoma" size="13.0" />
                             </font>
@@ -179,7 +179,7 @@
                         <String fx:value="shadow" />
                     </styleClass>
                     <children>
-                        <TableView fx:id="themnguoi_tableview" layoutX="14.0" layoutY="179.0" prefHeight="342.0" prefWidth="621.0" stylesheets="@../css/dashboard.css" AnchorPane.leftAnchor="14.0">
+                        <TableView fx:id="themnguoi_tableview" layoutX="14.0" layoutY="179.0" onMouseClicked="#ThemNguoiSelect" prefHeight="342.0" prefWidth="621.0" stylesheets="@../css/dashboard.css" AnchorPane.leftAnchor="14.0">
                             <columns>
                                 <TableColumn fx:id="themnguoi_col_makt" prefWidth="55.333343505859375" text="Mã KT" />
                                 <TableColumn fx:id="themnguoi_col_tenkt" prefWidth="308.00006103515625" text="Họ tên" />

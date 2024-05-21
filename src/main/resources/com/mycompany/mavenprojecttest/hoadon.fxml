@@ -78,8 +78,8 @@
                                 <Font name="Tahoma" size="13.0" />
                             </font>
                         </Button>
-                  <Button fx:id="haodon_dathanhtoan" layoutX="372.0" layoutY="493.0" mnemonicParsing="false" onAction="#HoaDonDaThanhToan" prefHeight="31.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Đã thanh toán" AnchorPane.bottomAnchor="16.0" />
                   <Button fx:id="hoadon_thanhtoan1phan" layoutX="489.0" layoutY="493.0" mnemonicParsing="false" onAction="#HoaDonConNo" prefHeight="31.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Thanh toán một phần" AnchorPane.bottomAnchor="16.0" />
+                  <Button fx:id="haodon_dathanhtoan" layoutX="374.0" layoutY="488.0" mnemonicParsing="false" onAction="#HoaDonDaThanhToan" prefHeight="31.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Đã thanh toán" />
                     </children>
                 </AnchorPane>
             </children>

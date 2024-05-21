@@ -47,7 +47,7 @@
             <children>
                 <TextField fx:id="phong_search" layoutX="14.0" layoutY="12.0" prefHeight="33.0" prefWidth="334.0" promptText="Tìm kiếm" styleClass="search" stylesheets="@../css/dashboard.css" />
                 <FontAwesomeIconView glyphName="SEARCH" layoutX="21.0" layoutY="35.0" size="1.5em" />
-                <TableView fx:id="phong_tableview" layoutX="14.0" layoutY="58.0" prefHeight="463.0" prefWidth="621.0" stylesheets="@../css/dashboard.css" AnchorPane.bottomAnchor="64.0" AnchorPane.topAnchor="58.0">
+                <TableView fx:id="phong_tableview" layoutX="14.0" layoutY="58.0" onMouseClicked="#PhongSelect" prefHeight="463.0" prefWidth="621.0" stylesheets="@../css/dashboard.css" AnchorPane.bottomAnchor="64.0" AnchorPane.topAnchor="58.0">
                     <columns>
                         <TableColumn fx:id="phong_col_id" prefWidth="75.0" text="Mã phòng" />
                         <TableColumn fx:id="phong_col_ten" prefWidth="82.0" text="Tên phòng" />

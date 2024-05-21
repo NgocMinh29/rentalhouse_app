@@ -572,8 +572,8 @@ public class HoadonController implements Initializable {
         hoadon_xoabtn.setDisable(false); 
 //        hoadon_thanhtoan1phan.setDisable(false); 
 //        hoadon_dathanhtoan.setDisable(false); 
-        hoadon_id.setDisable(true);
-        //hoadon_maphong.setDisable(true);
+        //hoadon_id.setDisable(true);
+        hoadon_maphong.setDisable(true);
         
         //hoadon_thang.setText(String.valueOf(hoadon.getThangProperty()));
         String hdn = String.valueOf(hoadon.getNamProperty().getValue());
@@ -583,18 +583,18 @@ public class HoadonController implements Initializable {
         String hdtt = String.valueOf(hoadon.getTrangThaiProperty().getValue());
         
         if ("Đã thanh toán".equals(hdtt)) {
-            hoadon_maphong.setDisable(true);
+            //hoadon_maphong.setDisable(true);
             hoadon_thang.setDisable(true);
             hoadon_nam.setDisable(true); 
-            hoadon_dathanhtoan.setDisable(true); 
-            hoadon_thanhtoan1phan.setDisable(true); 
+//            hoadon_dathanhtoan.setDisable(true); 
+//            hoadon_thanhtoan1phan.setDisable(true); 
         }
         else {
-            hoadon_maphong.setDisable(true);
+            //hoadon_maphong.setDisable(true);
             hoadon_thang.setDisable(false);
             hoadon_nam.setDisable(false);
-            hoadon_dathanhtoan.setDisable(true); 
-            hoadon_thanhtoan1phan.setDisable(true); 
+//            hoadon_dathanhtoan.setDisable(false); 
+//            hoadon_thanhtoan1phan.setDisable(false); 
         }
         
 //        hoadon_conno.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -633,50 +633,55 @@ public class HoadonController implements Initializable {
 //            }
 //        });       
         //hoadon_maphong.textProperty().addListener((observable, oldValue, newValue) -> {
-        hoadon_maphong.valueProperty().addListener((observable, oldValue, newValue) -> {
-            hoadon_xemchitietbtn.setDisable(true);
-            hoadon_xoabtn.setDisable(true); 
-//            hoadon_thanhtoan1phan.setDisable(true); 
-//            hoadon_dathanhtoan.setDisable(true);
-            if (newValue.equals(hdmap) 
-                    && ((String) hoadon_trangthai.getSelectionModel().getSelectedItem()).equals(hdtt)
-                    && hoadon_conno.getText().equals(hdcn)
-                    && String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem()).equals(hdt)
+//        hoadon_maphong.valueProperty().addListener((observable, oldValue, newValue) -> {
+//            hoadon_xemchitietbtn.setDisable(true);
+//            hoadon_xoabtn.setDisable(true); 
+////            hoadon_thanhtoan1phan.setDisable(true); 
+////            hoadon_dathanhtoan.setDisable(true);
+//            if (newValue.equals(hdmap) 
+//                    && ((String) hoadon_trangthai.getSelectionModel().getSelectedItem()).equals(hdtt)
+//                    && hoadon_conno.getText().equals(hdcn)
+//                    && String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem()).equals(hdt)
+//                    && String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem()).equals(hdn)){
+//                hoadon_xemchitietbtn.setDisable(false);
+//                hoadon_xoabtn.setDisable(false);
+////                hoadon_thanhtoan1phan.setDisable(false); 
+////                hoadon_dathanhtoan.setDisable(false); 
+//            }
+//        });
+        hoadon_thang.valueProperty().addListener((observable, oldValue, newValue) -> {
+            
+            if (newValue == Integer.valueOf(hdt)
+//                    && hoadon_conno.getText().equals(hdcn)
+//                    //&& hoadon_maphong.getText().equals(hdmap)
+//                    && ((String)hoadon_maphong.getSelectionModel().getSelectedItem()).equals(hdmap)
+//                    && ((String) hoadon_trangthai.getSelectionModel().getSelectedItem()).equals(hdtt)
                     && String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem()).equals(hdn)){
                 hoadon_xemchitietbtn.setDisable(false);
                 hoadon_xoabtn.setDisable(false);
 //                hoadon_thanhtoan1phan.setDisable(false); 
 //                hoadon_dathanhtoan.setDisable(false); 
-            }
-        });
-        hoadon_thang.valueProperty().addListener((observable, oldValue, newValue) -> {
-            hoadon_xemchitietbtn.setDisable(true);
-            hoadon_xoabtn.setDisable(true); 
-            if (newValue == Integer.valueOf(hdt)
-                    && hoadon_conno.getText().equals(hdcn)
-                    //&& hoadon_maphong.getText().equals(hdmap)
-                    && ((String)hoadon_maphong.getSelectionModel().getSelectedItem()).equals(hdmap)
-                    && ((String) hoadon_trangthai.getSelectionModel().getSelectedItem()).equals(hdtt)
-                    && String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem()).equals(hdn)){
-                hoadon_xemchitietbtn.setDisable(false);
-                hoadon_xoabtn.setDisable(false);
-                hoadon_thanhtoan1phan.setDisable(false); 
-                hoadon_dathanhtoan.setDisable(false); 
+            }else{
+                   hoadon_xemchitietbtn.setDisable(true);
+            hoadon_xoabtn.setDisable(true);  
             }
         }); 
         hoadon_nam.valueProperty().addListener((observable, oldValue, newValue) -> {
-            hoadon_xemchitietbtn.setDisable(true);
-            hoadon_xoabtn.setDisable(true); 
+             
             if (newValue == Integer.valueOf(hdn) 
-                    && hoadon_conno.getText().equals(hdcn)
-                    //&& hoadon_maphong.getText().equals(hdmap)
-                    && ((String)hoadon_maphong.getSelectionModel().getSelectedItem()).equals(hdmap)
+//                    && hoadon_conno.getText().equals(hdcn)
+//                    //&& hoadon_maphong.getText().equals(hdmap)
+//                    && ((String)hoadon_maphong.getSelectionModel().getSelectedItem()).equals(hdmap)
                     && String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem()).equals(hdt)
-                    && ((String) hoadon_trangthai.getSelectionModel().getSelectedItem()).equals(hdtt)) {
+//                    && ((String) hoadon_trangthai.getSelectionModel().getSelectedItem()).equals(hdtt)
+                    ) {
                 hoadon_xemchitietbtn.setDisable(false);
                 hoadon_xoabtn.setDisable(false);
-                hoadon_thanhtoan1phan.setDisable(false); 
-                hoadon_dathanhtoan.setDisable(false); 
+//                hoadon_thanhtoan1phan.setDisable(false); 
+//                hoadon_dathanhtoan.setDisable(false); 
+            }else{
+                hoadon_xemchitietbtn.setDisable(true);
+            hoadon_xoabtn.setDisable(true);
             }
         });  
         

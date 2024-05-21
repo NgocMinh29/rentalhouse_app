@@ -32,7 +32,7 @@
                         </Label>
                         <Label fx:id="thongke_phongthue" layoutX="153.0" layoutY="14.0" text="5" textFill="WHITE">
                             <font>
-                                <Font name="Tahoma" size="15.0" />
+                                <Font name="Tahoma" size="24.0" />
                             </font>
                         </Label>
                     </children>
@@ -47,7 +47,7 @@
                         </Label>
                         <Label fx:id="thongke_hoadonno" layoutX="149.0" layoutY="14.0" text="3" textFill="WHITE">
                             <font>
-                                <Font name="Tahoma" size="15.0" />
+                                <Font name="Tahoma" size="24.0" />
                             </font>
                         </Label>
                     </children>
@@ -62,7 +62,7 @@
                         </Label>
                         <Label fx:id="thongke_songuoidnago" layoutX="147.0" layoutY="14.0" text="1" textFill="WHITE">
                             <font>
-                                <Font name="Tahoma" size="15.0" />
+                                <Font name="Tahoma" size="24.0" />
                             </font>
                         </Label>
                     </children>
@@ -77,7 +77,7 @@
                         </Label>
                         <Label fx:id="thongke_dichvucho" layoutX="141.0" layoutY="14.0" text="2" textFill="WHITE">
                             <font>
-                                <Font name="Tahoma" size="15.0" />
+                                <Font name="Tahoma" size="24.0" />
                             </font>
                         </Label>
                     </children>

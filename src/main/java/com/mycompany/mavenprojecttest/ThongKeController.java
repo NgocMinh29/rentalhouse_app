@@ -59,7 +59,7 @@ public class ThongKeController implements Initializable {
     private BarChart<?, ?> thongke_hopdongchart;
 
     @FXML
-    private Label thongke_songuoidango;
+    private Label thongke_songuoidnago;
 
     @FXML
     private Label thongke_phongthue;
@@ -74,6 +74,8 @@ public class ThongKeController implements Initializable {
     private LocalDate today = LocalDate.now();
     private int currentMonth = today.getMonthValue();
     private int currentYear = today.getYear();
+    
+    java.sql.Date sqltoday = java.sql.Date.valueOf(today);
     
     public void ThongKeHoaDonThang() {
         ObservableList listData = FXCollections.observableArrayList(1,2,3,4,5,6,7,8,9,10,11,12);
@@ -166,7 +168,7 @@ public class ThongKeController implements Initializable {
         connect = database.getConn();
         
         try{
-            double countTI = 0;
+            int countTI = 0;
             statement = connect.createStatement();
             result = statement.executeQuery(sql);
             
@@ -179,6 +181,87 @@ public class ThongKeController implements Initializable {
         }catch(Exception e){e.printStackTrace();}
         
     }
+    
+    public void ThongKeHoaDonConNo(){
+        
+        String sql = "SELECT COUNT(*) FROM HOADON WHERE TRANGTHAI = 'Chưa thanh toán'";
+        
+        connect = database.getConn();
+        
+        try{
+            int countTI = 0;
+            statement = connect.createStatement();
+            result = statement.executeQuery(sql);
+            
+            if(result.next()){
+                countTI = result.getInt("COUNT(*)");
+            }
+            
+            thongke_hoadonno.setText(String.valueOf(countTI));
+            
+        }catch(Exception e){e.printStackTrace();}
+        
+    }
+    
+    public void ThongKeSoNgDangO(){
+        
+        String sql = "SELECT COUNT(*) FROM KHACHTHUE WHERE NGAYKETTHUC > ?";
+        String sql1 = "SELECT COUNT(*) FROM KHACHNGANHAN WHERE NGAYKETTHUC > ? AND TRANGTHAI = 'Đã duyệt'";
+        
+        connect = database.getConn();
+        
+        try{
+            int countTI = 0;
+            
+            prepare = connect.prepareStatement(sql);
+            prepare.setDate(1, sqltoday);
+            result = prepare.executeQuery();
+//            prepare = connect.prepareStatement(sql);
+//            java.sql.Date Today = java.sql.Date.valueOf(today);
+//            prepare.setDate(1, Today);
+//            result = prepare.executeQuery();
+            
+            if(result.next()){
+                countTI = result.getInt(1);
+            }
+            prepare = connect.prepareStatement(sql1);
+            prepare.setDate(1, sqltoday);
+            result = prepare.executeQuery();
+            if(result.next()){
+                countTI += result.getInt(1);
+            }
+            thongke_songuoidnago.setText(String.valueOf(countTI));
+            
+        }catch(Exception e){e.printStackTrace();}
+        
+    }
+    
+    public void ThongKePhieuChoXuLy(){
+        
+        String sql = "SELECT COUNT(DISTINCT PHIEUDICHVU.MPDV) FROM PHIEUDICHVU, CTPDV WHERE PHIEUDICHVU.MPDV = CTPDV.MPDV AND TINHTRANG = 'Chưa hoàn thành'";
+        
+        
+        connect = database.getConn();
+        
+        try{
+            int countTI = 0;
+            statement = connect.createStatement();
+            result = statement.executeQuery(sql);
+            
+            if(result.next()){
+                countTI = result.getInt(1);
+            }
+//            prepare = connect.prepareStatement(sql1);
+//            prepare.setDate(1, sqltoday);
+//            result = prepare.executeQuery();
+//            if(result.next()){
+//                countTI += result.getInt("COUNT(*)");
+//            }
+            thongke_dichvucho.setText(String.valueOf(countTI));
+            
+        }catch(Exception e){e.printStackTrace();}
+        
+    }
 
     /**
      * Initializes the controller class.
@@ -186,6 +269,10 @@ public class ThongKeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ThongKeHoaDonThang() ;
+        //thongke_songuoidnago.setText("0");
+        ThongKeSoNgDangO();
+        ThongKeHoaDonConNo();
+        ThongKePhieuChoXuLy();
             ThongKeHoaDonNam() ;
             int index = thongke_hdthang.getItems().indexOf(currentMonth);
             if (index != -1) {
