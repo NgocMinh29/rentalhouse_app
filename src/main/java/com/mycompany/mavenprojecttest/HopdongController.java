@@ -525,9 +525,9 @@ public class HopdongController implements Initializable {
                 ) {
 
                 alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
+                alert.setTitle("Thông báo lỗi");
                 alert.setHeaderText(null);
-                alert.setContentText("Please fill all blank fields");
+                alert.setContentText("Vui lòng điền các ô có thể điền");
                 alert.showAndWait();
             }
             else { 
@@ -539,7 +539,7 @@ public class HopdongController implements Initializable {
 
                 if (result.next()) { 
                     alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error Message");
+                    alert.setTitle("Thông báo lôi");
                     alert.setHeaderText(null);
                     alert.setContentText("Phòng này đã có người thuê.");
                     alert.showAndWait();
@@ -555,7 +555,7 @@ public class HopdongController implements Initializable {
                     result = prepare.executeQuery();
                     if (result.next()){
                         alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Error Message");
+                        alert.setTitle("Thông báo lỗi");
                         alert.setHeaderText(null);
                         alert.setContentText("Người này đã ra khỏi phòng trọ.");
                         alert.showAndWait();
@@ -768,7 +768,7 @@ public class HopdongController implements Initializable {
                 caSt.execute();
 
                 Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-                alert1.setTitle("Information Message");
+                alert1.setTitle("Thông báo");
                 alert1.setHeaderText(null);
                 alert1.setContentText("Hủy hợp đồng thành công!");
                 alert1.showAndWait();
@@ -784,7 +784,7 @@ public class HopdongController implements Initializable {
     
     public void HopDongXoa(ActionEvent ev) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Message");
+        alert.setTitle("Thông báo xác nhận");
         alert.setHeaderText(null);
         alert.setContentText("Bạn có chắc muốn xóa hợp đồng này?");
         Optional<ButtonType> option = alert.showAndWait();
@@ -798,7 +798,7 @@ public class HopdongController implements Initializable {
                 caSt.execute();
 
                 alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Message");
+                alert.setTitle("Thông báo");
                 alert.setHeaderText(null);
                 alert.setContentText("Xóa hợp đồng thành công!");
                 alert.showAndWait();
@@ -832,6 +832,7 @@ public class HopdongController implements Initializable {
         hopdong_giathue.setDisable(true); 
         hopdong_trangthai.setDisable(true);
         
+        hopdong_search.setText("");
         HopDongShowListData();
        
     }
@@ -947,7 +948,7 @@ public class HopdongController implements Initializable {
             result = prepare.executeQuery();
             if (result.next()){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
+                alert.setTitle("Thông báo lỗi");
                 alert.setHeaderText(null);
                 alert.setContentText("Người này đã được thêm vào hợp đồng!");
                 alert.showAndWait();
@@ -965,7 +966,7 @@ public class HopdongController implements Initializable {
             caSt.execute();
             
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Message");
+            alert.setTitle("Thông báo");
             alert.setHeaderText(null);
             alert.setContentText("Thêm người thành công!");
             alert.showAndWait();
@@ -1026,7 +1027,7 @@ public class HopdongController implements Initializable {
                 prepare.executeUpdate();
 
                 alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Message");
+                alert.setTitle("Thông báo");
                 alert.setHeaderText(null);
                 alert.setContentText("Xóa người thành công!");
                 alert.showAndWait();
@@ -1057,7 +1058,7 @@ public class HopdongController implements Initializable {
             caSt.execute();
             
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Message");
+            alert.setTitle("Thông báo");
             alert.setHeaderText(null);
             alert.setContentText("Đã hoàn tất hợp đồng!");
             alert.showAndWait();
@@ -1277,9 +1278,9 @@ public class HopdongController implements Initializable {
                 ) {
 
                 alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
+                alert.setTitle("Thông báo lỗi");
                 alert.setHeaderText(null);
-                alert.setContentText("Please fill all blank fields");
+                alert.setContentText("Vui lòng điền các ô có thể điền");
                 alert.showAndWait();
             }
              else {
@@ -1302,9 +1303,9 @@ public class HopdongController implements Initializable {
                     caSt.execute();
 
                     alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
+                    alert.setTitle("Thông báo");
                     alert.setHeaderText(null);
-                    alert.setContentText("Successfully Added!");
+                    alert.setContentText("Thêm thành công!");
                     alert.showAndWait();
 
                     //themnguoi_hdgid.setText(hopdong_id.getText());

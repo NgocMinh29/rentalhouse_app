@@ -517,7 +517,7 @@ public class KhachthueController implements Initializable {
     
     public void KhachThueXoa(ActionEvent ev) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Message");
+        alert.setTitle("Thông báo xác nhận");
         alert.setHeaderText(null);
         alert.setContentText("Bạn có chắc muốn xóa khách thuê này?");
         Optional<ButtonType> option = alert.showAndWait();
@@ -531,7 +531,7 @@ public class KhachthueController implements Initializable {
                 caSt.execute();
 
                 alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Message");
+                alert.setTitle("Thông báo");
                 alert.setHeaderText(null);
                 alert.setContentText("Xóa khách thuê thành công!");
                 alert.showAndWait();
@@ -563,7 +563,7 @@ public class KhachthueController implements Initializable {
             Alert alert;
             {
                 alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation Message");
+                alert.setTitle("Thông báo xác nhận");
                 alert.setHeaderText(null);
                 alert.setContentText("Bạn có chắc muốn cập nhật khách này?");
                 Optional<ButtonType> option = alert.showAndWait();
@@ -582,9 +582,9 @@ public class KhachthueController implements Initializable {
                     prepare.executeUpdate();
 
                     alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
+                    alert.setTitle("Thông báo");
                     alert.setHeaderText(null);
-                    alert.setContentText("Successfully Updated!");
+                    alert.setContentText("Cập nhật khách thuê thành công!");
                     alert.showAndWait();
 
                     // SHOW UPDATED TABLEVIEW

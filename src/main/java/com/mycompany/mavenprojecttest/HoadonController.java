@@ -225,9 +225,9 @@ public class HoadonController implements Initializable {
                     ) {
 
                 alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
+                alert.setTitle("Thông báo lỗi");
                 alert.setHeaderText(null);
-                alert.setContentText("Please fill all blank fields");
+                alert.setContentText("Vui Lòng điền các ô có thể điền");
                 alert.showAndWait();
 
             } else {
@@ -264,9 +264,9 @@ public class HoadonController implements Initializable {
 
                     if (result.next()) {
                         alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Error Message");
+                        alert.setTitle("Thông báo lỗi");
                         alert.setHeaderText(null);
-                        alert.setContentText("Ma hoa don: " + hoadon_id.getText() + " was already exist!");
+                        alert.setContentText("Mã hóa đơn đã tồn tại");
                         alert.showAndWait();
                     } else {
 //                        prepare = connect.prepareStatement(sql);
@@ -299,9 +299,9 @@ public class HoadonController implements Initializable {
                         caSt.execute();
 
                         alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Information Message");
+                        alert.setTitle("Thông báo");
                         alert.setHeaderText(null);
-                        alert.setContentText("Successfully Added!");
+                        alert.setContentText("Thêm thành công!");
                         alert.showAndWait();
                         
                         String sql = "SELECT MAHD FROM HOADON WHERE MAP = ? AND THANG = ? AND NAM = ?";
@@ -371,18 +371,12 @@ public class HoadonController implements Initializable {
             Alert alert;
 
             if (hoadon_id.getText().isEmpty()
-                    //|| hoadon_maphong.getText().isEmpty()
-                    || hoadon_maphong.getSelectionModel().getSelectedItem() == null
-                    || hoadon_trangthai.getSelectionModel().getSelectedItem() == null
-                    || hoadon_thang.getSelectionModel().getSelectedItem() == null
-                    || hoadon_nam.getSelectionModel().getSelectedItem() == null
-                    || hoadon_tongtien.getText().isEmpty()
-                    || hoadon_conno.getText().isEmpty()) {
+                    ) {
 
                 alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
+                alert.setTitle("Thông báo lỗi");
                 alert.setHeaderText(null);
-                alert.setContentText("Please fill all blank fields");
+                alert.setContentText("Vui lòng chọn hóa đơn muốn cập nhật");
                 alert.showAndWait();
 
             } else {
@@ -393,30 +387,30 @@ public class HoadonController implements Initializable {
                 Optional<ButtonType> option = alert.showAndWait();
 
                 if (option.get().equals(ButtonType.OK)) {
-                    prepare = connect.prepareStatement(sql);
-                    prepare.setString(1, hoadon_tongtien.getText());
-                    prepare.setString(2, (String) hoadon_maphong.getSelectionModel().getSelectedItem());
-                    prepare.setString(3, String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem()));
-                    prepare.setString(4, String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem()));
-                    prepare.setString(5, (String) hoadon_trangthai.getSelectionModel().getSelectedItem());
-                    prepare.setString(6, hoadon_conno.getText());
-                    prepare.setString(7, hoadon_id.getText());
-                    
-                    prepare.executeUpdate();
+//                    prepare = connect.prepareStatement(sql);
+//                    prepare.setString(1, hoadon_tongtien.getText());
+//                    prepare.setString(2, (String) hoadon_maphong.getSelectionModel().getSelectedItem());
+//                    prepare.setString(3, String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem()));
+//                    prepare.setString(4, String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem()));
+//                    prepare.setString(5, (String) hoadon_trangthai.getSelectionModel().getSelectedItem());
+//                    prepare.setString(6, hoadon_conno.getText());
+//                    prepare.setString(7, hoadon_id.getText());
+//                    
+//                    prepare.executeUpdate();
                     
 //                    statement = connect.createStatement();
 //                    statement.executeUpdate(sql);
-//                    hd.SuaHoaDon(hoadon_id.getText(),(String) hoadon_maphong.getSelectionModel().getSelectedItem(),
-//                            Integer.valueOf(String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem())) ,
-//                            Integer.valueOf(String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem())),
-//                             Integer.valueOf(hoadon_tongtien.getText()),
-//                             (String)hoadon_trangthai.getSelectionModel().getSelectedItem() ,
-//                              Integer.valueOf(hoadon_conno.getText()));
+                    hd.SuaHoaDon(hoadon_id.getText(),(String) hoadon_maphong.getSelectionModel().getSelectedItem(),
+                            Integer.valueOf(String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem())) ,
+                            Integer.valueOf(String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem())),
+                             Integer.valueOf(hoadon_tongtien.getText()),
+                             (String)hoadon_trangthai.getSelectionModel().getSelectedItem() ,
+                              Integer.valueOf(hoadon_conno.getText()));
 //                    
                     alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
+                    alert.setTitle("Thông báo");
                     alert.setHeaderText(null);
-                    alert.setContentText("Successfully Updated!");
+                    alert.setContentText("Cập nhật thành công!");
                     alert.showAndWait();
 
                     // SHOW UPDATED TABLEVIEW
@@ -443,7 +437,7 @@ public class HoadonController implements Initializable {
                     ) {
 
                 alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
+                alert.setTitle("Thông báo lỗi");
                 alert.setHeaderText(null);
                 alert.setContentText("Vui lòng chọn hóa đơn!");
                 alert.showAndWait();
@@ -451,7 +445,7 @@ public class HoadonController implements Initializable {
             }else if ("Đã thanh toán".equals((String)hoadon_trangthai.getSelectionModel().getSelectedItem())) {
 
                 alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
+                alert.setTitle("Thông báo lỗi");
                 alert.setHeaderText(null);
                 alert.setContentText("Hóa đơn này đã thanh toán!");
                 alert.showAndWait();
@@ -477,7 +471,7 @@ public class HoadonController implements Initializable {
                     ) {
 
                 alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
+                alert.setTitle("Thông báo lỗi");
                 alert.setHeaderText(null);
                 alert.setContentText("Vui lòng chọn hóa đơn!");
                 alert.showAndWait();
@@ -485,14 +479,14 @@ public class HoadonController implements Initializable {
             }else if ("Đã thanh toán".equals((String)hoadon_trangthai.getSelectionModel().getSelectedItem())) {
 
                 alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
+                alert.setTitle("Thông báo lỗi");
                 alert.setHeaderText(null);
                 alert.setContentText("Hóa đơn này đã thanh toán!");
                 alert.showAndWait();
 
             } else {
                 alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation Message");
+                alert.setTitle("Thông báo xác nhận");
                 alert.setHeaderText(null);
                 alert.setContentText("Bạn có chắc hóa đơn này đã thanh toán?");
                 Optional<ButtonType> option = alert.showAndWait();
@@ -726,10 +720,10 @@ public class HoadonController implements Initializable {
     
      public void HoaDonXoa(ActionEvent event) {
 
-        String sql = "DELETE HOADON WHERE MAHD = '"
-                + hoadon_id.getText() + "'";
-
-        connect = database.getConn();
+//        String sql = "DELETE HOADON WHERE MAHD = '"
+//                + hoadon_id.getText() + "'";
+//
+//        connect = database.getConn();
 
         try {
             Alert alert;
@@ -751,19 +745,27 @@ public class HoadonController implements Initializable {
 
             } else {
                 alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation Message");
+                alert.setTitle("Thông báo xác nhận");
                 alert.setHeaderText(null);
-                alert.setContentText("Are you sure you want to DELETE HOA DON where MAHD: " + hoadon_id.getText() + "?");
+                alert.setContentText("Bạn có chắc muốn xóa hóa đơn này?");
                 Optional<ButtonType> option = alert.showAndWait();
 
                 if (option.get().equals(ButtonType.OK)) {
-                    statement = connect.createStatement();
-                    statement.executeUpdate(sql);
+//                    statement = connect.createStatement();
+//                    statement.executeUpdate(sql);
+                    String strCall = "{call XOA_HOADON(?)}";
+                        caSt = connect.prepareCall(strCall);
+                 
+                        caSt.setString(1, hoadon_id.getText());
+  
+                        
+                        
+                        caSt.execute();
 
                     alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
+                    alert.setTitle("Thông báo");
                     alert.setHeaderText(null);
-                    alert.setContentText("Successfully Deleted!");
+                    alert.setContentText("Xóa thành công!");
                     alert.showAndWait();
 
                     // SHOW UPDATED TABLEVIEW
@@ -798,9 +800,11 @@ public class HoadonController implements Initializable {
         hoadon_thembtn.setDisable(false); 
         hoadon_xoabtn.setDisable(true); 
         hoadon_capnhatbtn.setDisable(true); 
-        hoadon_id.setDisable(false);
+
         hoadon_tongtien.setDisable(true); 
         hoadon_maphong.setDisable(false);
+        hoadon_thang.setDisable(false);
+        hoadon_nam.setDisable(false);
         
         hoadon_tongtien.setText(String.valueOf(0));
         
@@ -1001,9 +1005,9 @@ public class HoadonController implements Initializable {
 
                 if (result.next()) {
                     alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error Message");
+                    alert.setTitle("Thông báo lỗi");
                     alert.setHeaderText(null);
-                    alert.setContentText("Loai hoa don: " + (String) cthd_loaihd.getSelectionModel().getSelectedItem() + " da ton tai!");
+                    alert.setContentText("Loại hóa đơn '" + (String) cthd_loaihd.getSelectionModel().getSelectedItem() + "' đã tồn tại trong CTHD!");
                     alert.showAndWait();
                 } else {
                     String strCall = "{call THEM_CTHD(?,?,?,?)}";
@@ -1020,9 +1024,9 @@ public class HoadonController implements Initializable {
                         caSt.execute();
 
                     alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
+                    alert.setTitle("Thông báo");
                     alert.setHeaderText(null);
-                    alert.setContentText("Successfully Added!");
+                    alert.setContentText("Thêm thành công!");
                     alert.showAndWait();
 
                     // SHOW UPDATED TABLEVIEW
@@ -1056,15 +1060,15 @@ public class HoadonController implements Initializable {
                     || cthd_dongia.getText().isEmpty()) {
 
                 alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
+                alert.setTitle("Lỗi");
                 alert.setHeaderText(null);
-                alert.setContentText("Please fill all blank fields");
+                alert.setContentText("Vui lòng điền các ô có thể điền");
                 alert.showAndWait();
 
             } else {
                 
                 alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation Message");
+                alert.setTitle("Thông báo xác nhận");
                 alert.setHeaderText(null);
                 alert.setContentText("Bạn có chắc muốn xóa chi tiết hóa đơn này?");
                 Optional<ButtonType> option = alert.showAndWait();
@@ -1086,9 +1090,9 @@ public class HoadonController implements Initializable {
                         caSt.execute();
 
                     alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
+                    alert.setTitle("Thông báo");
                     alert.setHeaderText(null);
-                    alert.setContentText("Successfully Deleted!");
+                    alert.setContentText("Xóa thành công!");
                     alert.showAndWait();
 
                     // SHOW UPDATED TABLEVIEW
@@ -1124,9 +1128,9 @@ public class HoadonController implements Initializable {
                     || cthd_dongia.getText().isEmpty()) {
 
                 alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
+                alert.setTitle("Lỗi");
                 alert.setHeaderText(null);
-                alert.setContentText("Please fill all blank fields");
+                alert.setContentText("Vui Lòng điền các ô có thể điền");
                 alert.showAndWait();
 
             } else {
@@ -1136,7 +1140,7 @@ public class HoadonController implements Initializable {
                 cthd_thanhtien.setText(String.valueOf(thanhtien));
                 
                 alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation Message");
+                alert.setTitle("Thông báo xác nhận");
                 alert.setHeaderText(null);
                 alert.setContentText("Bạn có chắc muốn cập nhật CTHD này?");
                 Optional<ButtonType> option = alert.showAndWait();
@@ -1159,9 +1163,9 @@ public class HoadonController implements Initializable {
                         caSt.execute();
 
                     alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
+                    alert.setTitle("Thông báo");
                     alert.setHeaderText(null);
-                    alert.setContentText("Successfully Updated!");
+                    alert.setContentText("Cập nhật CTHD thành công!");
                     alert.showAndWait();
 
                     // SHOW UPDATED TABLEVIEW
@@ -1335,7 +1339,7 @@ public class HoadonController implements Initializable {
 //            cthd_tongtien.setText(TongTien);
 
             cthd_tongtien.setText(hoadon_tongtien.getText());
-            CTHDShowListData();
+            
             DoiLoaiCTHD();
 
             cthd_thanhtien.setDisable(true);
@@ -1345,6 +1349,7 @@ public class HoadonController implements Initializable {
             cthd_capnhatbtn.setDisable(true);
 
             CTHDLoaiHD();
+            CTHDShowListData();
             
         
     }
@@ -1372,20 +1377,20 @@ public class HoadonController implements Initializable {
                 }
                 if (flag==0){
                     alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error Message");
+                    alert.setTitle("Thông báo lỗi");
                     alert.setHeaderText(null);
                     alert.setContentText("Tiền nợ phải là số nguyên.");
                     alert.showAndWait();
                     
                 } else if (Integer.parseInt(hoadon_conno.getText()) < Integer.parseInt(conno_conno.getText())){
                     alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error Message");
+                    alert.setTitle("Thông báo lỗi");
                     alert.setHeaderText(null);
                     alert.setContentText("Tiền nợ mới phải bé hơn hoặc bằng tiền nợ cũ.");
                     alert.showAndWait();
                     } else {
                     alert = new Alert(Alert.AlertType.CONFIRMATION);
-                    alert.setTitle("Confirmation Message");
+                    alert.setTitle("Thông báo xác nhận");
                     alert.setHeaderText(null);
                     alert.setContentText("Bạn có chắc muốn cập nhật hóa đơn này?");
                     Optional<ButtonType> option = alert.showAndWait();
@@ -1398,9 +1403,9 @@ public class HoadonController implements Initializable {
                              "Chưa thanh toán" , Integer.valueOf(conno_conno.getText()));
 
                         alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Information Message");
+                        alert.setTitle("Thông báo");
                         alert.setHeaderText(null);
-                        alert.setContentText("Successfully Updated!");
+                        alert.setContentText("Cập nhật thành công!");
                         alert.showAndWait();
 
                         // SHOW UPDATED TABLEVIEW

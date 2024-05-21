@@ -83,11 +83,11 @@ public class DichvuController implements Initializable {
      public void ThemDichVu(ActionEvent event) { 
         try {
             Alert alert;
-            if (dichvu_ten.getText() == null) {
+            if ("".equals(dichvu_ten.getText())) {
                 alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
+                alert.setTitle("Thông báo lỗi");
                 alert.setHeaderText(null);
-                alert.setContentText("Please enter name of service!");
+                alert.setContentText("Vui Lòng điền tên dịch vụ!");
                 alert.showAndWait();
             } 
             else {
@@ -101,13 +101,13 @@ public class DichvuController implements Initializable {
 
                 String strCall = "{call Them_Dichvu(?)}";
                 caSt = connect.prepareCall(strCall);
-                caSt.setString(1, String.valueOf(dichvu_ten.getSelectedText()));
+                caSt.setString(1, dichvu_ten.getText());
                 caSt.execute(); 
                 
                 alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success Message");
+                alert.setTitle("Thông báo");
                 alert.setHeaderText(null);
-                alert.setContentText("Service added successfully!");
+                alert.setContentText("Thêm dịch vụ thành công!");
                 alert.showAndWait();
                 
                 DichVuShowListData();
@@ -115,7 +115,7 @@ public class DichvuController implements Initializable {
             }
         } catch (SQLException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Message");
+            alert.setTitle("Thông báo lỗi");
             alert.setHeaderText(null);
             alert.setContentText("An error occurred while adding the service. Please try again.");
             alert.showAndWait();
@@ -175,29 +175,29 @@ public class DichvuController implements Initializable {
             Alert alert;
             if (dichvu_ten.getText() == null || dichvu_id.getText() == null) {
                 alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
+                alert.setTitle("Thông báo lỗi");
                 alert.setHeaderText(null);
-                alert.setContentText("Please fill all blank fields!");
+                alert.setContentText("Hãy điền tên dịch vụ!");
                 alert.showAndWait();
             } 
             else {
                 alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation Message");
+                alert.setTitle("Thông báo xác nhận");
                 alert.setHeaderText(null);
-                alert.setContentText("Make sure that you want to UPDATE DICHVU ID: " + dichvu_id.getText() + "?");
+                alert.setContentText("Bạn có chắc muốn sửa tên dịch vụ này không?");
                 Optional<ButtonType> option = alert.showAndWait();
                 
                 if (option.get().equals(ButtonType.OK)) {
                     String strCall = "{call Sua_Dichvu(?,?)}";
                     CallableStatement caSt = connect.prepareCall(strCall);
-                    caSt.setString(1, String.valueOf(dichvu_id.getSelectedText()));
-                    caSt.setString(2, String.valueOf(dichvu_ten.getSelectedText()));
+                    caSt.setString(1, dichvu_id.getText());
+                    caSt.setString(2, dichvu_ten.getText());
                     caSt.execute();
 
                     alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
+                    alert.setTitle("Thông báo");
                     alert.setHeaderText(null);
-                    alert.setContentText("Successfully Updated!");
+                    alert.setContentText("Cập nhật thành công!");
                     alert.showAndWait();
                        
 //                    String sql = "SELECT MADV FROM DICHVU WHERE TENDICHVU = ?";
@@ -206,14 +206,14 @@ public class DichvuController implements Initializable {
 //                    
 //                    result = prepare.executeQuery();
                     
-                    DichVuListData();
+                    DichVuShowListData();
                     DichVuClear();
                 }
             }
         } 
         catch (SQLException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Message");
+            alert.setTitle("Thông báo lỗi");
             alert.setHeaderText(null);
             alert.setContentText("An error occurred while updating the service. Please try again.");
             alert.showAndWait();
@@ -224,17 +224,18 @@ public class DichvuController implements Initializable {
         try {
             Alert alert;
 
-            if (dichvu_id.getText() == null || dichvu_id.getText().isEmpty()) {
+            if (dichvu_id.getText() == null || 
+                    dichvu_id.getText().isEmpty()) {
                 alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
+                alert.setTitle("Thông báo lỗi");
                 alert.setHeaderText(null);
-                alert.setContentText("Please enter the service ID to delete!");
+                alert.setContentText("Vui lòng chọn dịch vụ!");
                 alert.showAndWait();
             } else {
                 alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation Message");
+                alert.setTitle("Thông báo xác nhận");
                 alert.setHeaderText(null);
-                alert.setContentText("Are you sure you want to DELETE service with ID: " + dichvu_id.getText() + "?");
+                alert.setContentText("Bạn có chắc muốn xóa dịch vụ này?");
                 Optional<ButtonType> option = alert.showAndWait();
 
                 if (option.isPresent() && option.get().equals(ButtonType.OK)) {
@@ -246,14 +247,14 @@ public class DichvuController implements Initializable {
 //                    int result = prepare.executeUpdate();
                     String strCall = "{call XOA_DICHVU(?)}";
                     caSt = connect.prepareCall(strCall);
-                    caSt.setString(1, String.valueOf(dichvu_id.getSelectedText()));
+                    caSt.setString(1, dichvu_id.getText());
                     caSt.execute();
 
                     
                         alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Information Message");
+                        alert.setTitle("Thông báo");
                         alert.setHeaderText(null);
-                        alert.setContentText("Service deleted successfully!");
+                        alert.setContentText("Xóa dịch vụ thành công!");
                         alert.showAndWait();
                         
                         DichVuShowListData();
@@ -263,7 +264,7 @@ public class DichvuController implements Initializable {
             }
         } catch (SQLException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Message");
+            alert.setTitle("Lỗi");
             alert.setHeaderText(null);
             alert.setContentText("An error occurred while deleting the service. Please try again.");
             alert.showAndWait();

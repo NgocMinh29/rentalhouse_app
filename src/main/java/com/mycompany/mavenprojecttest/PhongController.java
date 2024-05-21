@@ -122,18 +122,16 @@ public class PhongController implements Initializable {
         try {
             Alert alert;
 
-            if (phong_id.getText().isEmpty()
-                    || phong_ten.getText().isEmpty()
+            if ( phong_ten.getText().isEmpty()
                     || phong_loaiphong.getSelectionModel().getSelectedItem() == null
-                    || phong_trt.getSelectionModel().getSelectedItem() == null
                     || phong_giathue.getText().isEmpty()
                     //|| phong_songuoi.getText().isEmpty()
                     || phong_dientich.getText().isEmpty()) {
 
                 alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
+                alert.setTitle("Thông báo lỗi");
                 alert.setHeaderText(null);
-                alert.setContentText("Please fill all blank fields");
+                alert.setContentText("Vui lòng điền tất cả các ô");
                 alert.showAndWait();
 
             } else {
@@ -146,9 +144,9 @@ public class PhongController implements Initializable {
 
                 if (result.next()) {
                     alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error Message");
+                alert.setTitle("Thông báo lỗi");
                     alert.setHeaderText(null);
-                    alert.setContentText("Ma phong: " + phong_id.getText() + " was already exist!");
+                    alert.setContentText("Mã phòng đã tồn tại!");
                     alert.showAndWait();
                 } else {
 //                    prepare = connect.prepareStatement(sql);
@@ -177,9 +175,9 @@ public class PhongController implements Initializable {
                         caSt.execute();
 
                     alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
+                    alert.setTitle("Thông báo");
                     alert.setHeaderText(null);
-                    alert.setContentText("Successfully Added!");
+                    alert.setContentText("Thêm thành công!");
                     alert.showAndWait();
 
                     // SHOW UPDATED TABLEVIEW
@@ -263,6 +261,54 @@ public class PhongController implements Initializable {
         phong_tableview.setItems(sortList);
         });
     }
+    
+    public void PhongCapNhat(ActionEvent event) {
+        
+        String sql = "UPDATE PHONG"
+                + " SET TENPG = '" +  phong_ten.getText()
+                + "', LOAI = '" +  (String) phong_loaiphong.getSelectionModel().getSelectedItem()
+                + "', DIENTICH = '" +  phong_dientich.getText()
+                + "', GIA = '" +  phong_giathue.getText()
+                + "' WHERE MAP = '" + phong_id.getText() + "'";
+
+        connect = database.getConn();
+
+        try {
+            Alert alert;
+            {
+                alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Thông báo xác nhận");
+                alert.setHeaderText(null);
+                alert.setContentText("Bạn có chắc muốn cập nhật phòng này?");
+                Optional<ButtonType> option = alert.showAndWait();
+
+                if (option.get().equals(ButtonType.OK)) {
+                    
+                    statement = connect.createStatement();
+//                    prepare.setDate(1, sqlNgaySinh);
+//                    prepare.setDate(2, sqlNgaybd);
+//                    prepare.setDate(3, sqlNgaykt);
+                    statement.executeUpdate(sql);
+
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Thông báo");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Cập nhật thành công!");
+                    alert.showAndWait();
+
+                    // SHOW UPDATED TABLEVIEW
+                    
+
+                    // CLEAR ALL FIELDS
+                    PhongClear();
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
      public void PhongXoa(ActionEvent event) {
 
 //        String sql = "DELETE PHONG WHERE MAP = '"
@@ -276,16 +322,16 @@ public class PhongController implements Initializable {
             if (phong_id.getText().isEmpty())  {
 
                 alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
+                alert.setTitle("Thông báo lỗi");
                 alert.setHeaderText(null);
-                alert.setContentText("Please fill phong_id fields");
+                alert.setContentText("Vui lòng chọn 1 phòng");
                 alert.showAndWait();
 
             } else {
                 alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation Message");
+                alert.setTitle("Thông báo xác nhận");
                 alert.setHeaderText(null);
-                alert.setContentText("Are you sure you want to DELETE phong where maphong: " + phong_id.getText() + "?");
+                alert.setContentText("Bạn có chắc muốn xóa phòng?");
                 Optional<ButtonType> option = alert.showAndWait();
 
                 if (option.get().equals(ButtonType.OK)) {
@@ -301,9 +347,9 @@ public class PhongController implements Initializable {
                         caSt.execute();
 
                     alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
+                    alert.setTitle("Thông báo");
                     alert.setHeaderText(null);
-                    alert.setContentText("Successfully Deleted!");
+                    alert.setContentText("Xóa thành công!");
                     alert.showAndWait();
 
                     // SHOW UPDATED TABLEVIEW
@@ -330,7 +376,8 @@ public class PhongController implements Initializable {
         phong_songuoi.setText("");
         phong_dientich.setText("");
         PhongShowListData();
-        
+        phong_xoabtn.setDisable(true);
+        phong_capnhatbtn.setDisable(true);
 
     }
     

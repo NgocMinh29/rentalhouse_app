@@ -77,7 +77,6 @@
                   <FontAwesomeIconView glyphName="LOCK" layoutX="137.0" layoutY="84.0" size="5em" />
                   <Button fx:id="login_quaylaiemail" layoutX="53.0" layoutY="374.0" mnemonicParsing="false" onAction="#backofmail" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@../css/LoginDesignmaven.css" text="Quay lại" />
                   <TextField fx:id="login_email" layoutX="53.0" layoutY="205.0" prefHeight="30.0" prefWidth="220.0" promptText="Email" />
-                  <FontAwesomeIconView glyphName="" layoutX="252.0" layoutY="224.0" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="loginmaxnform" layoutX="325.0" layoutY="2.0" prefHeight="440.0" prefWidth="325.0" styleClass="right-form" stylesheets="@../css/LoginDesignmaven.css" visible="false">
