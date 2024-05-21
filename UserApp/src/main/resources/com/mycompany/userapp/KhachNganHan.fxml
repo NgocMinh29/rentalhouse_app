@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.icons525.Icons525View?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.CheckComboBox?>
+<?import java.lang.String?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+
+<!--<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.userapp.KhachNganHanController">
+    
+</AnchorPane>-->
+<AnchorPane prefHeight="544.8" prefWidth="872.8" visible="true" AnchorPane.bottomAnchor="0.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.userapp.KhachNganHanController">
+    <children>
+        <AnchorPane layoutX="8.0" layoutY="14.0" prefHeight="281.0" prefWidth="856.0" stylesheets="@../../../css/dashBoard.css">
+            <styleClass>
+                <String fx:value="white-bg" />
+                <String fx:value="shadow" />
+            </styleClass>
+            <children>
+                <Label layoutX="264.0" layoutY="14.0" styleClass="label_dv" stylesheets="@../../../css/dashBoard.css" text="Điền thông tin khách ngắn hạn">
+                    <font>
+                        <Font name="Tahoma" size="24.0" />
+                    </font>
+                </Label>
+                <Label layoutX="70.0" layoutY="60.0" prefHeight="23.0" prefWidth="124.0" styleClass="label_khachnh" stylesheets="@../../../css/dashBoard.css" text="*Họ tên:" />
+                <TextField fx:id="khachnganhan_hoten" layoutX="194.0" layoutY="59.0" />
+                <Label layoutX="70.0" layoutY="97.0" prefHeight="23.0" prefWidth="124.0" styleClass="label_khachnh" stylesheets="@../../../css/dashBoard.css" text="*Giới tính:" />
+                <ComboBox fx:id="khachnganhan_gioitinh" layoutX="195.0" layoutY="96.0" prefWidth="150.0" />
+                <Label layoutX="70.0" layoutY="132.0" prefHeight="23.0" prefWidth="124.0" styleClass="label_khachnh" stylesheets="@../../../css/dashBoard.css" text="*Ngày sinh:" />
+                <DatePicker fx:id="khachnganhan_ngaysinh" layoutX="194.0" layoutY="131.0" prefHeight="26.0" prefWidth="151.0" />
+                <Label layoutX="70.0" layoutY="171.0" prefHeight="23.0" prefWidth="124.0" styleClass="label_khachnh" stylesheets="@../../../css/dashBoard.css" text="SĐT:" />
+                <TextField fx:id="khachnganhan_sdt" layoutX="194.0" layoutY="170.0" />
+                <Label layoutX="70.0" layoutY="205.0" prefHeight="23.0" prefWidth="106.0" styleClass="label_khachnh" stylesheets="@../../../css/dashBoard.css" text="CCCD:" />
+                <TextField fx:id="khachnganhan_cccd" layoutX="194.0" layoutY="204.0" />
+                <Label layoutX="70.0" layoutY="242.0" prefHeight="23.0" prefWidth="106.0" styleClass="label_khachnh" stylesheets="@../../../css/dashBoard.css" text="Email:" />
+                <TextField fx:id="khachnganhan_email" layoutX="193.0" layoutY="240.0" />
+                <Label layoutX="499.0" layoutY="142.0" prefHeight="23.0" prefWidth="124.0" styleClass="label_khachnh" stylesheets="@../../../css/dashBoard.css" text="*Mã người đại diện:" />
+                <TextField fx:id="khachnganhan_maDD" layoutX="641.0" layoutY="141.0" />
+                <Label layoutX="499.0" layoutY="175.0" prefHeight="23.0" prefWidth="134.0" styleClass="label_khachnh" stylesheets="@../../../css/dashBoard.css" text="*Họ tên người đại diện:" />
+                <TextField fx:id="khachnganhan_hotenDD" layoutX="641.0" layoutY="174.0" />
+                <Button fx:id="khachnganhan_guiyeucauBtn" layoutX="499.0" layoutY="225.0" mnemonicParsing="false" onAction="#KhachNganHan_Guiyeucau" prefHeight="29.0" prefWidth="102.0" style="-fx-alignment: BOTTOM_LEFT;" styleClass="btn" stylesheets="@../../../css/dashBoard.css" text="Gửi yêu cầu">
+                    <graphic>
+                        <Icons525View fill="WHITE" glyphName="GO" />
+                    </graphic>
+                </Button>
+                <Label layoutX="499.0" layoutY="66.0" prefHeight="23.0" prefWidth="124.0" styleClass="label_khachnh" stylesheets="@../../../css/dashBoard.css" text="*Ngày bắt đầu:" />
+                <Label layoutX="499.0" layoutY="106.0" prefHeight="23.0" prefWidth="124.0" styleClass="label_khachnh" stylesheets="@../../../css/dashBoard.css" text="*Ngày kết thúc:" />
+                <DatePicker fx:id="khachnganhan_ngaybatdau" layoutX="641.0" layoutY="65.0" prefHeight="26.0" prefWidth="152.0" />
+                <DatePicker fx:id="khachnganhan_ngayketthuc" layoutX="641.0" layoutY="108.0" prefHeight="26.0" prefWidth="151.0" />
+            </children>
+        </AnchorPane>
+        <TableView fx:id="khachnganhan_tableview" layoutX="7.0" layoutY="306.0" prefHeight="231.0" prefWidth="858.0">
+            <columns>
+                <TableColumn fx:id="khachnganhan_col_maKT" prefWidth="41.599974632263184" text="Mã K" />
+                <TableColumn fx:id="khachnganhan_col_hoten" prefWidth="91.20001602172852" text="Họ tên" />
+                <TableColumn fx:id="khachnganhan_col_gioitinh" prefWidth="54.39996337890625" text="Giới tính" />
+                <TableColumn fx:id="khachnganhan_col_ngaysinh" prefWidth="60.79991149902344" text="Ngày sinh" />
+                <TableColumn fx:id="khachnganhan_col_sdt" prefWidth="66.40000915527344" text="SĐT" />
+                <TableColumn fx:id="khachnganhan_col_cccd" prefWidth="98.4000244140625" text="CCCD" />
+                <TableColumn fx:id="khachnganhan_col_email" prefWidth="124.79998779296875" text="Email" />
+                <TableColumn fx:id="khachnganhan_col_ngaybatdau" prefWidth="82.4000244140625" text="Ngày bắt đầu" />
+                <TableColumn fx:id="khachnganhan_col_ngayketthuc" prefWidth="83.20001220703125" text="Ngày kết thúc" />
+                <TableColumn fx:id="khachnganhan_col_maDD" prefWidth="70.39990234375" text="Mã đại diện" />
+                <TableColumn fx:id="khachnganhan_col_trangthai" prefWidth="80.800048828125" text="Trạng thái" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+    </children>                                       
+</AnchorPane>

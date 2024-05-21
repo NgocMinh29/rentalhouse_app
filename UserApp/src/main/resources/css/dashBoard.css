@@ -1,0 +1,136 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 28 thg 4, 2024, 10:30:06
+    Author     : NGUYEN MY NGAN
+*/
+.top-form{
+    -fx-background-color: #51b1ff;
+}
+.nav-form{
+    -fx-background-color: linear-gradient(to bottom right,#3d58f2,#205cea);
+}
+.nav-btn{
+    -fx-background-color:transparent;
+    -fx-border-color:#1424b4;
+    -fx-cursor: hand;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-font-family:Tahoma;
+}
+.nav-btn:hover{
+    -fx-background-color: #2b8bd9;
+    -fx-background-radius: 8px;
+}
+.center-form{
+    -fx-background-color: #ffffff;
+
+}
+.card{
+    -fx-background-color: linear-gradient(to bottom right,#7dbeff,#313de4);
+    -fx-background-radius:8px;
+}
+.log-out{
+    -fx-background-color:linear-gradient(to bottom right,#7dbeff,#313de4);
+    -fx-cursor: hand;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 6px;
+    -fx-font-family:Tahoma;
+}
+.log-out:hover{
+    -fx-background-color: #2b8bd9;
+    -fx-background-radius: 8px;
+}
+.white-bg{
+    -fx-background-color: #fff;
+    -fx-background-radius: 8px;
+}
+.shadow{
+    -fx-effect:dropshadow(three-pass-box,rgba(0,0,0,0.7), 5,0,0,0);
+}
+.border{
+    -fx-border-color: linear-gradient(to bottom right,#3d58f2,#205cea);
+    -fx-border-radius: 8px;
+    -fx-border-width: 2px;
+}
+.table-view{
+    -fx-background-color: transparent;
+    -fx-border-color: linear-gradient(to bottom right,#3d58f2,#205cea);
+    -fx-border-radius: 8px;
+    -fx-border-width: 2px;
+    -fx-padding: 0;
+}
+.table-view .table-column{
+    -fx-alignment:center;
+}
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(to bottom right,#3d58f2,#205cea);
+    -fx-background-radius:8px 8px 0 0;
+    -fx-background-insets:0 0 0 0;
+}
+.table-view .column-header, .filter{
+    -fx-background-color:transparent;
+    -fx-size:40px;
+    -fx-font-size:10px;
+}
+.table-view .column-header, .label{
+    -fx-text-fill:#fff;
+    -fx-font-family: Tahoma;
+}
+.label_dv{
+    -fx-text-fill:#3d4fd4;
+    -fx-font-family: Tahoma;
+    -fx-font-size:24px;
+}
+.label_khachnh{
+    -fx-text-fill:BLACK;
+    -fx-font-family: Tahoma;
+    -fx-font-size:12px;
+}
+.btn{
+    -fx-background-color: linear-gradient(to bottom right,#3d58f2,#205cea);
+    -fx-background-radius: 5px;
+    -fx-text-fill:#ffffff;
+    -fx-cursor: hand;
+}
+.btn:hover{
+    -fx-background-color: #2b8bd9;
+}
+.label_thongtinkhach{
+    -fx-text-fill:WHITE;
+    -fx-font-family: Tahoma;
+    -fx-font-size:24px;
+}
+.close{
+    -fx-background-color:transparent;
+    -fx-cursor:hand;
+}
+.close:hover{
+    -fx-background-color: #4397cc
+}
+.minimize{
+    -fx-background-color:transparent;
+    -fx-cursor:hand;
+}
+.minimize:hover{
+    -fx-background-color: #ddd;
+}
+.label_chondv{
+    -fx-text-fill:black;
+    -fx-font-family: Tahoma;
+    -fx-font-size:15px;
+}
+.label_doimk{
+    -fx-text-fill:black;
+    -fx-font-family: Tahoma;
+    -fx-font-size:20px;
+    -fx-font-color:black;
+}
+.label_mk{
+    -fx-text-fill:black;
+    -fx-font-family: Tahoma;
+    -fx-font-size:18px;
+    -fx-font-color:black;
+}
