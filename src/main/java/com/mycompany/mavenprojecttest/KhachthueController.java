@@ -132,6 +132,15 @@ public class KhachthueController implements Initializable {
 
     @FXML
     private Button khach_thembtn;
+    
+    @FXML
+    private DatePicker khach_searchngayo;
+    
+     @FXML
+    private Button khach_xuatbtn;
+     
+      @FXML
+    private Button khach_timbtn;
 
     @FXML
     private Button khach_xoabtn;
@@ -141,6 +150,7 @@ public class KhachthueController implements Initializable {
     private Statement statement;
     private ResultSet result;
     private CallableStatement caSt;
+    
     
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     
