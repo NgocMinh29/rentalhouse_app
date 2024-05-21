@@ -284,8 +284,8 @@ public class PrimaryController {
         Random rand = new Random();
         randomCode = rand.nextInt(999999);
         String host = "smtp.gmail.com";
-        String user = "22520932@gm.uit.edu.vn";  // Sử dụng biến môi trường
-        String pass = "5hx7mt6l";  // Sử dụng biến môi trường
+        String user = "22520932@gm.uit.edu.vn";  
+        String pass = "*******";  
 //        String to = login_email.getText();
         String subject = "Gửi mã xác nhận";
         String messageText = "Mã xác nhận của bạn là " + randomCode;
