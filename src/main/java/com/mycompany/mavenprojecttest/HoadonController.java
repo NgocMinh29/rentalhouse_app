@@ -351,21 +351,21 @@ public class HoadonController implements Initializable {
     
     public void HoaDonUpdate(ActionEvent event) {
 
-//        String sql = "UPDATE HOADON SET TONGTIEN = "
-//                + Integer.valueOf(hoadon_tongtien.getText()) + ", MAPHONG = '"
-//                //+ hoadon_maphong.getText() + "', THANG = "
-//                + hoadon_maphong.getSelectionModel().getSelectedItem() + "', THANG = "
-//                + Integer.valueOf(String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem())) + ", NAM = "
-//                + Integer.valueOf(String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem())) + ", TRANGTHAI = '"
-//                + hoadon_trangthai.getSelectionModel().getSelectedItem() + "', CONNO = "
-//                + Integer.valueOf(hoadon_conno.getText()) + " WHERE MAHD = '" 
-//                + hoadon_id.getText() + "'";
-//        
-////        String sql = "UPDATE HOADON "
-////                + "SET TONGTIEN = ?, MAPHONG = ?, THANG = ?, NAM = ?, TRANGTHAI = ?, CONNO = ?" +
-////                    " WHERE MAHD = ?;";
-//
-//        connect = database.getConn();
+        String sql = "UPDATE HOADON SET TONGTIEN = "
+                + Integer.valueOf(hoadon_tongtien.getText()) + ", MAPHONG = '"
+                //+ hoadon_maphong.getText() + "', THANG = "
+                + hoadon_maphong.getSelectionModel().getSelectedItem() + "', THANG = "
+                + Integer.valueOf(String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem())) + ", NAM = "
+                + Integer.valueOf(String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem())) + ", TRANGTHAI = '"
+                + hoadon_trangthai.getSelectionModel().getSelectedItem() + "', CONNO = "
+                + Integer.valueOf(hoadon_conno.getText()) + " WHERE MAHD = '" 
+                + hoadon_id.getText() + "'";
+        
+//        String sql = "UPDATE HOADON "
+//                + "SET TONGTIEN = ?, MAPHONG = ?, THANG = ?, NAM = ?, TRANGTHAI = ?, CONNO = ?" +
+//                    " WHERE MAHD = ?;";
+
+        connect = database.getConn();
 
         try {
             Alert alert;
@@ -387,32 +387,32 @@ public class HoadonController implements Initializable {
 
             } else {
                 alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation Message");
+                alert.setTitle("Thông báo xác nhận");
                 alert.setHeaderText(null);
-                alert.setContentText("Are you sure you want to UPDATE HOADON ID: " + hoadon_id.getText() + "?");
+                alert.setContentText("Bạn có chắc muốn cập nhật hóa đơn này?");
                 Optional<ButtonType> option = alert.showAndWait();
 
                 if (option.get().equals(ButtonType.OK)) {
-//                    prepare = connect.prepareStatement(sql);
-//                    prepare.setString(1, hoadon_tongtien.getText());
-//                    prepare.setString(2, hoadon_maphong.getText());
-//                    prepare.setString(3, String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem()));
-//                    prepare.setString(4, String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem()));
-//                    prepare.setString(5, (String) hoadon_trangthai.getSelectionModel().getSelectedItem());
-//                    prepare.setString(6, hoadon_conno.getText());
-//                    prepare.setString(7, hoadon_id.getText());
-//                    
-//                    prepare.executeUpdate();
+                    prepare = connect.prepareStatement(sql);
+                    prepare.setString(1, hoadon_tongtien.getText());
+                    prepare.setString(2, (String) hoadon_maphong.getSelectionModel().getSelectedItem());
+                    prepare.setString(3, String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem()));
+                    prepare.setString(4, String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem()));
+                    prepare.setString(5, (String) hoadon_trangthai.getSelectionModel().getSelectedItem());
+                    prepare.setString(6, hoadon_conno.getText());
+                    prepare.setString(7, hoadon_id.getText());
+                    
+                    prepare.executeUpdate();
                     
 //                    statement = connect.createStatement();
 //                    statement.executeUpdate(sql);
-                    hd.SuaHoaDon(hoadon_id.getText(),(String) hoadon_maphong.getSelectionModel().getSelectedItem(),
-                            Integer.valueOf(String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem())) ,
-                            Integer.valueOf(String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem())),
-                             Integer.valueOf(hoadon_tongtien.getText()),
-                             (String)hoadon_trangthai.getSelectionModel().getSelectedItem() ,
-                              Integer.valueOf(hoadon_conno.getText()));
-                    
+//                    hd.SuaHoaDon(hoadon_id.getText(),(String) hoadon_maphong.getSelectionModel().getSelectedItem(),
+//                            Integer.valueOf(String.valueOf(hoadon_thang.getSelectionModel().getSelectedItem())) ,
+//                            Integer.valueOf(String.valueOf(hoadon_nam.getSelectionModel().getSelectedItem())),
+//                             Integer.valueOf(hoadon_tongtien.getText()),
+//                             (String)hoadon_trangthai.getSelectionModel().getSelectedItem() ,
+//                              Integer.valueOf(hoadon_conno.getText()));
+//                    
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);

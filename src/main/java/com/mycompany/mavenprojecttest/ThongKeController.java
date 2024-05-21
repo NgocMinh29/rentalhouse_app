@@ -89,21 +89,36 @@ public class ThongKeController implements Initializable {
         thongke_hdthang.setItems(listData);
     }   
     //int HoaDonNam[] = {2023,2024};
-    public void ThongKeHoaDonNam() {
+//    public void ThongKeHoaDonNam() {
+//        List<Integer> listS = new ArrayList<>();
+//        for (int year = currentYear; year >= 0; year--) {
+//            listS.add(year);
+//        }
+//        ObservableList listData = FXCollections.observableArrayList(listS);
+//        thongke_hdnam.setItems(listData);
+//    }
+    public void ThongKeNam() {
+        String sql = "SELECT DISTINCT NAM FROM HOADON";
         List<Integer> listS = new ArrayList<>();
-        for (int year = currentYear; year >= 0; year--) {
-            listS.add(year);
+
+        connect = database.getConn();
+
+        try {
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            while (result.next()) { 
+                listS.add(result.getInt(1));
+                
+            }
+        
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         ObservableList listData = FXCollections.observableArrayList(listS);
-        thongke_hdnam.setItems(listData);
-    }
-    public void ThongKeHopDongNam() {
-        List<Integer> listS = new ArrayList<>();
-        for (int year = currentYear; year >= 0; year--) {
-            listS.add(year);
-        }
-        ObservableList listData = FXCollections.observableArrayList(listS);
-        thongke_hopdongnam.setItems(listData);
+        thongke_hopdongnam.setItems(listData);   
+        thongke_hdnam.setItems(listData); 
     }
     
     public void hoadonChart(){
@@ -255,9 +270,9 @@ public class ThongKeController implements Initializable {
         thongke_piechart.setClockwise(true);
         //thongke_piechart.set
         //thongke_piechart.setLableLineLength(50);
-        //thongke_piechart.setStartAngle(180);
-        //thongke_piechart.setLabelsVisible(true);
-        thongke_piechart.setPrefSize(280, 280);
+        thongke_piechart.setStartAngle(180);
+        thongke_piechart.setLabelsVisible(true);
+        //thongke_piechart.setPrefSize(280, 280);
         
     }
     
@@ -373,8 +388,8 @@ public class ThongKeController implements Initializable {
         ThongKeSoNgDangO();
         ThongKeHoaDonConNo();
         ThongKePhieuChoXuLy();
-        ThongKeHoaDonNam() ;
-        ThongKeHopDongNam() ;
+        //ThongKeHoaDonNam() ;
+        ThongKeNam() ;
             int index = thongke_hdthang.getItems().indexOf(currentMonth);
             if (index != -1) {
                 thongke_hdthang.getSelectionModel().select(index);
