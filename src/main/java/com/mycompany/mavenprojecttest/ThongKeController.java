@@ -22,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -44,6 +45,9 @@ public class ThongKeController implements Initializable {
     private ComboBox<?> thongke_hdnam;
     
     @FXML
+    private ComboBox<?> thongke_hopdongnam;
+    
+    @FXML
     private BarChart<String, Integer> thongke_hoadonchart;
     
     @FXML
@@ -55,8 +59,11 @@ public class ThongKeController implements Initializable {
     @FXML
     private Label thongke_hoadonno;
 
+//    @FXML
+//    private BarChart<String, Integer> thongke_hopdongchart;
+    
     @FXML
-    private BarChart<?, ?> thongke_hopdongchart;
+    private PieChart thongke_piechart;
 
     @FXML
     private Label thongke_songuoidnago;
@@ -90,8 +97,16 @@ public class ThongKeController implements Initializable {
         ObservableList listData = FXCollections.observableArrayList(listS);
         thongke_hdnam.setItems(listData);
     }
+    public void ThongKeHopDongNam() {
+        List<Integer> listS = new ArrayList<>();
+        for (int year = currentYear; year >= 0; year--) {
+            listS.add(year);
+        }
+        ObservableList listData = FXCollections.observableArrayList(listS);
+        thongke_hopdongnam.setItems(listData);
+    }
     
-    public void homeChart(){
+    public void hoadonChart(){
         
         
         //String sql;
@@ -159,6 +174,91 @@ public class ThongKeController implements Initializable {
             // Thực hiện các hành động xử lý thích hợp (ví dụ: ghi log, hiển thị thông báo cho người dùng)
           }
                 
+    }
+    
+//    public void hoapdongChart(){
+//        
+//        
+//        //String sql;
+//        
+//          try{
+//        
+//        thongke_hopdongnam.valueProperty().addListener((observable, oldValue, newValue) -> {
+//            thongke_hopdongchart.getData().clear();
+//            String sql = "SELECT THANG, TONGTIEN FROM HOPDONG WHERE NAM = ?";
+//        
+//            connect = database.getConn();
+//
+//            try{
+//                //XYChart.Series chart = new XYChart.Series();
+//                XYChart.Series<String, Integer> chart = new XYChart.Series<>();
+//                prepare = connect.prepareStatement(sql);
+//                prepare.setString(1, String.valueOf(thongke_hopdongnam.getSelectionModel().getSelectedItem()));
+//                result = prepare.executeQuery();
+//
+//                while(result.next()){
+//                    chart.getData().add(new XYChart.Data<>("Tháng "+result.getString(1), result.getInt(2)));
+//                    //chart.getData().add(new XYChart.Data<>("PG02",50));
+//                }
+//
+//                thongke_hopdongchart.getData().addAll(chart);
+//
+//            }catch(Exception e){e.printStackTrace();}
+//            
+//        });
+//        
+//        } catch (NullPointerException e) {
+//            // Xử lý lỗi tại đây
+//            System.out.println("Lỗi NullPointerException xảy ra: " + e.getMessage());
+//            // Thực hiện các hành động xử lý thích hợp (ví dụ: ghi log, hiển thị thông báo cho người dùng)
+//          }
+//                
+//    }
+    
+    public void homepieChart(){
+        String sql = "SELECT SUM(CONNO) FROM HOADON WHERE NAM = 2024";
+        
+        connect = database.getConn();
+        int conno = 0;
+        try{
+            
+            statement = connect.createStatement();
+            result = statement.executeQuery(sql);
+            
+            if(result.next()){
+                conno = result.getInt(1);
+            }
+            
+            
+        }catch(Exception e){e.printStackTrace();}
+        
+        sql = "SELECT SUM(TONGTIEN) FROM HOADON WHERE NAM = 2024";
+        
+        connect = database.getConn();
+        int tongtien = 0;
+
+        try{
+            statement = connect.createStatement();
+            result = statement.executeQuery(sql);
+            
+            if(result.next()){
+                tongtien = result.getInt(1);
+            }            
+        }catch(Exception e){e.printStackTrace();}
+        int datra = tongtien-conno;
+        ObservableList<PieChart.Data> piechart = FXCollections.observableArrayList(
+                new PieChart.Data("Đã trả", datra),
+                new PieChart.Data("Còn nợ", conno)
+        );
+        thongke_piechart.setData(piechart);
+        //thongke_piechart.setTitle("Biểu đồ doanh thu năm 2024");
+        thongke_piechart.setClockwise(true);
+        //thongke_piechart.set
+        //thongke_piechart.setLableLineLength(50);
+        //thongke_piechart.setStartAngle(180);
+        //thongke_piechart.setLabelsVisible(true);
+        thongke_piechart.setPrefSize(280, 280);
+        
     }
     
     public void ThongKePhongDangChoThue(){
@@ -273,7 +373,8 @@ public class ThongKeController implements Initializable {
         ThongKeSoNgDangO();
         ThongKeHoaDonConNo();
         ThongKePhieuChoXuLy();
-            ThongKeHoaDonNam() ;
+        ThongKeHoaDonNam() ;
+        ThongKeHopDongNam() ;
             int index = thongke_hdthang.getItems().indexOf(currentMonth);
             if (index != -1) {
                 thongke_hdthang.getSelectionModel().select(index);
@@ -282,7 +383,12 @@ public class ThongKeController implements Initializable {
             if (index2 != -1) {
                 thongke_hdnam.getSelectionModel().select(index2);
             }
-            homeChart();
+            int index3 = thongke_hopdongnam.getItems().indexOf(currentYear);
+            if (index3 != -1) {
+                thongke_hopdongnam.getSelectionModel().select(index3);
+            }
+            hoadonChart();
+            homepieChart();
             ThongKePhongDangChoThue();
         // TODO
     }    

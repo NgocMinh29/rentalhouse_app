@@ -210,6 +210,41 @@ public class PhieudichvuController implements Initializable {
         
     }
     
+     public void PhieuSearch() {
+        
+        FilteredList<PhieudichvuData> filter = new FilteredList<>(PhieuList, e -> true);
+
+        phieu_search.textProperty().addListener((Observable, oldValue, newValue) -> {
+
+            filter.setPredicate((PhieudichvuData PrediatePhieuData) -> {
+
+                if (newValue.isEmpty() /*|| newValue == null*/) {
+                    return true;
+                }
+
+                String searchKey = newValue.toLowerCase();
+
+                if (String.valueOf(PrediatePhieuData.getPDVIdProperty().getValue()).toLowerCase().contains(searchKey)) {
+                    return true;
+                } else if (String.valueOf(PrediatePhieuData.getPhongIdProperty().getValue()).toLowerCase().contains(searchKey)) {
+                    return true;
+                } else if (String.valueOf(PrediatePhieuData.getSoLuongProperty().getValue()).toLowerCase().contains(searchKey)) {
+                    return true;
+                }else if (String.valueOf(PrediatePhieuData.getNgayDienProperty().getValue()).toLowerCase().contains(searchKey)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+
+        SortedList<PhieudichvuData> sortList = new SortedList<>(filter);
+
+        sortList.comparatorProperty().bind(phieu_tableview.comparatorProperty());
+
+        phieu_tableview.setItems(sortList);
+        });
+    }
+    
 
         public void PhieuXoa(ActionEvent event) {
 
@@ -473,6 +508,7 @@ public class PhieudichvuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         PhieuShowListData();
+        PhieuSearch();
         phieu_xemctpbtn.setDisable(true); 
         phieu_xoabtn.setDisable(true);
         PhieuTrangThai();

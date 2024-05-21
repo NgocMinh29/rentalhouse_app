@@ -5,6 +5,7 @@
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -110,14 +111,9 @@
                 <String fx:value="shadow" />
             </styleClass>
             <children>
-                <BarChart fx:id="thongke_hopdongchart" layoutX="15.0" layoutY="31.0" prefHeight="262.0" prefWidth="395.0" title="Biểu đồ giá trị hợp đồng trong năm 2024">
-                    <xAxis>
-                        <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                        <NumberAxis side="LEFT" />
-                    </yAxis>
-                </BarChart>
+            <ComboBox fx:id="thongke_hopdongnam" layoutX="197.0" layoutY="21.0" prefHeight="25.0" prefWidth="93.0" />
+            <Label layoutX="158.0" layoutY="25.0" text="Năm" />
+            <PieChart fx:id="thongke_piechart" labelLineLength="50.0" layoutX="44.0" layoutY="53.0" prefHeight="253.0" prefWidth="359.0" title="Biểu đồ doanh thu theo năm" />
             </children>
         </AnchorPane>
     </children>

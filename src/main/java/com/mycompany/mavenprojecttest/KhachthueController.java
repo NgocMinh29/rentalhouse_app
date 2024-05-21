@@ -18,6 +18,8 @@ import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -271,6 +273,63 @@ public class KhachthueController implements Initializable {
         });
     }
     
+    public void TimKhach(ActionEvent event){
+       FilteredList<KhachData> filter = new FilteredList<>(KhachThueList, e -> true);
+       filter.setPredicate((KhachData PrediateKhachData) -> {
+           boolean ng = false, search = false;
+           String searchKey = khach_search.getText().toLowerCase();
+           
+            
+            
+           LocalDate ngaytim = khach_searchngayo.getValue();
+           LocalDate ngbd = LocalDate.parse(String.valueOf(PrediateKhachData.getNgaybatdauProperty().getValue()), formatter);
+           LocalDate ngkt = LocalDate.parse(String.valueOf(PrediateKhachData.getNgayketthucProperty().getValue()), formatter);
+           if ( khach_searchngayo.getValue() == null || (ngaytim.isAfter(ngbd) && ngaytim.isBefore(ngkt)) || ngaytim.equals(ngbd) ) 
+                    ng = true;
+           if (khach_search.getText().isEmpty()) {
+                    search = true;
+                }
+           
+           if ( (String.valueOf(PrediateKhachData.getKhachidProperty().getValue()).toLowerCase().contains(searchKey) || search )
+                    && ng) {
+                return true;
+            } else if ((String.valueOf(PrediateKhachData.getHotenProperty().getValue()).toLowerCase().contains(searchKey) || search )
+                    && ng) {
+                return true;
+            } else if ((String.valueOf(PrediateKhachData.getGioitinhProperty().getValue()).toLowerCase().contains(searchKey) || search )
+                    && ng) {
+                return true;
+            } else if ((String.valueOf(PrediateKhachData.getNgaysinhProperty().getValue()).toLowerCase().contains(searchKey) || search )
+                    && ng) {
+                return true;
+            } else if ((String.valueOf(PrediateKhachData.getSdtProperty().getValue()).toLowerCase().contains(searchKey) || search )
+                    && ng) {
+                return true;
+            } else if ( (String.valueOf(PrediateKhachData.getCccdProperty().getValue()).toLowerCase().contains(searchKey) || search )
+                    && ng) {
+                return true;
+            }else if ( (String.valueOf(PrediateKhachData.getEmailProperty().getValue()).toLowerCase().contains(searchKey) || search )
+                    && ng) {
+                return true;
+            }else if ((String.valueOf(PrediateKhachData.getNgaybatdauProperty().getValue()).toLowerCase().contains(searchKey) || search )
+                    && ng) {
+                return true;
+            }else if ((String.valueOf(PrediateKhachData.getNgayketthucProperty().getValue()).toLowerCase().contains(searchKey) || search )
+                    && ng) {
+                return true;
+            }else {
+                return false;
+            }
+           
+       });
+       SortedList<KhachData> sortList = new SortedList<>(filter);
+
+        sortList.comparatorProperty().bind(khach_tableview.comparatorProperty());
+
+        khach_tableview.setItems(sortList);
+       
+   }
+    
     public void KhachThueClear() { //sua luon setdisable cua may texfield
 
         khach_id.setText("");
@@ -427,7 +486,7 @@ public class KhachthueController implements Initializable {
 
     }
     
-    public void KhachNganSelect() {  //sau khi sửa bên textfiled thì không đc xóa
+    public void KhachSelect() {  //sau khi sửa bên textfiled thì không đc xóa
         KhachData khang = khach_tableview.getSelectionModel().getSelectedItem();
         int num = khach_tableview.getSelectionModel().getSelectedIndex();
 
