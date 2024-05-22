@@ -937,37 +937,45 @@ public class HopdongController implements Initializable {
         String sql = "SELECT * FROM CTHOPDONG WHERE MAKT = '" + themnguoi_makt.getText() + "' AND MHD = '" + themnguoi_hdgid.getText() + "'";
         connect = database.getConn();
         try {
-            if (themnguoi_makt.getText().isEmpty()) {
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+            if (result.next()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Thông báo lỗi");
                 alert.setHeaderText(null);
-                alert.setContentText("Mã khách thuê không được để trống");
+                alert.setContentText("Người này đã được thêm vào hợp đồng!");
                 alert.showAndWait();
-            } else {
+
+            } 
+            else {
+                sql = "SELECT * FROM KHACHTHUE WHERE MAKT = '" + themnguoi_makt.getText() + "' AND NGAYKETTHUC < ?";
+                connect = database.getConn();
+
                 prepare = connect.prepareStatement(sql);
+                java.sql.Date Today = java.sql.Date.valueOf(today);
+                prepare.setDate(1, Today);
                 result = prepare.executeQuery();
                 if (result.next()) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Thông báo lỗi");
                     alert.setHeaderText(null);
-                    alert.setContentText("Người này đã được thêm vào hợp đồng!");
+                    alert.setContentText("Người này đã ra khỏi phòng trọ.");
                     alert.showAndWait();
 
-                } else {
+                } 
+                else {
                     String strCall = "{call proc_them_chi_tiet_hop_dong(?,?)}";
                     try {
                         caSt = connect.prepareCall(strCall);
                         caSt.setString(1, themnguoi_makt.getText());
                         caSt.setString(2, themnguoi_hdgid.getText());
+                        caSt.execute();
 
-                        boolean rs = caSt.execute();
-                        if (rs == true) {
-                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                            alert.setTitle("Thông báo");
-                            alert.setHeaderText(null);
-                            alert.setContentText("Thêm người thành công!");
-                            alert.showAndWait();
-                        }
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Thông báo");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Thêm người thành công!");
+                        alert.showAndWait();
 
                         ThemNguoiClear();
 
@@ -975,15 +983,15 @@ public class HopdongController implements Initializable {
                         e.printStackTrace();
                     }
                 }
-            }
 
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    public void ThemNguoiSelect() {  //sau khi sửa bên textfiled thì không đc xóa
+   public void ThemNguoiSelect() {  //sau khi sửa bên textfiled thì không đc xóa
         KhachData khang = themnguoi_tableview.getSelectionModel().getSelectedItem();
         int num = themnguoi_tableview.getSelectionModel().getSelectedIndex();
 
@@ -1005,8 +1013,9 @@ public class HopdongController implements Initializable {
 //        khach_ngbd.setValue(selectedDate2);
 //        LocalDate selectedDate3 = LocalDate.parse(String.valueOf(khang.getNgayketthucProperty().getValue()), formatter);
 //        khach_ngkt.setValue(selectedDate3);
-
-        themnguoi_xoabtn.setDisable(false);
+        if (themnguoi_makt.getText().equals(themnguoi_mangdd.getText())) themnguoi_xoabtn.setDisable(true);
+        else themnguoi_xoabtn.setDisable(false);
+        
 
     }
 
