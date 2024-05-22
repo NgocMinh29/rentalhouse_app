@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.icons525.Icons525View?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenprojecttest.PrimaryController">
+   <children>
+      <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <AnchorPane layoutY="2.0" prefHeight="440.0" prefWidth="325.0" styleClass="left-form" stylesheets="@../css/LoginDesignmaven.css">
+               <children>
+                  <ImageView fitHeight="319.0" fitWidth="325.0" layoutX="3.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../Downloads/logo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="login_form" layoutX="325.0" layoutY="2.0" prefHeight="440.0" prefWidth="325.0" styleClass="right-form" stylesheets="@../css/LoginDesignmaven.css">
+               <children>
+                  <Label layoutX="116.0" layoutY="143.0" text="Đăng nhập" textFill="#4397cc">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="username" layoutX="53.0" layoutY="181.0" prefHeight="30.0" prefWidth="220.0" promptText="Tài khoản" stylesheets="@../css/LoginDesignmaven.css" />
+                  <Button fx:id="loginBtn" layoutX="53.0" layoutY="288.0" mnemonicParsing="false" onAction="#login" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@../css/LoginDesignmaven.css" text="Đăng nhập" />
+                  <Button fx:id="close" layoutX="300.0" layoutY="2.0" mnemonicParsing="false" onAction="#close" styleClass="close" stylesheets="@../css/LoginDesignmaven.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                     <font>
+                        <Font name="System Bold" size="11.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="CLOSE" />
+                     </graphic>
+                  </Button>
+                  <PasswordField fx:id="password" layoutX="53.0" layoutY="219.0" prefHeight="30.0" prefWidth="220.0" promptText="Mật khẩu" stylesheets="@../css/LoginDesignmaven.css" />
+                  <FontAwesomeIconView glyphName="USER" layoutX="142.0" layoutY="133.0" size="5em" />
+                  <Hyperlink fx:id="login_forgotpassword" layoutX="185.0" layoutY="258.0" onAction="#forgotpassword" text="Quên mật khẩu?">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Hyperlink>
+                  <CheckBox fx:id="login_showpassword" layoutX="53.0" layoutY="261.0" mnemonicParsing="false" onAction="#showpassword" text="Xem mật khẩu">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </CheckBox>
+                  <TextField fx:id="showpassword" layoutX="53.0" layoutY="219.0" prefHeight="30.0" prefWidth="220.0" visible="false" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="loginemailform" layoutX="325.0" layoutY="2.0" prefHeight="440.0" prefWidth="325.0" styleClass="right-form" stylesheets="@../css/LoginDesignmaven.css" visible="false">
+               <children>
+                  <Label layoutX="91.0" layoutY="93.0" text="Quên mật khẩu" textFill="#4397cc">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="login_guimail" layoutX="53.0" layoutY="251.0" mnemonicParsing="false" onAction="#sendmail" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@../css/LoginDesignmaven.css" text="Gửi" AnchorPane.topAnchor="250.0" />
+                  <Button fx:id="close1" layoutX="300.0" layoutY="2.0" mnemonicParsing="false" onAction="#close" styleClass="close" stylesheets="@../css/LoginDesignmaven.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                     <font>
+                        <Font name="System Bold" size="11.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="CLOSE" />
+                     </graphic>
+                  </Button>
+                  <FontAwesomeIconView glyphName="LOCK" layoutX="137.0" layoutY="84.0" size="5em" />
+                  <Button fx:id="login_quaylaiemail" layoutX="53.0" layoutY="374.0" mnemonicParsing="false" onAction="#backofmail" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@../css/LoginDesignmaven.css" text="Quay lại" />
+                  <TextField fx:id="login_email" layoutX="53.0" layoutY="205.0" prefHeight="30.0" prefWidth="220.0" promptText="Email" />
+                  <Icons525View glyphName="GMAIL" layoutX="251.0" layoutY="225.0" size="14" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="loginmaxnform" layoutX="325.0" layoutY="2.0" prefHeight="440.0" prefWidth="325.0" styleClass="right-form" stylesheets="@../css/LoginDesignmaven.css" visible="false">
+               <children>
+                  <Label layoutX="91.0" layoutY="93.0" text="Quên mật khẩu" textFill="#4397cc">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="close11" layoutX="300.0" layoutY="2.0" mnemonicParsing="false" onAction="#close" styleClass="close" stylesheets="@../css/LoginDesignmaven.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                     <font>
+                        <Font name="System Bold" size="11.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="CLOSE" />
+                     </graphic>
+                  </Button>
+                  <FontAwesomeIconView glyphName="LOCK" layoutX="137.0" layoutY="84.0" size="5em" />
+                  <Button fx:id="login_quaylaimaxn" layoutX="53.0" layoutY="374.0" mnemonicParsing="false" onAction="#backofverifycode" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@../css/LoginDesignmaven.css" text="Quay lại" />
+                  <Button fx:id="login_xacnhanma" layoutX="53.0" layoutY="248.0" mnemonicParsing="false" onAction="#verifycode" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@../css/LoginDesignmaven.css" text="Xác nhận" AnchorPane.topAnchor="250.0" />
+                  <TextField fx:id="login_maxn" layoutX="53.0" layoutY="205.0" prefHeight="30.0" prefWidth="220.0" promptText="Mã xác nhận" />
+                  <Icons525View glyphName="BARCODE" layoutX="251.0" layoutY="226.0" size="14" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="loginxacnhanmkform" layoutX="325.0" layoutY="2.0" prefHeight="440.0" prefWidth="325.0" styleClass="right-form" stylesheets="@../css/LoginDesignmaven.css" visible="false">
+               <children>
+                  <Label layoutX="91.0" layoutY="93.0" text="Quên mật khẩu" textFill="#4397cc">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="close111" layoutX="300.0" layoutY="2.0" mnemonicParsing="false" onAction="#close" styleClass="close" stylesheets="@../css/LoginDesignmaven.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                     <font>
+                        <Font name="System Bold" size="11.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="CLOSE" />
+                     </graphic>
+                  </Button>
+                  <PasswordField fx:id="login_mkmoi" layoutX="53.0" layoutY="177.0" prefHeight="30.0" prefWidth="220.0" promptText="Mật khẩu mới" stylesheets="@../css/LoginDesignmaven.css" />
+                  <FontAwesomeIconView glyphName="LOCK" layoutX="137.0" layoutY="84.0" size="5em" />
+                  <Button fx:id="loginquyalaimkmoi" layoutX="53.0" layoutY="374.0" mnemonicParsing="false" onAction="#backofverifypasword" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@../css/LoginDesignmaven.css" text="Quay lại" />
+                  <Button fx:id="loginxacnhanmkmoibtn" layoutX="53.0" layoutY="263.0" mnemonicParsing="false" onAction="#verifypasword" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@../css/LoginDesignmaven.css" text="Xác nhận" AnchorPane.topAnchor="263.0" />
+                  <PasswordField fx:id="login_xacnhanmkmoi" layoutX="53.0" layoutY="220.0" prefHeight="30.0" prefWidth="220.0" promptText="Xác nhận mật khẩu" stylesheets="@../css/LoginDesignmaven.css" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
