@@ -265,7 +265,7 @@ public class PrimaryController {
         randomCode = rand.nextInt(999999);
         String host = "smtp.gmail.com";
         String user = "22520932@gm.uit.edu.vn";  // Sá»­ dá»¥ng biáº¿n mĂ´i trÆ°á»ng
-        String pass = "5hx7mt6l";  // Sá»­ dá»¥ng biáº¿n mĂ´i trÆ°á»ng
+        String pass = "******";  // Sá»­ dá»¥ng biáº¿n mĂ´i trÆ°á»ng
 //        String to = login_email.getText();
         String subject = "Gửi mã xác nhận";
         String messageText = "Mã xác nhận của bạn là  " + randomCode;
