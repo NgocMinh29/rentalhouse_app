@@ -954,29 +954,33 @@ public class HopdongController implements Initializable {
                 alert.showAndWait();
 
             }
+            else {
+                String strCall = "{call proc_them_chi_tiet_hop_dong(?,?)}";
+                try{
+                    caSt = connect.prepareCall(strCall);
+                    caSt.setString(1, themnguoi_makt.getText());
+                    caSt.setString(2, themnguoi_hdgid.getText());
+                    caSt.execute();
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Thông báo");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Thêm người thành công!");
+                    alert.showAndWait();
+
+
+                    ThemNguoiClear();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
         
-        String strCall = "{call proc_them_chi_tiet_hop_dong(?,?)}";
-        try{
-            caSt = connect.prepareCall(strCall);
-            caSt.setString(1, themnguoi_hdgid.getText());
-            caSt.setString(2, themnguoi_makt.getText());
-            caSt.execute();
-            
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Thông báo");
-            alert.setHeaderText(null);
-            alert.setContentText("Thêm người thành công!");
-            alert.showAndWait();
-            
-            
-            ThemNguoiClear();
-                        
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        
         
     }
     
@@ -1018,7 +1022,7 @@ public class HopdongController implements Initializable {
             Optional<ButtonType> option = alert.showAndWait();
             if (option.get().equals(ButtonType.OK)){
                 String sql = "DELETE CTHOPDONG"
-                        + "WHERE MHD = ? AND MAKT = ?";
+                        + " WHERE MHD = ? AND MAKT = ?";
                 connect = database.getConn();
 
                 prepare = connect.prepareStatement(sql);
