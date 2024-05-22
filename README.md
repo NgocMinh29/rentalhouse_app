@@ -12,16 +12,16 @@ Hiện nay, việc tìm nhà hoặc phòng trọ gần trường đại học l�
 * Thiết kế đơn giản nhưng đầy đủ tính năng để đem lại trải nghiệm tốt nhất cho người dùng. 
 
 ## CÔNG NGHỆ, NGÔN NGỮ ĐÃ SỬ DỤNG
-* Ngôn ngữ lập trình: Java
-* IDE sử dụng: Apache NetBeans
-* Công nghệ lập trình giao diện: JavaFX
-* Cơ sở dữ liệu: Oracle
-* Phần mềm quản lý dự án: Microsoft Project
-* Thiết kế: StarUML, Draw.io
+* Ngôn ngữ lập trình: **Java**
+* IDE sử dụng: **Apache NetBeans**
+* Công nghệ lập trình giao diện: **JavaFX**
+* Cơ sở dữ liệu: **Oracle**
+* Phần mềm quản lý dự án: **Microsoft Project**
+* Thiết kế: **StarUML**, **Draw.io**
 
 ## YÊU CẦU HỆ THỐNG
-* JDK 21
-* ojdbc11.jar
+* **JDK 21**
+* **ojdbc11.jar**
 
 ## MÔ HÌNH ERD
 ![CSDL](https://github.com/NgocMinh29/rentalhouse_app/blob/master/erddrawio.png)
