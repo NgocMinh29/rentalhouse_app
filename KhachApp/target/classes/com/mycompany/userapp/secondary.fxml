@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.icons525.Icons525View?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.userapp.SecondaryController">
+    <children>
+        <AnchorPane fx:id="main_form" prefHeight="589.0" prefWidth="1100.0">
+            <children>
+                <BorderPane layoutX="14.0" layoutY="14.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <top>
+                        <AnchorPane prefHeight="55.0" prefWidth="1100.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <AnchorPane fx:id="mininize" layoutX="-15.0" layoutY="-17.0" onDragDetected="#minimize" prefHeight="55.2" prefWidth="1100.0" styleClass="top-form" stylesheets="@../../../css/dashBoard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <Label layoutX="835.0" layoutY="18.0" text="Chào mừng trở lại!" textFill="#396eff" AnchorPane.rightAnchor="153.79999999999995" AnchorPane.topAnchor="18.0">
+                                            <font>
+                                                <Font name="System Bold" size="15.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="page_label" layoutX="20.0" layoutY="15.0" style="-fx-font-size: 20;" text="TRANG CHỦ" textFill="#51b1ff">
+                                            <font>
+                                                <Font size="20.0" />
+                                            </font>
+                                        </Label>
+                                        <Button fx:id="close" layoutX="1029.0" layoutY="12.0" minWidth="26.0" mnemonicParsing="false" onAction="#close" prefHeight="30.0" prefWidth="26.0" styleClass="close" stylesheets="@../../../css/dashBoard.css">
+                                            <graphic>
+                                                <FontAwesomeIconView glyphName="CLOSE" />
+                                            </graphic>
+                                        </Button>
+                                        <Button fx:id="Minimize" layoutX="983.0" layoutY="14.0" mnemonicParsing="false" onAction="#minimize" styleClass="minimize" stylesheets="@../../../css/dashBoard.css">
+                                            <graphic>
+                                                <FontAwesomeIconView glyphName="MINUS" />
+                                            </graphic>
+                                        </Button>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </AnchorPane>
+                    </top>
+                    <left>
+                        <AnchorPane prefHeight="556.0" prefWidth="227.0" styleClass="nav-form" stylesheets="@../../../css/dashBoard.css" BorderPane.alignment="CENTER">
+                            <children>
+                                <Button fx:id="trangchu_btn" layoutX="4.0" layoutY="37.0" mnemonicParsing="false" onAction="#swithForm" prefHeight="40.0" prefWidth="219.0" styleClass="nav-btn" stylesheets="@../../../css/dashBoard.css" text=" Trang chủ">
+                           <graphic>
+                              <Icons525View fill="WHITE" glyphName="HOME" size="18" wrappingWidth="14.099987983703613" />
+                           </graphic></Button>
+                                <Button fx:id="dv_btn" layoutX="4.0" layoutY="87.0" mnemonicParsing="false" onAction="#swithForm" prefHeight="40.0" prefWidth="219.0" styleClass="nav-btn" text="Yêu cầu dịch vụ">
+                           <graphic>
+                              <Icons525View fill="WHITE" glyphName="CIRCLESELECT" />
+                           </graphic></Button>
+                                <Button fx:id="khachnganhan_btn" layoutX="4.0" layoutY="136.0" mnemonicParsing="false" onAction="#swithForm" prefHeight="40.0" prefWidth="219.0" styleClass="nav-btn" text="Đăng kí khách ngắn hạn">
+                           <graphic>
+                              <Icons525View fill="WHITE" glyphName="USER_PLUS" size="15" />
+                           </graphic></Button>
+                                <Button fx:id="hoadon_btn" layoutX="4.0" layoutY="186.0" mnemonicParsing="false" onAction="#swithForm" prefHeight="40.0" prefWidth="219.0" styleClass="nav-btn" text="Hóa đơn">
+                           <graphic>
+                              <Icons525View fill="WHITE" glyphName="CREDITCARD" />
+                           </graphic></Button>
+                                <Button fx:id="dangxuat_btn" layoutX="4.0" layoutY="495.0" minWidth="44.0" mnemonicParsing="false" onAction="#logout" prefHeight="20.0" prefWidth="30.0" styleClass="log-out" stylesheets="@../../../css/dashBoard.css" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="4.0">
+                                    <graphic>
+                                        <Icons525View glyphName="LOGOUT" size="20" wrappingWidth="25.600006103515625" />
+                                    </graphic>
+                                </Button>
+                                <Label layoutX="67.0" layoutY="507.0" text="Đăng xuất" textFill="WHITE" AnchorPane.bottomAnchor="19.399999999999977" AnchorPane.leftAnchor="67.0">
+                                    <font>
+                                        <Font size="15.0" />
+                                    </font>
+                                </Label>
+                        <Button fx:id="caidat_btn" layoutX="4.0" layoutY="272.0" mnemonicParsing="false" onAction="#swithForm" prefHeight="40.0" prefWidth="219.0" styleClass="nav-btn" text="Cài đặt">
+                           <graphic>
+                              <Icons525View fill="WHITE" glyphName="WP_COG" size="15" />
+                           </graphic>
+                        </Button>
+                        <Line endX="93.89999389648438" endY="7.62939453125E-5" layoutX="114.0" layoutY="250.0" startX="-96.50000762939453" startY="7.62939453125E-5" stroke="#075589" />
+                            </children>
+                        </AnchorPane>
+                    </left>
+                    <center>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="center-form" stylesheets="@../../../css/dashBoard.css" BorderPane.alignment="CENTER">
+                            <children>
+                        <AnchorPane fx:id="caidat_form" prefHeight="544.8" prefWidth="872.8" styleClass="label_doimk" stylesheets="@../../../css/dashBoard.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                               <fx:include source="CaiDat.fxml" />
+<!--                              <Line endX="-100.00001525878906" endY="34.0" layoutX="130.0" layoutY="27.0" startX="-100.0" />
+                              <Label fx:id="label_doimk" layoutX="43.0" layoutY="33.0" styleClass="label_doimk" stylesheets="@../../../css/dashBoard.css" text="Đổi mật khẩu" />
+                              <Label layoutX="241.0" layoutY="190.0" styleClass="label_mk" stylesheets="@../../../css/dashBoard.css" text="Mật khẩu cũ:" />
+                              <PasswordField fx:id="old_pass" layoutX="417.0" layoutY="182.0" />
+                              <Label layoutX="241.0" layoutY="242.0" styleClass="label_mk" stylesheets="@../../../css/dashBoard.css" text="Mật khẩu mới:" />
+                              <PasswordField fx:id="new_pass" layoutX="417.0" layoutY="234.0" />
+                              <Label layoutX="241.0" layoutY="298.0" styleClass="label_mk" stylesheets="@../../../css/dashBoard.css" text="Nhập lại mật khẩu:" />
+                              <PasswordField fx:id="confirm_pass" layoutX="417.0" layoutY="290.0" />
+                              <Icons525View glyphName="WP_COG_O" layoutX="812.0" layoutY="52.0" size="25" />-->
+                           </children>
+                        </AnchorPane>
+                                <AnchorPane fx:id="trangchu_form" layoutX="14.0" layoutY="14.0" prefHeight="544.8" prefWidth="872.8" stylesheets="@../../../css/dashBoard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <AnchorPane layoutX="12.0" layoutY="14.0" prefHeight="254.0" prefWidth="848.0" styleClass="card" stylesheets="@../../../css/dashBoard.css">
+                                            <children>
+                                                <Circle fill="WHITE" layoutX="122.0" layoutY="121.0" radius="108.0" stroke="WHITE" strokeType="INSIDE" />
+                                                <Icons525View fill="#002f7b" glyphName="USER" layoutX="52.0" layoutY="182.0" size="140" />
+                                                <Label layoutX="270.0" layoutY="69.0" text="HỌ VÀ TÊN:" textFill="WHITE">
+                                                    <font>
+                                                        <Font size="16.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label layoutX="270.0" layoutY="104.0" text="CCCD:" textFill="WHITE">
+                                                    <font>
+                                                        <Font size="16.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label layoutX="582.0" layoutY="100.0" text="SĐT:" textFill="WHITE">
+                                                    <font>
+                                                        <Font size="16.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label layoutX="582.0" layoutY="134.0" text="EMAIL:" textFill="WHITE">
+                                                    <font>
+                                                        <Font size="16.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label layoutX="270.0" layoutY="134.0" text="GIỚI TÍNH:" textFill="WHITE">
+                                                    <font>
+                                                        <Font size="16.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label layoutX="581.0" layoutY="67.0" text="NGÀY SINH:" textFill="WHITE">
+                                                    <font>
+                                                        <Font size="16.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="trangchu_hoten" layoutX="376.0" layoutY="69.0" text="USER01" textFill="WHITE">
+                                                    <font>
+                                                        <Font size="16.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="trangchu_cccd" layoutX="376.0" layoutY="104.0" text="123" textFill="WHITE">
+                                                    <font>
+                                                        <Font size="16.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="trangchu_gioitinh" layoutX="377.0" layoutY="134.0" text="NAM" textFill="WHITE">
+                                                    <font>
+                                                        <Font size="16.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="trangchu_ngaysinh" layoutX="695.0" layoutY="67.0" text="01/01/01" textFill="WHITE">
+                                                    <font>
+                                                        <Font size="16.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="trangchu_sdt" layoutX="662.0" layoutY="100.0" text="MK01" textFill="WHITE">
+                                                    <font>
+                                                        <Font size="16.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="trangchu_email" layoutX="637.0" layoutY="134.0" text="MK01" textFill="WHITE">
+                                                    <font>
+                                                        <Font size="16.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label layoutX="258.0" layoutY="20.0" styleClass="label_thongtinkhach" stylesheets="@../../../css/dashBoard.css" text="THÔNG TIN KHÁCH THUÊ" />
+                                                <Label layoutX="270.0" layoutY="169.0" text="HỌ TÊN NGƯỜI ĐẠI DIỆN:" textFill="WHITE">
+                                                    <font>
+                                                        <Font size="16.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label layoutX="270.0" layoutY="202.0" text="NGÀY BẮT ĐẦU Ở: " textFill="WHITE">
+                                                    <font>
+                                                        <Font size="16.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="trangchu_ngaybd" layoutX="409.0" layoutY="202.0" text="NAM" textFill="WHITE">
+                                                    <font>
+                                                        <Font size="16.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label layoutX="582.0" layoutY="169.0" text="NGÀY KẾT THÚC: " textFill="WHITE">
+                                                    <font>
+                                                        <Font size="16.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="trangchu_ngaykt" layoutX="716.0" layoutY="169.0" text="MK01" textFill="WHITE">
+                                                    <font>
+                                                        <Font size="16.0" />
+                                                    </font>
+                                                </Label>
+                                    <Label fx:id="trangchu_hotenDD" layoutX="462.0" layoutY="169.0" text="NAM" textFill="WHITE">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane layoutX="12.0" layoutY="297.0" prefHeight="200.0" prefWidth="415.0" styleClass="card" stylesheets="@../../../css/dashBoard.css">
+                                            <children>
+                                                <Icons525View fill="WHITE" glyphName="CHECKBOX_CHECKED" layoutX="30.0" layoutY="145.0" size="130" />
+                                                <Label layoutX="170.0" layoutY="167.0" text="Yêu cầu dịch vụ chưa hoàn thành" textFill="WHITE">
+                                                    <font>
+                                                        <Font size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="trangchu_slyeucaudv" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="383.0" layoutY="14.0" text="0" textFill="WHITE">
+                                                    <font>
+                                                        <Font size="20.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane layoutX="444.0" layoutY="297.0" prefHeight="200.0" prefWidth="415.0" styleClass="card" stylesheets="@../../../css/dashBoard.css">
+                                            <children>
+                                                <Label layoutX="220.0" layoutY="167.0" text="Hóa đơn chưa thanh toán" textFill="WHITE">
+                                                    <font>
+                                                        <Font size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <FontAwesomeIconView fill="WHITE" glyphName="MONEY" layoutX="41.0" layoutY="135.0" selectionStart="0" size="140" />
+                                                <Label fx:id="trangchu_slhdchuatt" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="385.0" layoutY="14.0" text="0" textFill="WHITE">
+                                                    <font>
+                                                        <Font size="20.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </AnchorPane>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane fx:id="yeucaudv_form" layoutX="52.0" layoutY="72.0" prefHeight="544.8" prefWidth="872.8" styleClass="center-form" stylesheets="@../../../css/dashBoard.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <fx:include source="YeuCauDV.fxml" />
+                                        
+                                        <!--                              <AnchorPane layoutX="83.2" layoutY="24.0" prefHeight="246.0" prefWidth="698.0" stylesheets="@../../../css/dashBoard.css" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="91.0" AnchorPane.topAnchor="23.0">
+                                           <children>
+                                              <Button fx:id="dv_guiyeucauBtn" alignment="BOTTOM_LEFT" layoutX="43.0" layoutY="182.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="110.0" style="-fx-alignment: BOTTOM_LEFT;" styleClass="btn" stylesheets="@../../../css/dashBoard.css" text="Gửi yêu cầu">
+                                                 <font>
+                                                    <Font size="14.0" />
+                                                 </font>
+                                                 <graphic>
+                                                    <Icons525View fill="WHITE" glyphName="GO" size="13" text="" />
+                                                 </graphic>
+                                              </Button>
+                                              <Label layoutX="37.0" layoutY="14.0" styleClass="label_dv" stylesheets="@../../../css/dashBoard.css" text="CÁC DỊCH VỤ HỖ TRỢ SỬA CHỮA" textFill="#3549cf">
+                                                 <font>
+                                                    <Font name="System Bold" size="24.0" />
+                                                 </font>
+                                              </Label>
+                                              <CheckComboBox fx:id="checkComboBox" layoutX="43.0" layoutY="119.0" prefHeight="28.0" prefWidth="194.0" />
+                                              <Label layoutX="43.0" layoutY="85.0" styleClass="label_chondv" stylesheets="@../../../css/dashBoard.css" text="Vui lòng chọn các dịch vụ dưới đây:">
+                                                 <font>
+                                                    <Font size="13.0" />
+                                                 </font>
+                                              </Label>
+                                           </children>
+                                           <styleClass>
+                                              <String fx:value="white-bg" />
+                                              <String fx:value="shadow" />
+                                           </styleClass>
+                                        </AnchorPane>
+                                        <TableView fx:id="dichvu_tableview" editable="true" layoutX="81.0" layoutY="283.0" prefHeight="243.0" prefWidth="704.0">
+                                          <columns>
+                                            <TableColumn fx:id="dv_col_tendv" prefWidth="226.3999481201172" text="Tên dịch vụ" />
+                                            <TableColumn fx:id="dv_col_ngaydien" prefWidth="192.0" text="Ngày điền" />
+                                              <TableColumn fx:id="dv_col_tinhtrang" prefWidth="235.199951171875" text="Tình trạng" />
+                                          </columns>
+                                           <columnResizePolicy>
+                                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                           </columnResizePolicy>
+                                        </TableView>-->
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane fx:id="khachnganhan_form" prefHeight="544.8" prefWidth="872.8" visible="false" AnchorPane.bottomAnchor="0.0">
+                                    <children>
+                                        <fx:include source="KhachNganHan.fxml" />
+<!--                                        <AnchorPane layoutX="8.0" layoutY="14.0" prefHeight="281.0" prefWidth="856.0" stylesheets="@../../../css/dashBoard.css">
+                                            <styleClass>
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <Label layoutX="264.0" layoutY="14.0" styleClass="label_dv" stylesheets="@../../../css/dashBoard.css" text="Điền thông tin khách ngắn hạn">
+                                                    <font>
+                                                        <Font name="Tahoma" size="24.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label layoutX="70.0" layoutY="60.0" prefHeight="23.0" prefWidth="124.0" styleClass="label_khachnh" stylesheets="@../../../css/dashBoard.css" text="*Họ tên:" />
+                                                <TextField fx:id="khachnganhan_hoten" layoutX="194.0" layoutY="59.0" />
+                                                <Label layoutX="70.0" layoutY="97.0" prefHeight="23.0" prefWidth="124.0" styleClass="label_khachnh" stylesheets="@../../../css/dashBoard.css" text="*Giới tính:" />
+                                                <ComboBox fx:id="khachnganhan_gioitinh" layoutX="195.0" layoutY="96.0" prefWidth="150.0" />
+                                                <Label layoutX="70.0" layoutY="132.0" prefHeight="23.0" prefWidth="124.0" styleClass="label_khachnh" stylesheets="@../../../css/dashBoard.css" text="*Ngày sinh:" />
+                                                <DatePicker fx:id="khachnganhan_ngaysinh" layoutX="194.0" layoutY="131.0" prefHeight="26.0" prefWidth="151.0" />
+                                                <Label layoutX="70.0" layoutY="171.0" prefHeight="23.0" prefWidth="124.0" styleClass="label_khachnh" stylesheets="@../../../css/dashBoard.css" text="SĐT:" />
+                                                <TextField fx:id="khachnganhan_sdt" layoutX="194.0" layoutY="170.0" />
+                                                <Label layoutX="70.0" layoutY="205.0" prefHeight="23.0" prefWidth="106.0" styleClass="label_khachnh" stylesheets="@../../../css/dashBoard.css" text="CCCD:" />
+                                                <TextField fx:id="khachnganhan_cccd" layoutX="194.0" layoutY="204.0" />
+                                                <Label layoutX="70.0" layoutY="242.0" prefHeight="23.0" prefWidth="106.0" styleClass="label_khachnh" stylesheets="@../../../css/dashBoard.css" text="Email:" />
+                                                <TextField fx:id="khachnganhan_email" layoutX="193.0" layoutY="240.0" />
+                                                <Label layoutX="499.0" layoutY="142.0" prefHeight="23.0" prefWidth="124.0" styleClass="label_khachnh" stylesheets="@../../../css/dashBoard.css" text="*Mã người đại diện:" />
+                                                <TextField fx:id="khachnganhan_maDD" layoutX="641.0" layoutY="141.0" />
+                                                <Label layoutX="499.0" layoutY="175.0" prefHeight="23.0" prefWidth="134.0" styleClass="label_khachnh" stylesheets="@../../../css/dashBoard.css" text="*Họ tên người đại diện:" />
+                                                <TextField fx:id="khachnganhan_hotenDD" layoutX="641.0" layoutY="174.0" />
+                                                <Button fx:id="khachnganhan_guiyeucauBtn" layoutX="499.0" layoutY="225.0" mnemonicParsing="false" onAction="#KhachNganHan_Guiyeucau" prefHeight="29.0" prefWidth="102.0" style="-fx-alignment: BOTTOM_LEFT;" styleClass="btn" stylesheets="@../../../css/dashBoard.css" text="Gửi yêu cầu">
+                                                    <graphic>
+                                                        <Icons525View fill="WHITE" glyphName="GO" />
+                                                    </graphic>
+                                                </Button>
+                                                <Label layoutX="499.0" layoutY="66.0" prefHeight="23.0" prefWidth="124.0" styleClass="label_khachnh" stylesheets="@../../../css/dashBoard.css" text="*Ngày bắt đầu:" />
+                                                <Label layoutX="499.0" layoutY="106.0" prefHeight="23.0" prefWidth="124.0" styleClass="label_khachnh" stylesheets="@../../../css/dashBoard.css" text="*Ngày kết thúc:" />
+                                                <DatePicker fx:id="khachnganhan_ngaybatdau" layoutX="641.0" layoutY="65.0" prefHeight="26.0" prefWidth="152.0" />
+                                                <DatePicker fx:id="khachnganhan_ngayketthuc" layoutX="641.0" layoutY="108.0" prefHeight="26.0" prefWidth="151.0" />
+                                            </children>
+                                        </AnchorPane>
+                                        <TableView fx:id="khachnganhan_tableview" layoutX="7.0" layoutY="306.0" prefHeight="231.0" prefWidth="858.0">
+                                            <columns>
+                                                <TableColumn fx:id="khachnganhan_col_maKT" prefWidth="41.599974632263184" text="Mã K" />
+                                                <TableColumn fx:id="khachnganhan_col_hoten" prefWidth="91.20001602172852" text="Họ tên" />
+                                                <TableColumn fx:id="khachnganhan_col_gioitinh" prefWidth="54.39996337890625" text="Giới tính" />
+                                                <TableColumn fx:id="khachnganhan_col_ngaysinh" prefWidth="60.79991149902344" text="Ngày sinh" />
+                                                <TableColumn fx:id="khachnganhan_col_sdt" prefWidth="66.40000915527344" text="SĐT" />
+                                                <TableColumn fx:id="khachnganhan_col_cccd" prefWidth="98.4000244140625" text="CCCD" />
+                                                <TableColumn fx:id="khachnganhan_col_email" prefWidth="124.79998779296875" text="Email" />
+                                                <TableColumn fx:id="khachnganhan_col_ngaybatdau" prefWidth="82.4000244140625" text="Ngày bắt đầu" />
+                                                <TableColumn fx:id="khachnganhan_col_ngayketthuc" prefWidth="83.20001220703125" text="Ngày kết thúc" />
+                                                <TableColumn fx:id="khachnganhan_col_maDD" prefWidth="70.39990234375" text="Mã đại diện" />
+                                                <TableColumn fx:id="khachnganhan_col_trangthai" prefWidth="80.800048828125" text="Trạng thái" />
+                                            </columns>
+                                            <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                            </columnResizePolicy>
+                                        </TableView>-->
+                                    </children>
+                                </AnchorPane>
+                                
+                                <AnchorPane fx:id="hoadon_form" prefHeight="544.8" prefWidth="872.8" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <fx:include source="HoaDon.fxml" />
+                                        <!--
+                                        <AnchorPane layoutX="25.0" layoutY="24.0" prefHeight="247.0" prefWidth="822.0" style="-fx-background-color: linear-gradient(to bottom right,#7dbeff,#313de4);" stylesheets="@../../../css/dashBoard.css">
+                                            <styleClass>
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <Label layoutX="95.0" layoutY="46.0" style="-fx-font-size: 25; -fx-text-fill: BLACK;" text="Tháng " />
+                                                <Label layoutX="349.0" layoutY="9.0" style="-fx-font-size: 33;" text="Hóa đơn" />
+                                                <Label layoutX="95.0" layoutY="88.0" style="-fx-font-size: 20;" text="Phòng:" />
+                                                <Label layoutX="95.0" layoutY="121.0" style="-fx-font-size: 20;" text="Tổng tiền:" />
+                                                <Label fx:id="hoadon_hd_tongtien" layoutX="193.0" layoutY="121.0" style="-fx-font-size: 20;" text="5.000.000" />
+                                                <Label layoutX="95.0" layoutY="153.0" style="-fx-font-size: 20;" text="Còn nợ:" />
+                                                <Label fx:id="hoadon_hd_conno" layoutX="170.0" layoutY="153.0" style="-fx-font-size: 20;" text="0" />
+                                                <Label layoutX="96.0" layoutY="192.0" style="-fx-font-size: 25;" text="Trạng thái:" />
+                                                <Label fx:id="hoadon_hd_trangthai" layoutX="231.0" layoutY="192.0" style="-fx-font-size: 25; -fx-text-fill: RED;" text="Đã thanh toán" />
+                                                <ComboBox fx:id="hoadon_hd_tenphong" layoutX="173.0" layoutY="87.0" prefHeight="23.0" prefWidth="60.0" />
+                                                <ComboBox fx:id="hoadon_hd_kidong" layoutX="173.0" layoutY="48.0" prefWidth="150.0" />
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane layoutX="25.0" layoutY="286.0" prefHeight="238.0" prefWidth="401.0" style="-fx-background-color: linear-gradient(to bottom right,#7dbeff,#313de4);" stylesheets="@../../../css/dashBoard.css">
+                                            <styleClass>
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <Label layoutX="84.0" layoutY="14.0" style="-fx-font-size: 33;" text="Chi tiết hóa đơn" />
+                                                <Label layoutX="28.0" layoutY="76.0" style="-fx-font-size: 20;" text="Loại hóa đơn:" />
+                                                <Label layoutX="164.0" layoutY="76.0" style="-fx-font-size: 20;" text="Trọ" />
+                                                <Label layoutX="28.0" layoutY="106.0" style="-fx-font-size: 20;" text="Số lượng:" />
+                                                <Label layoutX="139.0" layoutY="106.0" style="-fx-font-size: 20;" text="1" />
+                                                <Label layoutX="28.0" layoutY="136.0" style="-fx-font-size: 20;" text="Đơn giá:" />
+                                                <Label fx:id="hoadon_cthd_dongia" layoutX="120.0" layoutY="136.0" style="-fx-font-size: 20;" text="5.000.000" />
+                                                <Label layoutX="28.0" layoutY="169.0" style="-fx-font-size: 23; -fx-text-fill: BLACK;" text="Thành tiền:" />
+                                                <Label layoutX="157.0" layoutY="169.0" style="-fx-font-size: 23; -fx-text-fill: BLACK;" text="5.000.000" />
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane layoutX="445.0" layoutY="286.0" prefHeight="238.0" prefWidth="401.0" style="-fx-background-color: linear-gradient(to bottom right,#7dbeff,#313de4);" stylesheets="@../../../css/dashBoard.css">
+                                            <styleClass>
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <Label layoutX="84.0" layoutY="14.0" style="-fx-font-size: 33;" text="Chi tiết hóa đơn" />
+                                                <Label layoutX="34.0" layoutY="72.0" style="-fx-font-size: 20;" text="Loại hóa đơn:" />
+                                                <Label layoutX="170.0" layoutY="72.0" style="-fx-font-size: 20;" text="Điện nước" />
+                                                <Label layoutX="34.0" layoutY="102.0" style="-fx-font-size: 20;" text="Số lượng:" />
+                                                <Label layoutX="145.0" layoutY="102.0" style="-fx-font-size: 20;" text="1" />
+                                                <Label layoutX="34.0" layoutY="132.0" style="-fx-font-size: 20;" text="Đơn giá:" />
+                                                <Label layoutX="126.0" layoutY="132.0" style="-fx-font-size: 20;" text="200.000" />
+                                                <Label layoutX="34.0" layoutY="165.0" style="-fx-font-size: 23; -fx-text-fill: BLACK;" text="Thành tiền:" />
+                                                <Label layoutX="163.0" layoutY="165.0" style="-fx-font-size: 23; -fx-text-fill: BLACK;" text="200.000" />
+                                            </children>
+                                        </AnchorPane>-->
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </AnchorPane>
+                    </center>
+                </BorderPane>
+            </children>
+        </AnchorPane>
+    </children>
+</StackPane>

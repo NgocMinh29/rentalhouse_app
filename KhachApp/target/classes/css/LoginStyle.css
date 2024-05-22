@@ -1,0 +1,31 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 4 thg 4, 2024, 17:50:21
+    Author     : NGUYEN MY NGAN
+*/
+
+.bodybg{
+    -fx-background-image: url("/feature/back1.jpg");
+    -fx-background-size: 100%  100%;
+    
+}
+.logo{
+    -fx-image: url("/feature/logo.png");
+}
+.btn{
+    -fx-background-color: blueviolet;
+    -fx-cursor: hand;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-font-family:Tahoma;
+}
+.close{
+    -fx-background_color:#5b34dc;
+    -fx-cursor:hand;
+}
+.close:hover{
+    -fx-background-color:#ffffff;
+}
