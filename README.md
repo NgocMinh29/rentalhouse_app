@@ -1,7 +1,7 @@
 # PHẦN MỀM QUẢN LÝ PHÒNG TRỌ CAO CẤP BCODE
 ![Logo](https://github.com/NgocMinh29/rentalhouse_app/blob/master/logo.png)
 
-## GIỞI THIỆU ĐỒ ÁN 
+## GIỚI THIỆU ĐỒ ÁN 
 Hiện nay, việc tìm nhà hoặc phòng trọ gần trường đại học là thách thức đối với sinh viên. Để giải quyết vấn đề này, chúng tôi muốn xây dựng một hệ thống quản lý thuê phòng trực tuyến. Hệ thống này 
 * Cung cấp thông tin chi tiết về phòng trống, giá cả, tiện nghi và gửi thông tin này đến khách hàng nhanh chóng.
 * Giải quyết vấn đề cập nhật đồng thời giá thuê và tình trạng phòng trống. 
