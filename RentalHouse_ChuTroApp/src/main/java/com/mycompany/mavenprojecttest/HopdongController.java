@@ -526,7 +526,7 @@ public class HopdongController implements Initializable {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Thông báo lỗi");
                 alert.setHeaderText(null);
-                alert.setContentText("Các ô không được để trống");
+                alert.setContentText("Vui lòng điền các ô có thể điền");
                 alert.showAndWait();
             } else {
                 String sql = "SELECT * FROM PHONG WHERE MAP = '" + hopdong_maphong.getSelectionModel().getSelectedItem() + "' AND TRANGTHAI = 'Đã cho thuê'";
@@ -537,7 +537,7 @@ public class HopdongController implements Initializable {
 
                 if (result.next()) {
                     alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Thông báo lỗi");
+                    alert.setTitle("Thông báo lôi");
                     alert.setHeaderText(null);
                     alert.setContentText("Phòng này đã có người thuê.");
                     alert.showAndWait();
@@ -558,89 +558,101 @@ public class HopdongController implements Initializable {
                         alert.showAndWait();
 
                     } else {
-                        String checkData = "SELECT MHD FROM HOPDONG WHERE MHD = '"
-                                + hopdong_id.getText() + "'";
-
-                        statement = connect.createStatement();
-                        result = statement.executeQuery(checkData);
-
-                        if (result.next()) { // nếu đã có hợp đồng chưa hoàn tất trước đó thì không gọi proc tạo nữa mà qua thẳng thêm người form
-                            LocalDate ngaybd = hopdong_ngbd.getValue();
-                            String formattedNgayBatDau = ngaybd.format(formatter);
-                            LocalDate ngaykt = hopdong_ngtraphong.getValue();
-                            String formattedNgayKetThuc = ngaykt.format(formatter);
-
-                            themnguoi_hdgid.setText(hopdong_id.getText());
-                            themnguoi_ngbd.setText(formattedNgayBatDau);
-                            themnguoi_ngkt.setText(formattedNgayKetThuc);
-                            themnguoi_mangdd.setText(hopdong_makt.getText());
-                            themnguoi_tiencoc.setText(hopdong_tiencoc.getText());
-                            themnguoi_tenngdd.setText(hopdong_tenkt.getText());
-                            themnguoi_mapg.setText((String) hopdong_maphong.getSelectionModel().getSelectedItem());
-                            themnguoi_tenphong.setText(hopdong_tenphong.getText());
-                            themnguoi_giathue.setText(hopdong_giathue.getText());
-                            themnguoi_trangthai.setText(hopdong_trangthai.getText());
-
-                            ThemNguoiDoiMaKhach();
-                            ThemNguoiShowListData();
-
-                            themnguoi_xoabtn.setDisable(true);
-
-                            themnguoi_back.setVisible(true);
-
-                            hopdong_form.setVisible(false);
-                            giahan_form.setVisible(false);
-                            cthdg_form.setVisible(false);
-                            themnguoi_form.setVisible(true);
-
-                        } else {
-                            caSt = connect.prepareCall(strCall);
-                            //                    //caSt.setString(1, "user");
-                            //                    
-                            LocalDate ngaybd = hopdong_ngbd.getValue();
-                            String formattedNgayBatDau = ngaybd.format(formatter);
-                            java.sql.Date sqlNgaybd = java.sql.Date.valueOf(ngaybd);
-                            caSt.setDate(1, sqlNgaybd);
-                            //                    
-                            LocalDate ngaykt = hopdong_ngtraphong.getValue();
-                            String formattedNgayKetThuc = ngaykt.format(formatter);
-                            java.sql.Date sqlNgaykt = java.sql.Date.valueOf(ngaykt);
-                            caSt.setDate(2, sqlNgaykt);
-                            //                    
-                            caSt.setString(3, hopdong_tiencoc.getText());
-                            caSt.setString(4, hopdong_makt.getText());
-                            caSt.setString(5, (String) hopdong_maphong.getSelectionModel().getSelectedItem());
-                            caSt.execute();
-
-                            HopDongShowListData();
-
-                            themnguoi_ngbd.setText(formattedNgayBatDau);
-                            themnguoi_ngkt.setText(formattedNgayKetThuc);
-                            themnguoi_mangdd.setText(hopdong_makt.getText());
-                            themnguoi_tiencoc.setText(hopdong_tiencoc.getText());
-                            themnguoi_tenngdd.setText(hopdong_tenkt.getText());
-                            themnguoi_mapg.setText((String) hopdong_maphong.getSelectionModel().getSelectedItem());
-                            themnguoi_tenphong.setText(hopdong_tenphong.getText());
-                            themnguoi_giathue.setText(hopdong_giathue.getText());
-                            themnguoi_trangthai.setText(hopdong_trangthai.getText());
-
-                            ThemNguoiDoiMaKhach();
-                            ThemNguoiShowListData();
-
-                            alert = new Alert(Alert.AlertType.INFORMATION);
-                            alert.setTitle("Thông báo");
+                        LocalDate ngaybd = hopdong_ngbd.getValue();
+                        String formattedNgayBatDau = ngaybd.format(formatter);
+                        LocalDate ngaykt = hopdong_ngtraphong.getValue();
+                        String formattedNgayKetThuc = ngaykt.format(formatter);
+                        
+                        if (ngaybd.isAfter(ngaykt)) 
+                        {
+                            alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Thông báo lỗi");
                             alert.setHeaderText(null);
-                            alert.setContentText("Tạo hợp đồng thành công!");
+                            alert.setContentText("Ngày trả phòng phải sau ngày bắt đầu.");
                             alert.showAndWait();
+                        }
+                        else{
+                            String checkData = "SELECT MHD FROM HOPDONG WHERE MHD = '"
+                                    + hopdong_id.getText() + "'";
 
-                            themnguoi_xoabtn.setDisable(true);
+                            statement = connect.createStatement();
+                            result = statement.executeQuery(checkData);
 
-                            themnguoi_back.setVisible(true);
+                            if (result.next()) { // nếu đã có hợp đồng chưa hoàn tất trước đó thì không gọi proc tạo nữa mà qua thẳng thêm người form
 
-                            hopdong_form.setVisible(false);
-                            giahan_form.setVisible(false);
-                            cthdg_form.setVisible(false);
-                            themnguoi_form.setVisible(true);
+
+                                themnguoi_hdgid.setText(hopdong_id.getText());
+                                themnguoi_ngbd.setText(formattedNgayBatDau);
+                                themnguoi_ngkt.setText(formattedNgayKetThuc);
+                                themnguoi_mangdd.setText(hopdong_makt.getText());
+                                themnguoi_tiencoc.setText(hopdong_tiencoc.getText());
+                                themnguoi_tenngdd.setText(hopdong_tenkt.getText());
+                                themnguoi_mapg.setText((String) hopdong_maphong.getSelectionModel().getSelectedItem());
+                                themnguoi_tenphong.setText(hopdong_tenphong.getText());
+                                themnguoi_giathue.setText(hopdong_giathue.getText());
+                                themnguoi_trangthai.setText(hopdong_trangthai.getText());
+
+                                ThemNguoiDoiMaKhach();
+                                ThemNguoiShowListData();
+
+                                themnguoi_xoabtn.setDisable(true);
+
+                                themnguoi_back.setVisible(true);
+
+                                hopdong_form.setVisible(false);
+                                giahan_form.setVisible(false);
+                                cthdg_form.setVisible(false);
+                                themnguoi_form.setVisible(true);
+
+                            } else {
+                                caSt = connect.prepareCall(strCall);
+                                //                    //caSt.setString(1, "user");
+                                //                    
+    //                            LocalDate ngaybd = hopdong_ngbd.getValue();
+    //                            String formattedNgayBatDau = ngaybd.format(formatter);
+                                java.sql.Date sqlNgaybd = java.sql.Date.valueOf(ngaybd);
+                                caSt.setDate(1, sqlNgaybd);
+                                //                    
+    //                            LocalDate ngaykt = hopdong_ngtraphong.getValue();
+    //                            String formattedNgayKetThuc = ngaykt.format(formatter);
+                                java.sql.Date sqlNgaykt = java.sql.Date.valueOf(ngaykt);
+                                caSt.setDate(2, sqlNgaykt);
+                                //                    
+                                caSt.setString(3, hopdong_tiencoc.getText());
+                                caSt.setString(4, hopdong_makt.getText());
+                                caSt.setString(5, (String) hopdong_maphong.getSelectionModel().getSelectedItem());
+                                caSt.execute();
+
+                                HopDongShowListData();
+
+                                themnguoi_ngbd.setText(formattedNgayBatDau);
+                                themnguoi_ngkt.setText(formattedNgayKetThuc);
+                                themnguoi_mangdd.setText(hopdong_makt.getText());
+                                themnguoi_tiencoc.setText(hopdong_tiencoc.getText());
+                                themnguoi_tenngdd.setText(hopdong_tenkt.getText());
+                                themnguoi_mapg.setText((String) hopdong_maphong.getSelectionModel().getSelectedItem());
+                                themnguoi_tenphong.setText(hopdong_tenphong.getText());
+                                themnguoi_giathue.setText(hopdong_giathue.getText());
+                                themnguoi_trangthai.setText(hopdong_trangthai.getText());
+
+                                ThemNguoiDoiMaKhach();
+                                ThemNguoiShowListData();
+
+                                alert = new Alert(Alert.AlertType.INFORMATION);
+                                alert.setTitle("Information Message");
+                                alert.setHeaderText(null);
+                                alert.setContentText("Successfully Added!");
+                                alert.showAndWait();
+
+                                themnguoi_xoabtn.setDisable(true);
+
+                                themnguoi_back.setVisible(true);
+
+                                hopdong_form.setVisible(false);
+                                giahan_form.setVisible(false);
+                                cthdg_form.setVisible(false);
+                                themnguoi_form.setVisible(true);
+                            }
                         }
                     }
                 }
