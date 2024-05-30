@@ -1428,11 +1428,11 @@ public class HoadonController implements Initializable {
                     alert.setContentText("Tiền nợ phải là số nguyên.");
                     alert.showAndWait();
                     
-                } else if (Integer.parseInt(hoadon_conno.getText()) < Integer.parseInt(conno_conno.getText())){
+                } else if (Integer.parseInt(hoadon_conno.getText()) < Integer.parseInt(conno_conno.getText())||Integer.parseInt(conno_conno.getText())<=0){
                     alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Thông báo lỗi");
                     alert.setHeaderText(null);
-                    alert.setContentText("Tiền nợ mới phải bé hơn hoặc bằng tiền nợ cũ.");
+                    alert.setContentText("Tiền nợ không hợp lệ.");
                     alert.showAndWait();
                     } else {
                     alert = new Alert(Alert.AlertType.CONFIRMATION);
