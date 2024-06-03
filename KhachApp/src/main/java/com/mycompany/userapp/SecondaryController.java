@@ -329,6 +329,7 @@ public class SecondaryController implements Initializable {
             hoadon_form.setVisible(false);
             caidat_form.setVisible(true);
             
+            page_label.setText("CÀI ĐẶT");
             trangchu_slhdchuatt();
         }
 
