@@ -26,4 +26,5 @@ Hiện nay, việc tìm nhà hoặc phòng trọ gần trường đại học l�
 ## TÀI LIỆU ĐỒ ÁN
 * Link Video Demo: https://drive.google.com/drive/folders/1XaUGL_t-mZK2uiBHyjPoG374cZJsoAX0
 * Link Website nhóm: https://sites.google.com/gm.uit.edu.vn/2nmd/trang-ch%E1%BB%A7?authuser=1
+* Link Website Phòng trọ BCode: https://bcode-website.vercel.app/?fbclid=IwZXh0bgNhZW0CMTAAAR1BbwopYFxrq81Ie0Pif8gnzgZuVpXsEcmhSUwaYrNdOsB6AbqIwruGCdo_aem_TpcISpYpDiI-BSig4qR5MA
 
